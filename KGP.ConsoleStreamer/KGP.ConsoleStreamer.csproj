@@ -4,15 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7C02DDD0-3601-4B38-8621-E90C80454397}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{62F3C7C8-856E-4E88-92B6-60D4ADA456FF}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>KGP.Direct3D11</RootNamespace>
-    <AssemblyName>KGP.Direct3D11</AssemblyName>
+    <RootNamespace>KGP.ConsoleStreamer</RootNamespace>
+    <AssemblyName>KGP.ConsoleStreamer</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -20,9 +21,9 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
@@ -33,16 +34,7 @@
   <ItemGroup>
     <Reference Include="Microsoft.Kinect, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\kgp\externals\kinect2\Microsoft.Kinect.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX">
-      <HintPath>..\kgp\externals\sharpdx\SharpDX.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.Direct3D11">
-      <HintPath>..\kgp\externals\sharpdx\SharpDX.Direct3D11.dll</HintPath>
-    </Reference>
-    <Reference Include="SharpDX.DXGI">
-      <HintPath>..\kgp\externals\sharpdx\SharpDX.DXGI.dll</HintPath>
+      <HintPath>..\externals\kinect2\Microsoft.Kinect.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -53,34 +45,25 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\DepthTextureConverter.cs" />
-    <Compile Include="Descriptors\InfraredTextureDescriptors.cs" />
-    <Compile Include="Descriptors\ColorTextureDescriptors.cs" />
-    <Compile Include="Descriptors\BodyIndexTextureDescriptors.cs" />
-    <Compile Include="Descriptors\CameraTextureDescriptors.cs" />
-    <Compile Include="Descriptors\DepthTextureDescriptors.cs" />
-    <Compile Include="Descriptors\DescriptorUtils.Textures.cs" />
-    <Compile Include="Descriptors\LookupTableTextureDescriptors.cs" />
-    <Compile Include="Descriptors\MultiKinectTextureDescriptors.cs" />
-    <Compile Include="Descriptors\PointCloudDescriptors.cs" />
-    <Compile Include="DeviceExtensions.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Textures\RayTableTexture.cs" />
-    <Compile Include="Textures\MultiKinectCameraTexture.cs" />
-    <Compile Include="Textures\RenderCameraTexture.cs" />
-    <Compile Include="Textures\DynamicCameraTexture.cs" />
-    <Compile Include="Textures\DynamicBodyIndexTexture.cs" />
-    <Compile Include="Textures\DynamicDepthTexture.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\KGP.Core\KGP.csproj">
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\src\KGP.Core\KGP.csproj">
       <Project>{126e2fa8-2f30-4df4-9cc0-6fe800a099dd}</Project>
       <Name>KGP</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Compile Include="Descriptors\DescriptorUtils.StructuredBuffers.cs" />
+    <Content Include="SnappyDL.x64.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SnappyDL.x86.dll">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

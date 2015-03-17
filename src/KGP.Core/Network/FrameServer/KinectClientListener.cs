@@ -31,8 +31,13 @@ namespace KGP.Network.FrameServer
         public KinectClientListener(int port)
         {
             this.listener = new TcpListener(IPAddress.Any, port);
-            this.listenThread = new Thread(new ThreadStart(this.ListenForClients));
+            this.StartListening();
+        }
+
+        public void StartListening()
+        {
             this.listener.Start();
+            this.listenThread = new Thread(new ThreadStart(this.ListenForClients));
             this.listenThread.Start();
             this.isListening = true;
         }

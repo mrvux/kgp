@@ -9,6 +9,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KGP.Tests", "src\KGP.Tests\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KGP.Direct3D11", "src\KGP.Direct3D11\KGP.Direct3D11.csproj", "{7C02DDD0-3601-4B38-8621-E90C80454397}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KGP.ConsoleStreamer", "KGP.ConsoleStreamer\KGP.ConsoleStreamer.csproj", "{62F3C7C8-856E-4E88-92B6-60D4ADA456FF}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{7C02DDD0-3601-4B38-8621-E90C80454397}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7C02DDD0-3601-4B38-8621-E90C80454397}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C02DDD0-3601-4B38-8621-E90C80454397}.Release|Any CPU.Build.0 = Release|Any CPU
+		{62F3C7C8-856E-4E88-92B6-60D4ADA456FF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{62F3C7C8-856E-4E88-92B6-60D4ADA456FF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{62F3C7C8-856E-4E88-92B6-60D4ADA456FF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{62F3C7C8-856E-4E88-92B6-60D4ADA456FF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

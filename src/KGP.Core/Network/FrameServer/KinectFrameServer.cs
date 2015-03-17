@@ -26,6 +26,16 @@ namespace KGP.Network.FrameServer
         private SnappyFrameCompressor bodyIndexCompressor;
 
         private MultiSourceFrameReader multiSourceReader;
+
+        /// <summary>
+        /// Raised when a client connected to the server
+        /// </summary>
+        public event EventHandler ClientConnected;
+
+        /// <summary>
+        /// Raised whend client is disconnected from the server
+        /// </summary>
+        public event EventHandler ClientDisconnected;
         
 
         /// <summary>
@@ -50,6 +60,16 @@ namespace KGP.Network.FrameServer
         {
             if (this.activeClient != null)
             {
+                if (this.activeClient.Connected == false)
+                {
+                    if (this.ClientDisconnected !=null)
+                    {
+                        this.ClientDisconnected(this, new EventArgs());
+                        this.activeClient = null;
+                        this.listener.StartListening();
+                    }
+                }
+
                 MultiSourceFrame frame = e.FrameReference.AcquireFrame();
                 if (frame != null)
                 {
@@ -108,6 +128,10 @@ namespace KGP.Network.FrameServer
         {
             this.activeClient = e.Client;
             this.networkStream = e.NetworkStream;
+            if (this.ClientConnected != null)
+            {
+                this.ClientConnected(this, new EventArgs());
+            }
         }
 
         /// <summary>
@@ -115,6 +139,7 @@ namespace KGP.Network.FrameServer
         /// </summary>
         public void Dispose()
         {
+            this.activeClient = null;
             this.listener.ClientConnected -= listener_ClientConnected;
             this.listener.Dispose();
         }
