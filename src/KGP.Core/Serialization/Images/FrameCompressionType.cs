@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KGP.Serialization.Images
+namespace KGP.Serialization
 {
     /// <summary>
     /// Enum to specify which compression scheme we have used for our frame
