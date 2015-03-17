@@ -45,7 +45,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Consts.cs" />
+    <Compile Include="JointExtensions.cs" />
     <Compile Include="KinectBody.cs" />
+    <Compile Include="KinectBodyExtensions.cs" />
+    <Compile Include="KinectMiniPoseExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\Images\FrameCompressionType.cs" />
     <Compile Include="Serialization\Images\KinectFrameHeader.cs" />
