@@ -19,5 +19,35 @@ namespace KGP.Tests.Fakes
             }
             return result;
         }
+
+        public static Joint[] DuplicateJoint()
+        {
+            Joint[] result = new Joint[Microsoft.Kinect.Body.JointCount];
+            JointType[] jt = (JointType[])Enum.GetValues(typeof(JointType));
+            for (int i = 0; i < result.Length; i++)
+            {
+                result[i].JointType = jt[i];
+            }
+
+            //Force a duplicate joint here
+            result[1].JointType = jt[0];
+            return result;
+        }
+
+
+        public static Joint[] DuplicateHead()
+        {
+            Joint[] result = new Joint[Microsoft.Kinect.Body.JointCount];
+            JointType[] jt = (JointType[])Enum.GetValues(typeof(JointType));
+            for (int i = 0; i < result.Length; i++)
+            {
+                result[i].JointType = jt[i];
+            }
+
+            //Force a duplicate joint here
+            result[1].JointType = JointType.Head;
+            result[3].JointType = JointType.Head;
+            return result;
+        }
     }
 }

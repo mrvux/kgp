@@ -57,6 +57,7 @@
     <Compile Include="Fakes\FakeBodies.cs" />
     <Compile Include="Fakes\FakeInternalBodies.cs" />
     <Compile Include="Fakes\FakeJoints.cs" />
+    <Compile Include="KinectBodyInternalTests.cs" />
     <Compile Include="KinectBodyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

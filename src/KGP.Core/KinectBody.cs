@@ -53,6 +53,8 @@ namespace KGP
         /// <param name="body"></param>
         public KinectBody(KGP.Serialization.Body.KinectBodyInternal body)
         {
+            body.Validate(); //This will check preconditions to make sure we have a valid construct
+
             this.clippedEdges = body.ClippedEdges;
             this.handLeftConfidence = body.HandLeftConfidence;
             this.handLeftState = body.HandLeftState;

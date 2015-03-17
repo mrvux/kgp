@@ -7,14 +7,14 @@ using Microsoft.Kinect;
 namespace KGP.Tests
 {
     [TestClass]
-    public class KinectBodyTests
+    public class KinectBodyInternalTests
     {
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestNullOrientations()
         {
             KinectBodyInternal body = FakeInternalBodies.NullOrientationsBody();
-            KinectBody kb = new KinectBody(body);
+            body.Validate();
         }
 
         [TestMethod]
@@ -22,7 +22,7 @@ namespace KGP.Tests
         public void TestNullJoints()
         {
             KinectBodyInternal body = FakeInternalBodies.NullJointsBody();
-            KinectBody kb = new KinectBody(body);
+            body.Validate();
         }
 
         [TestMethod]
@@ -30,7 +30,7 @@ namespace KGP.Tests
         public void TestWrongJointsCount()
         {
             KinectBodyInternal body = FakeInternalBodies.WrongJointCount();
-            KinectBody kb = new KinectBody(body);
+            body.Validate();
         }
 
         [TestMethod]
@@ -38,7 +38,7 @@ namespace KGP.Tests
         public void TestWrongJointsOrientationCount()
         {
             KinectBodyInternal body = FakeInternalBodies.WrongJointOrientationCount();
-            KinectBody kb = new KinectBody(body);
+            body.Validate();
         }
 
         [TestMethod]
@@ -46,40 +46,29 @@ namespace KGP.Tests
         public void TestDuplicateJointCount()
         {
             KinectBodyInternal body = FakeInternalBodies.DuplicateJoints();
-            KinectBody kb = new KinectBody(body);
+            body.Validate();
         }
 
         [TestMethod]
         public void TestDuplicateHead()
         {
-            KinectBodyInternal body = FakeInternalBodies.DuplicateHead();
+            KinectBodyInternal body = FakeInternalBodies.DuplicateHead();       
             try
             {
-                KinectBody kb = new KinectBody(body);
+                body.Validate();
             }
             catch (DuplicateJointException ex)
             {
                 Assert.AreEqual(ex.Joint, JointType.Head);
             }
-            Assert.Fail();
+            Assert.Fail();        
         }
 
         [TestMethod]
         public void TestValid()
         {
             KinectBodyInternal body = FakeInternalBodies.SimpleValidBody();
-            KinectBody kb = new KinectBody(body);
-
-            Assert.AreEqual(body.ClippedEdges, kb.ClippedEdges);
-            Assert.AreEqual(body.HandLeftConfidence, kb.HandLeftConfidence);
-            Assert.AreEqual(body.HandLeftState, kb.HandLeftState);
-            Assert.AreEqual(body.HandRightConfidence, kb.HandRightConfidence);
-            Assert.AreEqual(body.HandRightState, kb.HandRightState);
-            Assert.AreEqual(body.IsRestricted, kb.IsRestricted);
-            Assert.AreEqual(body.IsTracked, kb.IsTracked);
-            Assert.AreEqual(body.Lean, kb.Lean);
-            Assert.AreEqual(body.LeanTrackingState, kb.LeanTrackingState);
-            Assert.AreEqual(body.TrackingId, kb.TrackingId);
+            body.Validate();
         }
     }
 }
