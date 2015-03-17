@@ -43,5 +43,32 @@ namespace KGP
         {
             return kb.FindById(bodyList) != null;
         }
+
+        /// <summary>
+        /// Finds closest body from a list, this can return several body instances since several bodies can
+        /// be at the same distance
+        /// </summary>
+        /// <param name="bodyList">Body list to check for</param>
+        /// <param name="joint">Preferred joint to use (Spine base is used as default if none is provided)</param>
+        /// <remarks>This does not do body filtering, caller is responsible to preprocess list to his own wishes</remarks>
+        /// <returns>Closest bodies from our list, null if initial list is empty</returns>
+        public static IEnumerable<KinectBody> ClosestBodies(this IEnumerable<KinectBody> bodyList, JointType joint = JointType.SpineBase)
+        {
+            float minDepth = bodyList.Aggregate(float.MaxValue, (z, kb) => Math.Min(kb.Joints[joint].Position.Z, z));
+            return bodyList.Where(kb => kb.Joints[joint].Position.Z == minDepth);
+        }
+
+        /// <summary>
+        /// Finds body which is nearest from the camera center, this can return several body instances
+        /// </summary>
+        /// <param name="bodyList">Body list to check for</param>
+        /// <param name="joint">Preferred joint to use (Spine base is used as default if none is provided)</param>
+        /// <remarks>This does not do body filtering, caller is responsible to preprocess list to his own wishes</remarks>
+        /// <returns>Closest bodies from our list, null if initial list is empty</returns>
+        public static IEnumerable<KinectBody> CenterBodies(this IEnumerable<KinectBody> bodyList, JointType joint = JointType.SpineBase)
+        {
+            float nearCenter = bodyList.Aggregate(float.MaxValue, (x, kb) => Math.Min(Math.Abs(kb.Joints[joint].Position.X), x));
+            return bodyList.Where(kb => Math.Abs(kb.Joints[joint].Position.X) == nearCenter);
+        }
     }
 }
