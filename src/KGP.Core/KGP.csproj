@@ -58,6 +58,8 @@
     <Compile Include="KinectMiniPoseExtensions.cs" />
     <Compile Include="Network\FrameServer\KinectClientEventArgs.cs" />
     <Compile Include="Network\FrameServer\KinectClientListener.cs" />
+    <Compile Include="Network\FrameServer\KinectFrameClient.cs" />
+    <Compile Include="Network\FrameServer\KinectFrameServer.cs" />
     <Compile Include="Processors\BodyTrackingProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\Body\DuplicateJointException.cs" />

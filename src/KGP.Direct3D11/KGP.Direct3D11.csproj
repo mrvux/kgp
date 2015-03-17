@@ -72,7 +72,7 @@
     <Compile Include="Textures\DynamicDepthTexture.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\kgp\src\KGP.Core\KGP.csproj">
+    <ProjectReference Include="..\KGP.Core\KGP.csproj">
       <Project>{126e2fa8-2f30-4df4-9cc0-6fe800a099dd}</Project>
       <Name>KGP</Name>
     </ProjectReference>
