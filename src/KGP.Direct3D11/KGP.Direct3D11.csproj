@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7C02DDD0-3601-4B38-8621-E90C80454397}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>KGP.Direct3D11</RootNamespace>
+    <AssemblyName>KGP.Direct3D11</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Kinect, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\kgp\externals\kinect2\Microsoft.Kinect.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX">
+      <HintPath>..\kgp\externals\sharpdx\SharpDX.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.Direct3D11">
+      <HintPath>..\kgp\externals\sharpdx\SharpDX.Direct3D11.dll</HintPath>
+    </Reference>
+    <Reference Include="SharpDX.DXGI">
+      <HintPath>..\kgp\externals\sharpdx\SharpDX.DXGI.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Descriptors\InfraredTextureDescriptors.cs" />
+    <Compile Include="Descriptors\ColorTextureDescriptors.cs" />
+    <Compile Include="Descriptors\BodyIndexTextureDescriptors.cs" />
+    <Compile Include="Descriptors\CameraTextureDescriptors.cs" />
+    <Compile Include="Descriptors\DepthTextureDescriptors.cs" />
+    <Compile Include="Descriptors\DescriptorUtils.Textures.cs" />
+    <Compile Include="Descriptors\LookupTableTextureDescriptors.cs" />
+    <Compile Include="Descriptors\MultiKinectTextureDescriptors.cs" />
+    <Compile Include="Descriptors\PointCloudDescriptors.cs" />
+    <Compile Include="DeviceExtensions.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Textures\RayTableTexture.cs" />
+    <Compile Include="Textures\MultiKinectCameraTexture.cs" />
+    <Compile Include="Textures\RenderCameraTexture.cs" />
+    <Compile Include="Textures\DynamicCameraTexture.cs" />
+    <Compile Include="Textures\DynamicBodyIndexTexture.cs" />
+    <Compile Include="Textures\DynamicDepthTexture.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\kgp\src\KGP.Core\KGP.csproj">
+      <Project>{126e2fa8-2f30-4df4-9cc0-6fe800a099dd}</Project>
+      <Name>KGP</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Compile Include="Descriptors\DescriptorUtils.StructuredBuffers.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
