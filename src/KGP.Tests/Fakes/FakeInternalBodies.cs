@@ -154,6 +154,23 @@ namespace KGP.Tests.Fakes
             };
         }
 
-        
+        public static KinectBodyInternal RandomBodySpine(ulong id, bool tracked, CameraSpacePoint cp)
+        {
+            var result = new KinectBodyInternal()
+            {
+                ClippedEdges = FrameEdges.None,
+                HandLeftConfidence = TrackingConfidence.High,
+                HandLeftState = HandState.NotTracked,
+                HandRightConfidence = TrackingConfidence.High,
+                HandRightState = HandState.NotTracked,
+                IsRestricted = false,
+                IsTracked = tracked,
+                JointOrientations = new JointOrientation[Microsoft.Kinect.Body.JointCount],
+                Joints = FakeJoints.ValidRandomJointsSpinePosition(cp),
+                LeanTrackingState = TrackingState.NotTracked,
+                TrackingId = id
+            };
+            return result;
+        }
     }
 }
