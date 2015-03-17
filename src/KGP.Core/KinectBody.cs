@@ -28,7 +28,7 @@ namespace KGP
         private readonly ulong trackingId;
 
         /// <summary>
-        /// Constructs a bdy adapter from a kinect sdk body
+        /// Constructs a body adapter from a kinect sdk body
         /// </summary>
         /// <param name="body">Body from Kinect SDK</param>
         public KinectBody(Microsoft.Kinect.Body body)

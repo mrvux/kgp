@@ -5,6 +5,8 @@ VisualStudioVersion = 12.0.30324.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KGP", "src\KGP.Core\KGP.csproj", "{126E2FA8-2F30-4DF4-9CC0-6FE800A099DD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KGP.Tests", "src\KGP.Tests\KGP.Tests.csproj", "{C50DD357-D260-44E5-8268-25928CA04D5D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{126E2FA8-2F30-4DF4-9CC0-6FE800A099DD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{126E2FA8-2F30-4DF4-9CC0-6FE800A099DD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{126E2FA8-2F30-4DF4-9CC0-6FE800A099DD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C50DD357-D260-44E5-8268-25928CA04D5D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C50DD357-D260-44E5-8268-25928CA04D5D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C50DD357-D260-44E5-8268-25928CA04D5D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C50DD357-D260-44E5-8268-25928CA04D5D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
