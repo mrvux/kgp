@@ -54,6 +54,8 @@
     <Compile Include="KinectMiniPoseExtensions.cs" />
     <Compile Include="Processors\BodyTrackingProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Serialization\Body\KinectBodyConverter.cs" />
+    <Compile Include="Serialization\Body\KinectBodyInternal.cs" />
     <Compile Include="Serialization\Images\FrameCompressionType.cs" />
     <Compile Include="Serialization\Images\KinectFrameHeader.cs" />
     <Compile Include="Serialization\Images\KinectFrameType.cs" />
@@ -62,9 +64,7 @@
     <Compile Include="Serialization\Images\Snappy\SnappyCodec.cs" />
     <Compile Include="Serialization\Images\Snappy\SnappyStatus.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Serialization\Body\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

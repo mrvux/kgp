@@ -47,6 +47,38 @@ namespace KGP
             this.trackingId = body.TrackingId;
         }
 
+        /// <summary>
+        /// Constructs a body adapter from a serialized version
+        /// </summary>
+        /// <param name="body"></param>
+        public KinectBody(KGP.Serialization.Body.KinectBodyInternal body)
+        {
+            this.clippedEdges = body.ClippedEdges;
+            this.handLeftConfidence = body.HandLeftConfidence;
+            this.handLeftState = body.HandLeftState;
+            this.handRightConfidence = body.HandRightConfidence;
+            this.handRightState = body.HandRightState;
+            this.isRestricted = body.IsRestricted;
+            this.isTracked = body.IsTracked;
+
+            Dictionary<JointType, JointOrientation> orientations = new Dictionary<JointType, JointOrientation>();
+            Dictionary<JointType, Joint> jointsDic = new Dictionary<JointType,Joint>();
+            for (int i = 0; i < body.Joints.Length;i++)
+            {
+                var joint = body.Joints[i];
+                orientations.Add(joint.JointType, body.JointOrientations[i]);
+                jointsDic.Add(joint.JointType, joint);
+
+            }
+
+            this.joints = jointsDic;
+            this.jointOrientations =orientations;
+
+            this.lean = body.Lean;
+            this.leanTrackingState = body.LeanTrackingState;
+            this.trackingId = body.TrackingId;
+        }
+
         /// <see cref="Microsoft.Kinect.Body.ClippedEdges"/>
         public FrameEdges ClippedEdges
         {
