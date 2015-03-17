@@ -51,7 +51,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Consts.cs" />
-    <Compile Include="Frames\DepthFrameAdapter.cs" />
     <Compile Include="JointExtensions.cs" />
     <Compile Include="KinectBody.cs" />
     <Compile Include="KinectBodyEventArgs.cs" />
@@ -65,7 +64,10 @@
     <Compile Include="Serialization\Body\KinectBodyInternal.cs" />
     <Compile Include="Serialization\Images\FrameCompressionType.cs" />
     <Compile Include="Serialization\Images\KinectFrameHeader.cs" />
+    <Compile Include="Serialization\Images\KinectFrameInformation.cs" />
     <Compile Include="Serialization\Images\KinectFrameType.cs" />
+    <Compile Include="Serialization\Images\SnappyFrameCompressor.cs" />
+    <Compile Include="Serialization\Images\SnappyFrameDecompressor.cs" />
     <Compile Include="Serialization\Images\Snappy\Snappy32.cs" />
     <Compile Include="Serialization\Images\Snappy\Snappy64.cs" />
     <Compile Include="Serialization\Images\Snappy\SnappyCodec.cs" />

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace KGP.Serialization
 {
     /// <summary>
-    /// Header for a kinect frame, to allow 
+    /// Header for a kinect frame, to allow compression and allow to send via network
     /// </summary>
     [StructLayout(LayoutKind.Sequential)]
     public struct KinectFrameHeader
