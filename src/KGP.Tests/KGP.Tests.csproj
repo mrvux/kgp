@@ -39,6 +39,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\externals\kinect2\Microsoft.Kinect.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\externals\json\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -58,6 +62,7 @@
     <Compile Include="Fakes\FakeInternalBodies.cs" />
     <Compile Include="Fakes\FakeJoints.cs" />
     <Compile Include="JointExtensionsTests.cs" />
+    <Compile Include="JsonSerializerTests.cs" />
     <Compile Include="KinectBodyExtensionsTests.cs" />
     <Compile Include="KinectBodyInternalTests.cs" />
     <Compile Include="BodyTrackingProcessorTests.cs" />

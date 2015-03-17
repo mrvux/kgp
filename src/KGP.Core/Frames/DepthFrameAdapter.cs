@@ -8,5 +8,6 @@ namespace KGP.Frames
 {
     public class DepthFrameAdapter
     {
+
     }
 }
