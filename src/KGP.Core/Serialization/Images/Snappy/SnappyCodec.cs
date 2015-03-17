@@ -55,12 +55,12 @@ namespace SnappyPI
 		{
 			if (IntPtr.Size == 4)
 			{
-				return Snappy32.GetMaximumCompressedLength(inputLength);
+                return Snappy32.UnsafeNativeMethods.GetMaximumCompressedLength(inputLength);
 			}
 			else
 			{
 				// checked - exception here is better than just random errors later
-				return checked((int)Snappy64.GetMaximumCompressedLength(inputLength));
+                return checked((int)Snappy64.UnsafeNativeMethods.GetMaximumCompressedLength(inputLength));
 			}
 		}
 
@@ -74,12 +74,12 @@ namespace SnappyPI
 		{
 			if (IntPtr.Size == 4)
 			{
-				return Snappy32.GetUncompressedLength(compressed, compressedLength, ref uncompressedLength);
+				return Snappy32.UnsafeNativeMethods.GetUncompressedLength(compressed, compressedLength, ref uncompressedLength);
 			}
 			else
 			{
 				long l = uncompressedLength;
-				var result = Snappy64.GetUncompressedLength(compressed, compressedLength, ref l);
+                var result = Snappy64.UnsafeNativeMethods.GetUncompressedLength(compressed, compressedLength, ref l);
 				// checked - exception here is better than just random errors later
 				uncompressedLength = checked((int)l);
 				return result;
@@ -97,12 +97,12 @@ namespace SnappyPI
 		{
 			if (IntPtr.Size == 4)
 			{
-				return Snappy32.Compress(input, inputLength, output, ref outputLength);
+                return Snappy32.UnsafeNativeMethods.Compress(input, inputLength, output, ref outputLength);
 			}
 			else
 			{
 				long l = outputLength;
-				var result = Snappy64.Compress(input, inputLength, output, ref l);
+                var result = Snappy64.UnsafeNativeMethods.Compress(input, inputLength, output, ref l);
 				// checked - exception here is better than just random errors later
 				outputLength = checked((int)l);
 				return result;
@@ -120,12 +120,12 @@ namespace SnappyPI
 		{
 			if (IntPtr.Size == 4)
 			{
-				return Snappy32.Uncompress(input, inputLength, output, ref outputLength);
+                return Snappy32.UnsafeNativeMethods.Uncompress(input, inputLength, output, ref outputLength);
 			}
 			else
 			{
 				long l = outputLength;
-				var result = Snappy64.Uncompress(input, inputLength, output, ref l);
+                var result = Snappy64.UnsafeNativeMethods.Uncompress(input, inputLength, output, ref l);
 				// checked - exception here is better than just random errors later
 				outputLength = checked((int)l);
 				return result;

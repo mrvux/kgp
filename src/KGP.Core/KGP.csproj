@@ -21,6 +21,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Debug\KGP.XML</DocumentationFile>
+    <RunCodeAnalysis>true</RunCodeAnalysis>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -47,6 +49,7 @@
     <Compile Include="Consts.cs" />
     <Compile Include="JointExtensions.cs" />
     <Compile Include="KinectBody.cs" />
+    <Compile Include="KinectBodyEventArgs.cs" />
     <Compile Include="KinectBodyExtensions.cs" />
     <Compile Include="KinectMiniPoseExtensions.cs" />
     <Compile Include="Processors\BodyTrackingProcessor.cs" />

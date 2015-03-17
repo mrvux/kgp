@@ -47,61 +47,73 @@ namespace KGP
             this.trackingId = body.TrackingId;
         }
 
+        /// <see cref="Microsoft.Kinect.Body.ClippedEdges"/>
         public FrameEdges ClippedEdges
         {
             get { return this.clippedEdges; }
         }
 
+        /// <see cref="Microsoft.Kinect.Body.HandLeftConfidence"/>
         public TrackingConfidence HandLeftConfidence
         {
             get { return this.handLeftConfidence; }
         }
 
+        /// <see cref="Microsoft.Kinect.Body.HandLeftState"/>
         public HandState HandLeftState
         {
             get { return this.handLeftState; }
         }
 
+        /// <see cref="Microsoft.Kinect.Body.HandRightConfidence"/>
         public TrackingConfidence HandRightConfidence
         {
             get { return this.handRightConfidence; }
         }
 
+        /// <see cref="Microsoft.Kinect.Body.HandRightState"/>
         public HandState HandRightState
         {
             get { return this.handRightState; }
         }
 
+        /// <see cref="Microsoft.Kinect.Body.IsRestricted"/>
         public bool IsRestricted
         {
             get { return this.isRestricted; }
         }
 
+        /// <see cref="Microsoft.Kinect.Body.IsTracked"/>
         public bool IsTracked
         {
             get { return this.isTracked; }
         }
 
+        /// <see cref="Microsoft.Kinect.Body.JointOrientations"/>
         public IReadOnlyDictionary<JointType,JointOrientation> JointOrientations
         {
             get { return this.jointOrientations; }
         }
 
+        /// <see cref="Microsoft.Kinect.Body.Joints"/>
         public IReadOnlyDictionary<JointType,Joint> Joints
         {
             get { return this.joints; }
         }
 
+        /// <see cref="Microsoft.Kinect.Body.Lean"/>
         public PointF Lean
         {
             get { return this.lean; }
         }
 
+        /// <see cref="Microsoft.Kinect.Body.LeanTrackingState"/>
         public TrackingState LeanTrackingState
         {
             get { return this.leanTrackingState; }
         }
 
+        /// <see cref="Microsoft.Kinect.Body.TrackingId"/>
         public ulong TrackingId
         {
             get { return this.trackingId; }

@@ -13,6 +13,9 @@ namespace KGP.Processors
     {
         private IEnumerable<KinectBody> lastBodyFrame;
 
+        /// <summary>
+        /// Constructs a tracking processor instance (with an empty tracking record)
+        /// </summary>
         public BodyTrackingProcessor()
         {
             this.lastBodyFrame = new KinectBody[0];
@@ -21,12 +24,12 @@ namespace KGP.Processors
         /// <summary>
         /// Raised when a new body is tracked
         /// </summary>
-        public event EventHandler<KinectBody> BodyTrackingStarted;
+        public event EventHandler<KinectBodyEventArgs> BodyTrackingStarted;
 
         /// <summary>
         /// Raised when body tracking is lost
         /// </summary>
-        public event EventHandler<KinectBody> BodyTrackingLost;
+        public event EventHandler<KinectBodyEventArgs> BodyTrackingLost;
 
         /// <summary>
         /// Process next frame
@@ -61,7 +64,7 @@ namespace KGP.Processors
         { 
             if (this.BodyTrackingStarted != null)
             {
-                this.BodyTrackingStarted(this, body);
+                this.BodyTrackingStarted(this,new KinectBodyEventArgs(body));
             }
         }
 
@@ -69,7 +72,7 @@ namespace KGP.Processors
         {
             if (this.BodyTrackingLost != null)
             {
-                this.BodyTrackingLost(this, body);
+                this.BodyTrackingLost(this, new KinectBodyEventArgs(body));
             }
         }
     }
