@@ -45,6 +45,9 @@ namespace KGP.Direct3D11.Buffers
         {
             var jointArray = joints.SelectMany(cpj => cpj.JointPositions.Values.ToArray()).ToArray();
 
+            if (jointArray.Length == 0)
+                return;
+
             fixed (ColorSpacePoint* cptr = & jointArray[0])
             {
                 this.buffer.Upload(context, new IntPtr(cptr), Marshal.SizeOf(typeof(ColorSpacePoint)) * jointArray.Length);

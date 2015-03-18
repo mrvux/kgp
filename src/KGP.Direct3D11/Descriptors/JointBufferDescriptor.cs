@@ -26,7 +26,7 @@ namespace KGP.Direct3D11.Descriptors
         /// <returns></returns>
         public static BufferDescription DynamicBuffer(BufferStride stride)
         {
-            return DescriptorUtils.WriteableStructuredBuffer(MaxBodyJoints, stride);
+            return DescriptorUtils.DynamicStructuredBuffer(MaxBodyJoints, stride);
         }
 
         /// <summary>
