@@ -1,4 +1,5 @@
-﻿using KGP.Direct3D11.Descriptors;
+﻿using KGP.Direct3D11;
+using KGP.Direct3D11.Descriptors;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Collections.Generic;
@@ -14,61 +15,61 @@ namespace KDP.Direct3D11.Tests
         [TestMethod]
         public void DynamicBufferDesc()
         {
-            var desc = DescriptorUtils.DynamicStructuredBuffer(1024, 32);
+            var desc = DescriptorUtils.DynamicStructuredBuffer(new BufferElementCount(1024), new BufferStride(32));
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void InvalidElementDynamicBufferDesc()
         {
-            var desc = DescriptorUtils.DynamicStructuredBuffer(0, 32);
+            var desc = DescriptorUtils.DynamicStructuredBuffer(new BufferElementCount(0), new BufferStride(32));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void InvalidStrideDynamicBufferDesc()
         {
-            var desc = DescriptorUtils.DynamicStructuredBuffer(1024, 1);
+            var desc = DescriptorUtils.DynamicStructuredBuffer(new BufferElementCount(1024), new BufferStride(1));
         }
 
         [TestMethod]
         public void ImmutableBufferDesc()
         {
-            var desc = DescriptorUtils.ImmutableStructuredBuffer(1024, 32);
+            var desc = DescriptorUtils.ImmutableStructuredBuffer(new BufferElementCount(1024), new BufferStride(32));
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void InvalidElementImmutableBufferDesc()
         {
-            var desc = DescriptorUtils.ImmutableStructuredBuffer(0, 32);
+            var desc = DescriptorUtils.ImmutableStructuredBuffer(new BufferElementCount(0), new BufferStride(32));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void InvalidStrideImmutableBufferDesc()
         {
-            var desc = DescriptorUtils.ImmutableStructuredBuffer(1024, 1);
+            var desc = DescriptorUtils.ImmutableStructuredBuffer(new BufferElementCount(1024), new BufferStride(1));
         }
 
         [TestMethod]
         public void WriteableBufferDesc()
         {
-            var desc = DescriptorUtils.WriteableStructuredBuffer(1024, 32);
+            var desc = DescriptorUtils.WriteableStructuredBuffer(new BufferElementCount(1024), new BufferStride(32));
         }
 
         [TestMethod]
         [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void InvalidElementWriteBufferDesc()
         {
-            var desc = DescriptorUtils.WriteableStructuredBuffer(0, 32);
+            var desc = DescriptorUtils.WriteableStructuredBuffer(new BufferElementCount(0), new BufferStride(32));
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
+        [ExpectedException(typeof(ArgumentException))]
         public void InvalidStrideWriteBufferDesc()
         {
-            var desc = DescriptorUtils.WriteableStructuredBuffer(1024, 1);
+            var desc = DescriptorUtils.WriteableStructuredBuffer(new BufferElementCount(1024), new BufferStride(1));
         }
     }
 }

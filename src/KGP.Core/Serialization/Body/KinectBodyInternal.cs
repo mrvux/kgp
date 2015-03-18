@@ -66,6 +66,20 @@ namespace KGP.Serialization.Body
 
             if (Joints.Length != Microsoft.Kinect.Body.JointCount)
                 throw new ArgumentException("Joints", "Joint count should match kinect joint count");
+
+            HashSet<JointType> set = new HashSet<JointType>();
+            for (int i = 0; i < Joints.Length; i++)
+            {
+                JointType type = this.Joints[i].JointType;
+                if (!set.Contains(type))
+                {
+                    set.Add(type);
+                }
+                else
+                {
+                    throw new DuplicateJointException(type); 
+                }
+            }
         }
     }
 }

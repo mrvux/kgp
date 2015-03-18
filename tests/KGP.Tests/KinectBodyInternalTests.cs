@@ -56,12 +56,12 @@ namespace KGP.Tests
             try
             {
                 body.Validate();
+                Assert.Fail();      
             }
             catch (DuplicateJointException ex)
             {
                 Assert.AreEqual(ex.Joint, JointType.Head);
             }
-            Assert.Fail();        
         }
 
         [TestMethod]

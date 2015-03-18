@@ -15,7 +15,7 @@ namespace KGP.Direct3D11.Descriptors
         /// <param name="elementCount">Element count</param>
         /// <param name="stride">Structure stride, in bytes</param>
         /// <returns>Buffer description to create structured buffer</returns>
-        public static BufferDescription DynamicStructuredBuffer(int elementCount, int stride)
+        public static BufferDescription DynamicStructuredBuffer(BufferElementCount elementCount, BufferStride stride)
         {
             return new BufferDescription()
             {
@@ -34,7 +34,7 @@ namespace KGP.Direct3D11.Descriptors
         /// <param name="elementCount">Element count</param>
         /// <param name="stride">Structure stride, in bytes</param>
         /// <returns>Buffer description to create structured buffer</returns>
-        public static BufferDescription ImmutableStructuredBuffer(int elementCount, int stride)
+        public static BufferDescription ImmutableStructuredBuffer(BufferElementCount elementCount, BufferStride stride)
         {
             return new BufferDescription()
             {
@@ -53,7 +53,7 @@ namespace KGP.Direct3D11.Descriptors
         /// <param name="elementCount">Element count</param>
         /// <param name="stride">Structure stride, in bytes</param>
         /// <returns>Buffer description to create structured buffer</returns>
-        public static BufferDescription WriteableStructuredBuffer(int elementCount, int stride)
+        public static BufferDescription WriteableStructuredBuffer(BufferElementCount elementCount, BufferStride stride)
         {
             return new BufferDescription()
             {
@@ -71,8 +71,11 @@ namespace KGP.Direct3D11.Descriptors
         /// </summary>
         /// <param name="elementCount">Element count</param>
         /// <returns>View decription</returns>
-        public static UnorderedAccessViewDescription WriteStructuredBufferView(int elementCount)
+        public static UnorderedAccessViewDescription WriteStructuredBufferView(BufferElementCount elementCount)
         {
+            if (elementCount < 1)
+                throw new ArgumentOutOfRangeException("elementCount", "We should have at least one element");
+
             return new UnorderedAccessViewDescription()
             {
                 Format = SharpDX.DXGI.Format.Unknown,
@@ -91,8 +94,11 @@ namespace KGP.Direct3D11.Descriptors
         /// </summary>
         /// <param name="elementCount">Element count</param>
         /// <returns>View decription</returns>
-        public static UnorderedAccessViewDescription AppendStructuredBufferView(int elementCount)
+        public static UnorderedAccessViewDescription AppendStructuredBufferView(BufferElementCount elementCount)
         {
+            if (elementCount < 1)
+                throw new ArgumentOutOfRangeException("elementCount", "We should have at least one element");
+
             return new UnorderedAccessViewDescription()
             {
                 Format = SharpDX.DXGI.Format.Unknown,
@@ -111,8 +117,11 @@ namespace KGP.Direct3D11.Descriptors
         /// </summary>
         /// <param name="elementCount">Element count</param>
         /// <returns>View decription</returns>
-        public static UnorderedAccessViewDescription CounterStructuredBufferView(int elementCount)
+        public static UnorderedAccessViewDescription CounterStructuredBufferView(BufferElementCount elementCount)
         {
+            if (elementCount < 1)
+                throw new ArgumentOutOfRangeException("elementCount", "We should have at least one element");
+
             return new UnorderedAccessViewDescription()
             {
                 Format = SharpDX.DXGI.Format.Unknown,

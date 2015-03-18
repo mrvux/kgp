@@ -22,12 +22,7 @@ namespace KGP.Direct3D11.Descriptors
         /// <returns>Buffer description</returns>
         public static BufferDescription MultiKinectBuffer(int kinectCount, int stride)
         {
-            if (kinectCount < 1)
-                throw new ArgumentOutOfRangeException("kinectCount", "Kinect count should be at least 1");
-            if (stride < 4)
-                throw new ArgumentOutOfRangeException("stride", "Should be at least 4");
-
-            return DescriptorUtils.WriteableStructuredBuffer(Consts.DepthPixelCount * kinectCount, stride);
+            return DescriptorUtils.WriteableStructuredBuffer(new BufferElementCount(Consts.DepthPixelCount * kinectCount), new BufferStride(stride));
         }
 
         /// <summary>
@@ -37,10 +32,7 @@ namespace KGP.Direct3D11.Descriptors
         /// <returns></returns>
         public static BufferDescription Buffer(int stride)
         {
-            if (stride < 4)
-                throw new ArgumentOutOfRangeException("stride", "Should be at least 4");
-
-            return DescriptorUtils.WriteableStructuredBuffer(Consts.DepthPixelCount, stride);
+            return DescriptorUtils.WriteableStructuredBuffer(new BufferElementCount(Consts.DepthPixelCount), new BufferStride(stride));
         }
 
         /// <summary>
@@ -61,7 +53,7 @@ namespace KGP.Direct3D11.Descriptors
         {
             get
             {
-                return DescriptorUtils.AppendStructuredBufferView(Consts.DepthPixelCount);
+                return DescriptorUtils.AppendStructuredBufferView(new BufferElementCount(Consts.DepthPixelCount));
             }
         }
 
@@ -72,7 +64,7 @@ namespace KGP.Direct3D11.Descriptors
         {
             get
             {
-                return DescriptorUtils.CounterStructuredBufferView(Consts.DepthPixelCount);
+                return DescriptorUtils.CounterStructuredBufferView(new BufferElementCount(Consts.DepthPixelCount));
             }
         }
 
@@ -83,7 +75,7 @@ namespace KGP.Direct3D11.Descriptors
         {
             get
             {
-                return DescriptorUtils.WriteStructuredBufferView(Consts.DepthPixelCount);
+                return DescriptorUtils.WriteStructuredBufferView(new BufferElementCount(Consts.DepthPixelCount));
             }
         }
     }

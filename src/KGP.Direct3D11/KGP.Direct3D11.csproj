@@ -54,6 +54,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BufferElementCount.cs" />
+    <Compile Include="BufferStride.cs" />
     <Compile Include="Descriptors\InfraredTextureDescriptors.cs" />
     <Compile Include="Descriptors\ColorTextureDescriptors.cs" />
     <Compile Include="Descriptors\BodyIndexTextureDescriptors.cs" />

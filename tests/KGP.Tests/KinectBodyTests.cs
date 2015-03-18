@@ -56,12 +56,12 @@ namespace KGP.Tests
             try
             {
                 KinectBody kb = new KinectBody(body);
+                Assert.Fail(); //Fail if no exception is raised
             }
             catch (DuplicateJointException ex)
             {
                 Assert.AreEqual(ex.Joint, JointType.Head);
             }
-            Assert.Fail();
         }
 
         [TestMethod]
