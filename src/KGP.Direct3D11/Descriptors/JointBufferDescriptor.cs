@@ -12,7 +12,7 @@ namespace KGP.Direct3D11.Descriptors
     /// <summary>
     /// Descriptor for joint buffers
     /// </summary>
-    public class JointBufferDescriptor
+    public static class JointBufferDescriptor
     {
         private static BufferElementCount MaxBodyJoints
         {
