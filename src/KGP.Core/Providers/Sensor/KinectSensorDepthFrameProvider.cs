@@ -20,7 +20,7 @@ namespace KGP.Providers.Sensor
         /// <summary>
         /// Raised when a new depth frame is received
         /// </summary>
-        public event EventHandler<DepthFrameDataEventArgs> DepthFrameArrived;
+        public event EventHandler<DepthFrameDataEventArgs> FrameReceived;
 
         /// <summary>
         /// Constructor
@@ -53,9 +53,9 @@ namespace KGP.Providers.Sensor
             if (frame != null)
             {
                 frame.CopyFrameDataToIntPtr(this.frameData.DataPointer, (uint)this.frameData.SizeInBytes);
-                if (this.DepthFrameArrived != null)
+                if (this.FrameReceived != null)
                 {
-                    this.DepthFrameArrived(this, new DepthFrameDataEventArgs(this.frameData));
+                    this.FrameReceived(this, new DepthFrameDataEventArgs(this.frameData));
                 }
             }
         }
