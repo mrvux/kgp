@@ -72,6 +72,7 @@
     <Compile Include="Processors\HandStateTrackingProcessor.cs" />
     <Compile Include="Processors\BodyTrackingProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\IInfraredFrameProvider.cs" />
     <Compile Include="Providers\InfraredFrameDataEventArgs.cs" />
     <Compile Include="Providers\KinectBodyFrameDataEventArgs.cs" />
     <Compile Include="Providers\BodyIndexFrameDataEventArgs.cs" />
