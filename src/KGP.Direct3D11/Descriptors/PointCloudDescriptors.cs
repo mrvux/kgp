@@ -65,6 +65,9 @@ namespace KGP.Direct3D11.Descriptors
             }
         }
 
+        /// <summary>
+        /// Get a point cloud counter view
+        /// </summary>
         public static UnorderedAccessViewDescription CounterView
         {
             get
@@ -73,6 +76,9 @@ namespace KGP.Direct3D11.Descriptors
             }
         }
 
+        /// <summary>
+        /// Get a point cloud writeable view
+        /// </summary>
         public static UnorderedAccessViewDescription WriteableView
         {
             get
