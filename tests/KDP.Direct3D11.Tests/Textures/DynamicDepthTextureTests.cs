@@ -20,6 +20,8 @@ namespace KDP.Direct3D11.Tests.Textures
         {
             using (DynamicDepthTexture texture = new DynamicDepthTexture(device))
             {
+                Assert.AreNotEqual(texture.NormalizedView.NativePointer, IntPtr.Zero);
+                Assert.AreNotEqual(texture.RawView.NativePointer, IntPtr.Zero);
             }
         }
 

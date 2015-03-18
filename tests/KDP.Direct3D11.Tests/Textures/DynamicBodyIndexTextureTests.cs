@@ -21,6 +21,8 @@ namespace KDP.Direct3D11.Tests.Textures
         {
             using (DynamicBodyIndexTexture texture = new DynamicBodyIndexTexture(device))
             {
+                Assert.AreNotEqual(texture.NormalizedView.NativePointer, IntPtr.Zero);
+                Assert.AreNotEqual(texture.RawView.NativePointer, IntPtr.Zero);
             }
         }
 

@@ -79,6 +79,7 @@
     <Compile Include="BufferElementCountTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Textures\DynamicColorRGBATextureTests.cs" />
+    <Compile Include="Textures\MultiKinectCameraTextureTests.cs" />
     <Compile Include="Textures\DynamicDepthTextureTests.cs" />
     <Compile Include="Textures\DynamicBodyIndexTextureTests.cs" />
   </ItemGroup>

@@ -6,11 +6,11 @@ using KGP.Frames;
 namespace KDP.Direct3D11.Tests.Textures
 {
     [TestClass]
-    public class DynamicColorRGBATextureTests : IDisposable
+    public class MultiKinectCameraTextureTests : IDisposable
     {
         private SharpDX.Direct3D11.Device device;
 
-        public DynamicColorRGBATextureTests()
+        public MultiKinectCameraTextureTests()
         {
             device = new SharpDX.Direct3D11.Device(SharpDX.Direct3D.DriverType.Reference);
         }
@@ -18,21 +18,17 @@ namespace KDP.Direct3D11.Tests.Textures
         [TestMethod]
         public void TestCreate()
         {
-            using (DynamicColorRGBATexture texture = new DynamicColorRGBATexture(device))
+            using (MultiKinectCameraTexture texture = new MultiKinectCameraTexture(device, 2))
             {
                 Assert.AreNotEqual(texture.ShaderView.NativePointer, IntPtr.Zero);
             }
         }
 
         [TestMethod]
-        public void TestCopy()
+        public void TestInvalid()
         {
-            using (ColorRGBAFrameData frame = new ColorRGBAFrameData())
+            using (MultiKinectCameraTexture texture = new MultiKinectCameraTexture(device, 0))
             {
-                using (DynamicColorRGBATexture texture = new DynamicColorRGBATexture(device))
-                {
-                    texture.Copy(device.ImmediateContext, frame);
-                }
             }
         }
 
