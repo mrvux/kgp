@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Kinect;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,12 +25,7 @@ namespace KGP.Processors
         /// <summary>
         /// Raised when a new body is tracked
         /// </summary>
-        public event EventHandler<KinectBodyEventArgs> BodyTrackingStarted;
-
-        /// <summary>
-        /// Raised when body tracking is lost
-        /// </summary>
-        public event EventHandler<KinectBodyEventArgs> BodyTrackingLost;
+        public event EventHandler<KinectHandStateEventArgs> HandStateChanged;
 
         /// <summary>
         /// Process next frame
@@ -40,39 +36,32 @@ namespace KGP.Processors
         {
             IEnumerable<KinectBody> trackedBodies = bodies.TrackedOnly();
 
-            //Search for lost bodies first
-            foreach (KinectBody kb in lastBodyFrame)
-            {
-                if (!kb.ContainsId(trackedBodies))
-                {
-                    this.RaiseBodyTrackingLost(kb);
-                }
-            }
-
             foreach (KinectBody kb in trackedBodies)
             {
-                if (!kb.ContainsId(lastBodyFrame))
+                if (kb.ContainsId(lastBodyFrame))
                 {
-                    this.RaiseBodyTrackingStarted(kb);
+                    KinectBody previous = kb.FindById(lastBodyFrame);
+
+                    if (previous.HandLeftState != kb.HandLeftState)
+                    {
+                        this.RaiseHandStateChanged(kb, HandType.Left, previous.HandLeftState);
+                    }
+
+                    if (previous.HandRightState != kb.HandRightState)
+                    {
+                        this.RaiseHandStateChanged(kb, HandType.Right, previous.HandRightState);
+                    }
                 }
             }
   
             this.lastBodyFrame = trackedBodies;
         }
 
-        private void RaiseBodyTrackingStarted(KinectBody body)
-        { 
-            if (this.BodyTrackingStarted != null)
-            {
-                this.BodyTrackingStarted(this,new KinectBodyEventArgs(body));
-            }
-        }
-
-        private void RaiseBodyTrackingLost(KinectBody body)
+        private void RaiseHandStateChanged(KinectBody body, HandType handType, HandState previousState)
         {
-            if (this.BodyTrackingLost != null)
+            if (this.HandStateChanged != null)
             {
-                this.BodyTrackingLost(this, new KinectBodyEventArgs(body));
+                this.HandStateChanged(this, new KinectHandStateEventArgs(body, handType, previousState));
             }
         }
     }
