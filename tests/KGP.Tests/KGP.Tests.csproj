@@ -70,7 +70,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\KGP.Core\KGP.csproj">
+    <ProjectReference Include="..\..\src\KGP.Core\KGP.csproj">
       <Project>{126e2fa8-2f30-4df4-9cc0-6fe800a099dd}</Project>
       <Name>KGP</Name>
     </ProjectReference>
