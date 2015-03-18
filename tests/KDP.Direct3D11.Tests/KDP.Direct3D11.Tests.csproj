@@ -69,6 +69,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="TextureSizeTests.cs" />
     <Compile Include="BufferStrideTests.cs" />
     <Compile Include="Descriptors\DescriptorUtilsBuffersViewTests.cs" />
     <Compile Include="Descriptors\DescriptorUtilsBuffersTests.cs" />

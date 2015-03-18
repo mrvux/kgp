@@ -67,6 +67,7 @@
     <Compile Include="Descriptors\PointCloudDescriptors.cs" />
     <Compile Include="DeviceExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextureSize.cs" />
     <Compile Include="Textures\RayTableTexture.cs" />
     <Compile Include="Textures\MultiKinectCameraTexture.cs" />
     <Compile Include="Textures\RenderCameraTexture.cs" />
