@@ -70,6 +70,8 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Buffers\BodyCameraPositionBufferTests.cs" />
+    <Compile Include="Buffers\BodyColorPositionBufferTests.cs" />
     <Compile Include="Descriptors\BodyIndexTextureDescriptorsTests.cs" />
     <Compile Include="Descriptors\MultiKinectTextureDescriptorsTests.cs" />
     <Compile Include="TextureSizeTests.cs" />
