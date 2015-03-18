@@ -14,6 +14,9 @@ namespace KGP.Direct3D11.Descriptors
     /// </summary>
     public static class InfraredTextureDescriptors
     {
+        /// <summary>
+        /// Dynamic descriptor for infrared texture
+        /// </summary>
         public static Texture2DDescription DynamicResource
         {
             get
@@ -22,6 +25,9 @@ namespace KGP.Direct3D11.Descriptors
             }
         }
 
+        /// <summary>
+        /// Immutable descriptor for infrared texture
+        /// </summary>
         public static Texture2DDescription ImmutableResource
         {
             get

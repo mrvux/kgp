@@ -86,6 +86,14 @@ namespace KGP.Direct3D11.Descriptors
             };
         }
 
+        /// <summary>
+        /// Builds resource description for a render target texture array
+        /// </summary>
+        /// <param name="w">Texture width</param>
+        /// <param name="h">Texture height</param>
+        /// <param name="format">Texture format</param>
+        /// <param name="arraySize">Texture array element count</param>
+        /// <returns>Texture2D Description</returns>
         public static Texture2DDescription GetRenderTargetTextureArray(int w, int h, Format format, int arraySize)
         {
             return new Texture2DDescription()

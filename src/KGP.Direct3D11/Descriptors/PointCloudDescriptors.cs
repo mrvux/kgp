@@ -14,16 +14,30 @@ namespace KGP.Direct3D11.Descriptors
     /// </summary>
     public static class PointCloudDescriptors
     {
+        /// <summary>
+        /// Get a buffer description that can handle several kinects at once
+        /// </summary>
+        /// <param name="kinectCount">Kinect count</param>
+        /// <param name="stride">Element stride, in bytes</param>
+        /// <returns>Buffer description</returns>
         public static BufferDescription MultiKinectBuffer(int kinectCount, int stride)
         {
             return DescriptorUtils.WriteableStructuredBuffer(Consts.DepthPixelCount * kinectCount, stride);
         }
 
+        /// <summary>
+        /// Get a buffer description for a single kinect, number of elements = number of pixels in depth frame
+        /// </summary>
+        /// <param name="stride">Element stride, in bytes</param>
+        /// <returns></returns>
         public static BufferDescription Buffer(int stride)
         {
             return DescriptorUtils.WriteableStructuredBuffer(Consts.DepthPixelCount, stride);
         }
 
+        /// <summary>
+        /// Utility to get a position buffer (Vector3 point cloud)
+        /// </summary>
         public static BufferDescription PositionBuffer
         {
             get
@@ -32,6 +46,9 @@ namespace KGP.Direct3D11.Descriptors
             }
         }
 
+        /// <summary>
+        /// Gets an appendable view for our buffer
+        /// </summary>
         public static UnorderedAccessViewDescription AppendView
         {
             get
