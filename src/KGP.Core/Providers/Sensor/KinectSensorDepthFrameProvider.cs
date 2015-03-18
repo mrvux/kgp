@@ -53,11 +53,11 @@ namespace KGP.Providers.Sensor
             if (frame != null)
             {
                 frame.CopyFrameDataToIntPtr(this.frameData.DataPointer, (uint)this.frameData.SizeInBytes);
+                frame.Dispose();
                 if (this.FrameReceived != null)
                 {
                     this.FrameReceived(this, new DepthFrameDataEventArgs(this.frameData));
                 }
-                frame.Dispose();
             }
         }
     }
