@@ -19,16 +19,26 @@ namespace KGP.Direct3D11.Textures
         private ShaderResourceView rawView;
         private RenderTargetView renderView;
 
+        /// <summary>
+        /// Shader resource view
+        /// </summary>
         public ShaderResourceView ShaderView
         {
             get { return this.rawView; }
         }
 
+        /// <summary>
+        /// Render target view
+        /// </summary>
         public RenderTargetView RenderView
         {
             get { return this.renderView; }
         }
 
+        /// <summary>
+        /// Creates a Camera render target texture
+        /// </summary>
+        /// <param name="device">Direct3D Device</param>
         public RenderCameraTexture(Device device)
         {
             this.texture = new Texture2D(device, CameraTextureDescriptors.RenderTargetRGBA);
@@ -36,6 +46,9 @@ namespace KGP.Direct3D11.Textures
             this.renderView = new RenderTargetView(device, this.texture);
         }
 
+        /// <summary>
+        /// Dispose GPU resources
+        /// </summary>
         public void Dispose()
         {
             this.rawView.Dispose();

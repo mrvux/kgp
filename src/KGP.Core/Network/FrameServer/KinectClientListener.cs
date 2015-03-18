@@ -34,8 +34,14 @@ namespace KGP.Network.FrameServer
             this.StartListening();
         }
 
+        /// <summary>
+        /// Starts listening to kinect frame clients
+        /// </summary>
         public void StartListening()
         {
+            if (this.isListening == true)
+                return;
+
             this.listener.Start();
             this.listenThread = new Thread(new ThreadStart(this.ListenForClients));
             this.listenThread.Start();

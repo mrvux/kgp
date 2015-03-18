@@ -61,6 +61,7 @@
     <Compile Include="Frames\BodyIndexFrameDataTests.cs" />
     <Compile Include="Frames\CameraRGBFrameDataTests.cs" />
     <Compile Include="Frames\ColorRGBAFrameDataTests.cs" />
+    <Compile Include="Frames\CameraRGBAFrameDataTests.cs" />
     <Compile Include="Frames\DepthFrameDataTests.cs" />
     <Compile Include="Fakes\FakeBodies.cs" />
     <Compile Include="Fakes\FakeInternalBodies.cs" />

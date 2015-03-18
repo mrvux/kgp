@@ -19,16 +19,29 @@ namespace KGP.Direct3D11.Textures
         private ShaderResourceView rawView;
         private RenderTargetView[] renderViews;
 
+        /// <summary>
+        /// Shader resource view
+        /// </summary>
         public ShaderResourceView ShaderView
         {
             get { return this.rawView; }
         }
 
+        /// <summary>
+        /// Get render target view for a specific camera index
+        /// </summary>
+        /// <param name="kinectIndex">Kinect index</param>
+        /// <returns>Render target view for this kinect index</returns>
         public RenderTargetView GetRenderTargetView(int kinectIndex)
         {
             return renderViews[kinectIndex];
         }
 
+        /// <summary>
+        /// Creates a multi kinect camera texture
+        /// </summary>
+        /// <param name="device">Direct3D Device</param>
+        /// <param name="kinectCount">Kinect Count</param>
         public MultiKinectCameraTexture(Device device, int kinectCount)
         {
             if (device == null)
@@ -45,6 +58,9 @@ namespace KGP.Direct3D11.Textures
             }
         }
 
+        /// <summary>
+        /// Dispose GPU resources
+        /// </summary>
         public void Dispose()
         {
             this.rawView.Dispose();

@@ -10,12 +10,18 @@ using System.Threading.Tasks;
 
 namespace KGP.Direct3D11.Textures
 {
+    /// <summary>
+    /// Ray table texture, used to perform depth/world reconstruction in gpu
+    /// </summary>
     public class RayTableTexture : IDisposable
     {
         private Texture2D texture;
         private ShaderResourceView rawView;
 
-        public ShaderResourceView RawView
+        /// <summary>
+        /// Shader resource view
+        /// </summary>
+        public ShaderResourceView ShaderView
         {
             get { return this.rawView; }
         }
@@ -26,6 +32,12 @@ namespace KGP.Direct3D11.Textures
             this.rawView = view;
         }
 
+        /// <summary>
+        /// Convenience factory to create table from Kinect coordinate mapper
+        /// </summary>
+        /// <param name="device">Direct3D Device</param>
+        /// <param name="coordinateMapper">Kinect Coordinate mapper</param>
+        /// <returns>Ray table texture</returns>
         public unsafe static RayTableTexture FromCoordinateMapper(Device device, CoordinateMapper coordinateMapper)
         {
             var points = coordinateMapper.GetDepthFrameToCameraSpaceTable();
@@ -39,6 +51,9 @@ namespace KGP.Direct3D11.Textures
             }
         }
 
+        /// <summary>
+        /// Disposes GPU resources
+        /// </summary>
         public void Dispose()
         {
             this.rawView.Dispose();

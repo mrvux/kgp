@@ -33,6 +33,10 @@ namespace KGP.Direct3D11
             return candidate > 0 && (candidate % 4 == 0);
         }
 
+        /// <summary>
+        /// Validates stride value and throw appropriate exception if candidate is not valid
+        /// </summary>
+        /// <param name="candidate">Candidate to test</param>
         public void Validate(int candidate)
         {
             if (candidate < 1)
@@ -58,7 +62,7 @@ namespace KGP.Direct3D11
             return this.value.ToString();
         }
 
-        /// <see cref="System.Object.Equals"/>
+        /// <see cref="System.Object.Equals(object)"/>
         public override bool Equals(object obj)
         {
             var other = obj as BufferStride;

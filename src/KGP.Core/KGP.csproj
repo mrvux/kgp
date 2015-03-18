@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="Consts.cs" />
     <Compile Include="Frames\BodyIndexFrameData.cs" />
+    <Compile Include="Frames\CameraRGBAFrameData.cs" />
     <Compile Include="Frames\CameraRGBFrameData.cs" />
     <Compile Include="Frames\ColorRGBAFrameData.cs" />
     <Compile Include="Frames\DepthFrameData.cs" />
