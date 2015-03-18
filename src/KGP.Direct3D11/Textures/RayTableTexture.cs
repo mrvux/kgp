@@ -41,8 +41,21 @@ namespace KGP.Direct3D11.Textures
         public unsafe static RayTableTexture FromCoordinateMapper(Device device, CoordinateMapper coordinateMapper)
         {
             var points = coordinateMapper.GetDepthFrameToCameraSpaceTable();
+            return FromPoints(device, points);
+        }
 
-            fixed (PointF* ptr = &points[0])
+        /// <summary>
+        /// Convenience factory to create table from Kinect coordinate mapper
+        /// </summary>
+        /// <param name="device">Direct3D Device</param>
+        /// <param name="initialData">Initial points array</param>
+        /// <returns>Ray table texture</returns>
+        public unsafe static RayTableTexture FromPoints(Device device, PointF[] initialData)
+        {
+            if (initialData.Length != Consts.DepthPixelCount)
+                throw new ArgumentException("initialData", "Initial data length should be same size as depth frame pixel count");
+
+            fixed (PointF* ptr = &initialData[0])
             {
                 DataRectangle rect = new DataRectangle(new IntPtr(ptr), Consts.DepthWidth * 8);
                 var texture = new Texture2D(device, LookupTableTextureDescriptors.DepthToCameraRayTable, rect);
