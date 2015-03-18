@@ -33,7 +33,7 @@ namespace KDP.Direct3D11.Tests.Descriptors
         [TestMethod]
         public void TestImmutableResource()
         {
-            var desc = BodyIndexTextureDescriptors.DynamicResource;
+            var desc = BodyIndexTextureDescriptors.ImmutableResource;
 
             var expected = new Texture2DDescription()
             {
@@ -74,7 +74,7 @@ namespace KDP.Direct3D11.Tests.Descriptors
         [TestMethod]
         public void TestNormalizedViewDesc()
         {
-            var desc = BodyIndexTextureDescriptors.RawView;
+            var desc = BodyIndexTextureDescriptors.NormalizedView;
 
             var expected = new ShaderResourceViewDescription()
             {
