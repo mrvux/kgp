@@ -47,5 +47,23 @@ namespace KGP.Tests
             
             Assert.AreEqual(data.DataPointer, IntPtr.Zero);
         }
+
+        [TestMethod]
+        public void TestSize()
+        {
+            DepthFrameData data = new DepthFrameData();
+            int expected = 512 * 424 * 2;
+            bool pass = data.SizeInBytes == expected;
+            data.Dispose();
+            Assert.AreEqual(pass, true);
+        }
+
+        [TestMethod]
+        public void TestDisposedSize()
+        {
+            DepthFrameData data = new DepthFrameData();
+            data.Dispose();
+            Assert.AreEqual(data.SizeInBytes, 0);
+        }
     }
 }

@@ -13,6 +13,7 @@ namespace KGP.Frames
     public class DepthFrameData : IDisposable
     {
         private IntPtr dataPointer;
+        private int dataSize;
 
         /// <summary>
         /// Data pointer for depth frame data
@@ -29,11 +30,20 @@ namespace KGP.Frames
         }
 
         /// <summary>
+        /// Size of data frame, in bytes
+        /// </summary>
+        public int SizeInBytes
+        {
+            get { return this.dataSize; }
+        }
+
+        /// <summary>
         /// Constructor, allocates memory to hold depth frame
         /// </summary>
         public DepthFrameData()
         {
-            this.dataPointer = Marshal.AllocHGlobal(Consts.DepthWidth * Consts.DepthHeight * sizeof(ushort));
+            this.dataSize = Consts.DepthWidth * Consts.DepthHeight * sizeof(ushort);
+            this.dataPointer = Marshal.AllocHGlobal(dataSize);
         }
 
         /// <summary>
@@ -45,6 +55,7 @@ namespace KGP.Frames
             {
                 Marshal.FreeHGlobal(this.dataPointer);
                 this.dataPointer = IntPtr.Zero;
+                this.dataSize = 0;
             }   
         }
     }
