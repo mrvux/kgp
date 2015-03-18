@@ -21,6 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Debug\KGP.Direct3D11.XML</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -53,7 +54,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Converters\DepthTextureConverter.cs" />
     <Compile Include="Descriptors\InfraredTextureDescriptors.cs" />
     <Compile Include="Descriptors\ColorTextureDescriptors.cs" />
     <Compile Include="Descriptors\BodyIndexTextureDescriptors.cs" />
@@ -78,7 +78,9 @@
       <Name>KGP</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="Converters\" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="Descriptors\DescriptorUtils.StructuredBuffers.cs" />
   </ItemGroup>

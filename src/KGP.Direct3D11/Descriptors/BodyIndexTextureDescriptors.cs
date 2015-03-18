@@ -14,6 +14,9 @@ namespace KGP.Direct3D11.Descriptors
     /// </summary>
     public static class BodyIndexTextureDescriptors
     {
+        /// <summary>
+        /// Bynamic texture description for body index texture
+        /// </summary>
         public static Texture2DDescription DynamicResource
         {
             get
@@ -22,6 +25,9 @@ namespace KGP.Direct3D11.Descriptors
             }
         }
 
+        /// <summary>
+        /// Immutable texture description for immutable texture
+        /// </summary>
         public static Texture2DDescription ImmutableResource
         {
             get
