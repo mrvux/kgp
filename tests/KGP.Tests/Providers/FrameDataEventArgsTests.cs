@@ -58,5 +58,27 @@ namespace KGP.Tests.Providers
         {
             ColorRGBAFrameDataEventArgs args = new ColorRGBAFrameDataEventArgs(null);
         }
+
+        [TestMethod]
+        public void KinectBodyTestValid()
+        {
+            KinectBody[] data = new KinectBody[]
+            {
+                Fakes.FakeBodies.FakeRandomBody(128,true),
+                Fakes.FakeBodies.FakeRandomBody(129,true)
+            };
+            
+            KinectBodyFrameDataEventArgs args = new KinectBodyFrameDataEventArgs(data);
+
+            Assert.AreEqual(args.FrameData[0], data[0]);
+            Assert.AreEqual(args.FrameData[1], data[1]);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void KinectBodyTestNull()
+        {
+            KinectBodyFrameDataEventArgs args = new KinectBodyFrameDataEventArgs(null);
+        }
     }
 }

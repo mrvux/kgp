@@ -33,5 +33,22 @@ namespace KGP.Direct3D11
             memcpy(db.DataPointer, dataPointer, size);
             context.UnmapSubresource(texture, 0);
         }
+
+        /// <summary>
+        /// Uploads buffer content into gpu
+        /// </summary>
+        /// <param name="buffer">Buffer to upload</param>
+        /// <param name="context">Device context</param>
+        /// <param name="dataPointer">Pointer to image data</param>
+        /// <param name="size">Data size</param>
+        /// <remarks>Since all kinect textures have a correct stride, we do not perform a copy per row, not do that check.</remarks>
+        public static void Upload(this SharpDX.Direct3D11.Buffer buffer, DeviceContext context, IntPtr dataPointer, int size)
+        {
+            DeviceContext ctx = context;
+            DataStream ds;
+            DataBox db = ctx.MapSubresource(buffer, MapMode.WriteDiscard, SharpDX.Direct3D11.MapFlags.None, out ds);
+            memcpy(db.DataPointer, dataPointer, size);
+            context.UnmapSubresource(buffer, 0);
+        }
     }
 }

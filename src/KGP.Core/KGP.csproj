@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorSpaceKinectBody.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="Frames\BodyIndexFrameData.cs" />
     <Compile Include="Frames\CameraRGBAFrameData.cs" />
@@ -70,12 +71,15 @@
     <Compile Include="Processors\HandStateTrackingProcessor.cs" />
     <Compile Include="Processors\BodyTrackingProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\KinectBodyFrameDataEventArgs.cs" />
     <Compile Include="Providers\BodyIndexFrameDataEventArgs.cs" />
     <Compile Include="Providers\ColorRGBAFrameDataEventArgs.cs" />
     <Compile Include="Providers\DepthFrameDataEventArgs.cs" />
+    <Compile Include="Providers\IBodyFrameProvider.cs" />
     <Compile Include="Providers\IBodyIndexFrameProvider.cs" />
     <Compile Include="Providers\IColorRGBAFrameProvider.cs" />
     <Compile Include="Providers\IDepthFrameProvider.cs" />
+    <Compile Include="Providers\Sensor\KinectSensorBodyFrameProvider.cs" />
     <Compile Include="Providers\Sensor\KinectSensorBodyIndexFrameProvider.cs" />
     <Compile Include="Providers\Sensor\KinectSensorColorRGBAFrameProvider.cs" />
     <Compile Include="Providers\Sensor\KinectSensorDepthFrameProvider.cs" />
