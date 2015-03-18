@@ -14,6 +14,6 @@ namespace KGP.Providers
         /// <summary>
         /// Raised when depth frame is received
         /// </summary>
-        event EventHandler DepthFrameArrived;
+        event EventHandler<DepthFrameDataEventArgs> DepthFrameArrived;
     }
 }

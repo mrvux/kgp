@@ -67,6 +67,8 @@
     <Compile Include="Network\FrameServer\KinectFrameServer.cs" />
     <Compile Include="Processors\BodyTrackingProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\BodyIndexFrameDataEventArgs.cs" />
+    <Compile Include="Providers\DepthFrameDataEventArgs.cs" />
     <Compile Include="Providers\IBodyIndexFrameProvider.cs" />
     <Compile Include="Providers\IDepthFrameProvider.cs" />
     <Compile Include="Serialization\Body\DuplicateJointException.cs" />

@@ -14,6 +14,6 @@ namespace KGP.Providers
         /// <summary>
         /// Raised when body index frame is received
         /// </summary>
-        event EventHandler FrameReceived;
+        event EventHandler<BodyIndexFrameDataEventArgs> FrameReceived;
     }
 }
