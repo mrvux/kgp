@@ -72,7 +72,7 @@
     <Compile Include="Serialization\Body\JsonSerializerTests.cs" />
     <Compile Include="KinectBodyExtensionsTests.cs" />
     <Compile Include="KinectBodyInternalTests.cs" />
-    <Compile Include="BodyTrackingProcessorTests.cs" />
+    <Compile Include="Processors\BodyTrackingProcessorTests.cs" />
     <Compile Include="KinectBodyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\Images\CompressorTests.cs" />
