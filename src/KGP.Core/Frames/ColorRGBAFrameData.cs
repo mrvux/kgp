@@ -13,6 +13,7 @@ namespace KGP.Frames
     public class ColorRGBAFrameData : IDisposable
     {
         private IntPtr dataPointer;
+        private int sizeInBytes;
 
         /// <summary>
         /// Data pointer for frame data
@@ -29,11 +30,20 @@ namespace KGP.Frames
         }
 
         /// <summary>
+        /// Frame size, in bytes
+        /// </summary>
+        public int SizeInBytes
+        {
+            get { return this.sizeInBytes; }
+        }
+
+        /// <summary>
         /// Constructor, allocates memory to hold frame data
         /// </summary>
         public ColorRGBAFrameData()
         {
-            this.dataPointer = Marshal.AllocHGlobal(Consts.ColorWidth * Consts.ColorHeight * sizeof(int));
+            this.sizeInBytes = Consts.ColorWidth * Consts.ColorHeight * sizeof(int);
+            this.dataPointer = Marshal.AllocHGlobal(this.sizeInBytes);
         }
 
         /// <summary>
@@ -45,6 +55,7 @@ namespace KGP.Frames
             {
                 Marshal.FreeHGlobal(this.dataPointer);
                 this.dataPointer = IntPtr.Zero;
+                this.sizeInBytes = 0;
             }
         }
     }   

@@ -14,6 +14,7 @@ namespace KGP.Frames
     public class CameraRGBFrameData : IDisposable
     {
         private IntPtr dataPointer;
+        private int sizeInBytes;
 
         /// <summary>
         /// Data pointer for frame data
@@ -30,11 +31,20 @@ namespace KGP.Frames
         }
 
         /// <summary>
+        /// Frame size, in bytes
+        /// </summary>
+        public int SizeInBytes
+        {
+            get { return this.sizeInBytes; }
+        }
+
+        /// <summary>
         /// Constructor, allocates memory to hold frame data
         /// </summary>
         public CameraRGBFrameData()
         {
-            this.dataPointer = Marshal.AllocHGlobal(Consts.DepthWidth * Consts.DepthHeight * Marshal.SizeOf(typeof(CameraSpacePoint)));
+            this.sizeInBytes = Consts.DepthWidth * Consts.DepthHeight * Marshal.SizeOf(typeof(CameraSpacePoint));
+            this.dataPointer = Marshal.AllocHGlobal(this.sizeInBytes);
         }
 
         /// <summary>
@@ -46,6 +56,7 @@ namespace KGP.Frames
             {
                 Marshal.FreeHGlobal(this.dataPointer);
                 this.dataPointer = IntPtr.Zero;
+                this.sizeInBytes = 0;
             }
         }
     }   

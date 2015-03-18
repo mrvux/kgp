@@ -47,5 +47,23 @@ namespace KGP.Tests
             
             Assert.AreEqual(data.DataPointer, IntPtr.Zero);
         }
+
+        [TestMethod]
+        public void TestSize()
+        {
+            CameraRGBFrameData data = new CameraRGBFrameData();
+            int expected = 512 * 424 * 12;
+            bool pass = data.SizeInBytes == expected;
+            data.Dispose();
+            Assert.AreEqual(pass, true);
+        }
+
+        [TestMethod]
+        public void TestDisposedSize()
+        {
+            CameraRGBFrameData data = new CameraRGBFrameData();
+            data.Dispose();
+            Assert.AreEqual(data.SizeInBytes, 0);
+        }
     }
 }

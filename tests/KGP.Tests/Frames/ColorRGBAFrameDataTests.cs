@@ -47,5 +47,23 @@ namespace KGP.Tests
             
             Assert.AreEqual(data.DataPointer, IntPtr.Zero);
         }
+
+        [TestMethod]
+        public void TestSize()
+        {
+            ColorRGBAFrameData data = new ColorRGBAFrameData();
+            int expected = 1920*1080*4;
+            bool pass = data.SizeInBytes == expected;
+            data.Dispose();
+            Assert.AreEqual(pass, true);
+        }
+
+        [TestMethod]
+        public void TestDisposedSize()
+        {
+            ColorRGBAFrameData data = new ColorRGBAFrameData();
+            data.Dispose();
+            Assert.AreEqual(data.SizeInBytes, 0);
+        }
     }
 }
