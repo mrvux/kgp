@@ -26,6 +26,9 @@ namespace KGP.Direct3D11.Descriptors
             }
         }
 
+        /// <summary>
+        /// Get an immutable resource description for depth texture, format set as typeless
+        /// </summary>
         public static Texture2DDescription ImmutableResource
         {
             get
@@ -34,6 +37,9 @@ namespace KGP.Direct3D11.Descriptors
             }
         }
 
+        /// <summary>
+        /// Raw depth texture view, cannot be sampled and must beused as uint typed Texture2D
+        /// </summary>
         public static ShaderResourceViewDescription RawView
         {
             get
@@ -42,6 +48,9 @@ namespace KGP.Direct3D11.Descriptors
             }
         }
 
+        /// <summary>
+        /// Normalized depth view
+        /// </summary>
         public static ShaderResourceViewDescription NormalizedView
         {
             get
