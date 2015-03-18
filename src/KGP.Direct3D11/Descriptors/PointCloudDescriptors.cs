@@ -22,6 +22,11 @@ namespace KGP.Direct3D11.Descriptors
         /// <returns>Buffer description</returns>
         public static BufferDescription MultiKinectBuffer(int kinectCount, int stride)
         {
+            if (kinectCount < 1)
+                throw new ArgumentOutOfRangeException("kinectCount", "Kinect count should be at least 1");
+            if (stride < 4)
+                throw new ArgumentOutOfRangeException("stride", "Should be at least 4");
+
             return DescriptorUtils.WriteableStructuredBuffer(Consts.DepthPixelCount * kinectCount, stride);
         }
 
@@ -32,6 +37,9 @@ namespace KGP.Direct3D11.Descriptors
         /// <returns></returns>
         public static BufferDescription Buffer(int stride)
         {
+            if (stride < 4)
+                throw new ArgumentOutOfRangeException("stride", "Should be at least 4");
+
             return DescriptorUtils.WriteableStructuredBuffer(Consts.DepthPixelCount, stride);
         }
 
