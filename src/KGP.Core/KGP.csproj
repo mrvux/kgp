@@ -50,6 +50,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ColorSpaceKinectBody.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="Frames\BodyIndexFrameData.cs" />
     <Compile Include="Frames\CameraRGBAFrameData.cs" />
