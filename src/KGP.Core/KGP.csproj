@@ -71,6 +71,7 @@
     <Compile Include="Providers\DepthFrameDataEventArgs.cs" />
     <Compile Include="Providers\IBodyIndexFrameProvider.cs" />
     <Compile Include="Providers\IDepthFrameProvider.cs" />
+    <Compile Include="Providers\Sensor\KinectSensorBodyIndexFrameProvider.cs" />
     <Compile Include="Providers\Sensor\KinectSensorDepthFrameProvider.cs" />
     <Compile Include="Serialization\Body\DuplicateJointException.cs" />
     <Compile Include="Serialization\Body\JsonSerializer.cs" />
