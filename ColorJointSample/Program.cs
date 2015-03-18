@@ -32,7 +32,7 @@ namespace JointColorSample
 
             RenderForm form = new RenderForm("Kinect RGB Joint sample");
 
-            RenderDevice device = new RenderDevice(SharpDX.Direct3D11.DeviceCreationFlags.BgraSupport);
+            RenderDevice device = new RenderDevice(SharpDX.Direct3D11.DeviceCreationFlags.BgraSupport | DeviceCreationFlags.Debug);
             RenderContext context = new RenderContext(device);
             DX11SwapChain swapChain = DX11SwapChain.FromHandle(device, form.Handle);
 
@@ -59,12 +59,20 @@ namespace JointColorSample
 
             bool doQuit = false;
             bool doUpload = false;
+            bool uploadImage = false;
+            
 
             KinectBody[] bodyFrame = null;
             BodyColorPositionBuffer positionBuffer = new BodyColorPositionBuffer(device);
 
             KinectSensorBodyFrameProvider provider = new KinectSensorBodyFrameProvider(sensor);
             provider.FrameReceived += (sender, args) => { bodyFrame = args.FrameData; doUpload = true; };
+
+            ColorRGBAFrameData rgbFrame = null;
+            DynamicColorRGBATexture colorTexture = new DynamicColorRGBATexture(device);
+            KinectSensorColorRGBAFrameProvider colorProvider = new KinectSensorColorRGBAFrameProvider(sensor);
+            colorProvider.FrameReceived += (sender, args) => { rgbFrame = args.FrameData; uploadImage = true; };
+
 
             form.KeyDown += (sender, args) => { if (args.KeyCode == Keys.Escape) { doQuit = true; } };
 
@@ -83,15 +91,23 @@ namespace JointColorSample
                     drawer.InstanceCount = colorSpace.Count() * Microsoft.Kinect.Body.JointCount;
                 }
 
+                if (uploadImage)
+                {
+                    colorTexture.Copy(context, rgbFrame);
+                }
+
                 context.RenderTargetStack.Push(swapChain);
                 context.Context.ClearRenderTargetView(swapChain.RenderView, SharpDX.Color.Black);
 
+                device.Primitives.ApplyFullTri(context, colorTexture.ShaderView);
+                device.Primitives.FullScreenTriangle.Draw(context);
 
+                circle.Bind(context, layout);
+                
                 context.Context.PixelShader.Set(pixelShader);
                 context.Context.VertexShader.Set(vertexShader);
                 context.Context.VertexShader.SetShaderResource(0, positionBuffer.ShaderView);
 
-                circle.Bind(context, layout);
                 circle.Draw(context);
 
                 context.RenderTargetStack.Pop();
@@ -102,8 +118,13 @@ namespace JointColorSample
             context.Dispose();
             device.Dispose();
 
+            colorProvider.Dispose();
+            colorTexture.Dispose();
+
             positionBuffer.Dispose();
             provider.Dispose();
+            circle.Dispose();
+            layout.Dispose();
 
             pixelShader.Dispose();
             vertexShader.Dispose();
