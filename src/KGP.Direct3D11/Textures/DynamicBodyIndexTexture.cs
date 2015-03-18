@@ -8,22 +8,35 @@ using System.Threading.Tasks;
 
 namespace KGP.Direct3D11.Textures
 {
+    /// <summary>
+    /// Data holder for dynamic body index texture
+    /// </summary>
     public class DynamicBodyIndexTexture : IDisposable
     {
         private Texture2D texture;
         private ShaderResourceView rawView;
         private ShaderResourceView normalizedView;
 
+        /// <summary>
+        /// Raw shader view, use as typed resource
+        /// </summary>
         public ShaderResourceView RawView
         {
             get { return this.rawView; }
         }
 
+        /// <summary>
+        /// Normalized view, use with a sampler
+        /// </summary>
         public ShaderResourceView NormalizedView
         {
             get { return this.normalizedView; }
         }
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="device">Direct3D11 Device</param>
         public DynamicBodyIndexTexture(Device device)
         {
             this.texture = new Texture2D(device, BodyIndexTextureDescriptors.DynamicResource);
@@ -31,11 +44,21 @@ namespace KGP.Direct3D11.Textures
             this.normalizedView = new ShaderResourceView(device, this.texture, BodyIndexTextureDescriptors.NormalizedView);
         }
 
+        /// <summary>
+        /// Copy body index data fromcpu to gpu
+        /// <remarks>In that case we should use immediate context, do not use a deffered context 
+        /// unless you really know what you do</remarks>
+        /// </summary>
+        /// <param name="context">Device context</param>
+        /// <param name="dataPointer">Data pointer</param>
         public void Copy(DeviceContext context, IntPtr dataPointer)
         {
             this.texture.Upload(context, dataPointer, Consts.DepthPixelCount * sizeof(byte));
         }
 
+        /// <summary>
+        /// Disposes views and texture
+        /// </summary>
         public void Dispose()
         {
             this.rawView.Dispose();
