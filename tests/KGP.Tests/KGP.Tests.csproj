@@ -58,7 +58,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="DepthFrameDataTests.cs" />
+    <Compile Include="Frames\BodyIndexFrameDataTests.cs" />
+    <Compile Include="Frames\ColorRGBAFrameDataTests.cs" />
+    <Compile Include="Frames\DepthFrameDataTests.cs" />
     <Compile Include="Fakes\FakeBodies.cs" />
     <Compile Include="Fakes\FakeInternalBodies.cs" />
     <Compile Include="Fakes\FakeJoints.cs" />

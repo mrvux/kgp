@@ -51,6 +51,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Consts.cs" />
+    <Compile Include="Frames\BodyIndexFrameData.cs" />
+    <Compile Include="Frames\ColorRGBAFrameData.cs" />
     <Compile Include="Frames\DepthFrameData.cs" />
     <Compile Include="JointExtensions.cs" />
     <Compile Include="KinectBody.cs" />

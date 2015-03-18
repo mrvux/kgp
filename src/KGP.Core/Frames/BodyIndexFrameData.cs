@@ -6,38 +6,38 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace KGP.Frames
-{
+{ 
     /// <summary>
-    /// Depth frame data store, uses unmanaged memory back end
+    /// Body index frame data store, uses unmanaged memory back end
     /// </summary>
-    public class DepthFrameData : IDisposable
+    public class BodyIndexFrameData : IDisposable
     {
         private IntPtr dataPointer;
 
         /// <summary>
-        /// Data pointer for depth frame data
+        /// Data pointer for frame data
         /// </summary>
         public IntPtr DataPointer
         {
-            get 
+            get
             {
                 if (this.dataPointer == IntPtr.Zero)
-                    throw new ObjectDisposedException("DepthFrameData");
+                    throw new ObjectDisposedException("BodyIndexFrameData");
 
-                return this.dataPointer; 
+                return this.dataPointer;
             }
         }
 
         /// <summary>
-        /// Constructor, allocates memory to hold depth frame
+        /// Constructor, allocates memory to hold frame data
         /// </summary>
-        public DepthFrameData()
+        public BodyIndexFrameData()
         {
-            this.dataPointer = Marshal.AllocHGlobal(Consts.DepthWidth * Consts.DepthHeight * sizeof(ushort));
+            this.dataPointer = Marshal.AllocHGlobal(Consts.DepthWidth*Consts.DepthHeight);
         }
 
         /// <summary>
-        /// Dispose memory for depth frame data
+        /// Dispose memory for frame data
         /// </summary>
         public void Dispose()
         {
@@ -45,7 +45,8 @@ namespace KGP.Frames
             {
                 Marshal.FreeHGlobal(this.dataPointer);
                 this.dataPointer = IntPtr.Zero;
-            }   
+            }
         }
-    }
+    }   
+        
 }

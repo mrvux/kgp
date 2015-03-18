@@ -5,21 +5,22 @@ using KGP.Frames;
 namespace KGP.Tests
 {
     [TestClass]
-    public class DepthFrameDataTests
+    public class BodyIndexFrameDataTests
     {
         [TestMethod]
         public void TestConstrutor()
         {
-            DepthFrameData data = new DepthFrameData();
+            BodyIndexFrameData data = new BodyIndexFrameData();
             bool pass = data.DataPointer != IntPtr.Zero;
             data.Dispose();
             Assert.AreEqual(true, pass);
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ObjectDisposedException))]
         public void TestDispose()
         {
-            DepthFrameData data = new DepthFrameData();
+            BodyIndexFrameData data = new BodyIndexFrameData();
             data.Dispose();
             Assert.AreEqual(data.DataPointer, IntPtr.Zero);
         }
@@ -28,7 +29,7 @@ namespace KGP.Tests
         [ExpectedException(typeof(ObjectDisposedException))]
         public void TestDisposeAccess()
         {
-            DepthFrameData data = new DepthFrameData();
+            BodyIndexFrameData data = new BodyIndexFrameData();
             data.Dispose();
 
             //Should throw exception
@@ -39,7 +40,7 @@ namespace KGP.Tests
         [ExpectedException(typeof(ObjectDisposedException))]
         public void TestMultipleDispose()
         {
-            DepthFrameData data = new DepthFrameData();
+            BodyIndexFrameData data = new BodyIndexFrameData();
             data.Dispose();
             //Second call to dispose should do nothing
             data.Dispose();
