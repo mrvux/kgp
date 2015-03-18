@@ -57,6 +57,7 @@ namespace KGP.Providers.Sensor
                 {
                     this.FrameReceived(this, new DepthFrameDataEventArgs(this.frameData));
                 }
+                frame.Dispose();
             }
         }
     }

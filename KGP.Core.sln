@@ -19,6 +19,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KGP.Tests", "tests\KGP.Test
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KDP.Direct3D11.Tests", "tests\KDP.Direct3D11.Tests\KDP.Direct3D11.Tests.csproj", "{3CDE9C51-530F-4A51-9B67-5F1FD339F2B2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepthTextureSample", "samples\DepthTextureSample\DepthTextureSample.csproj", "{162BE49F-1B43-4079-A462-31FBF76CBE1D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -41,6 +43,10 @@ Global
 		{3CDE9C51-530F-4A51-9B67-5F1FD339F2B2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3CDE9C51-530F-4A51-9B67-5F1FD339F2B2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3CDE9C51-530F-4A51-9B67-5F1FD339F2B2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{162BE49F-1B43-4079-A462-31FBF76CBE1D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{162BE49F-1B43-4079-A462-31FBF76CBE1D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{162BE49F-1B43-4079-A462-31FBF76CBE1D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{162BE49F-1B43-4079-A462-31FBF76CBE1D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -50,5 +56,6 @@ Global
 		{7C02DDD0-3601-4B38-8621-E90C80454397} = {9DBB14A0-203A-41DC-9B10-55226A31DDDF}
 		{C50DD357-D260-44E5-8268-25928CA04D5D} = {669E2FF2-F9A9-479D-A9CA-51C55EA2DC8A}
 		{3CDE9C51-530F-4A51-9B67-5F1FD339F2B2} = {669E2FF2-F9A9-479D-A9CA-51C55EA2DC8A}
+		{162BE49F-1B43-4079-A462-31FBF76CBE1D} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
 	EndGlobalSection
 EndGlobal
