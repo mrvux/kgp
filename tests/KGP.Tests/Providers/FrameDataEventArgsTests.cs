@@ -80,5 +80,22 @@ namespace KGP.Tests.Providers
         {
             KinectBodyFrameDataEventArgs args = new KinectBodyFrameDataEventArgs(null);
         }
+
+        [TestMethod]
+        public void InfraredTestConstructor()
+        {
+            using (InfraredFrameData depthFrame = new InfraredFrameData())
+            {
+                InfraredFrameDataEventArgs args = new InfraredFrameDataEventArgs(depthFrame);
+                Assert.AreEqual(depthFrame, args.FrameData);
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void InfraredTestNull()
+        {
+            InfraredFrameDataEventArgs args = new InfraredFrameDataEventArgs(null);
+        }
     }
 }
