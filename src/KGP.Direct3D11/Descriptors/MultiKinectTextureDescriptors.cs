@@ -20,6 +20,9 @@ namespace KGP.Direct3D11.Descriptors
         /// <returns>Texture descriptor</returns>
         public static Texture2DDescription CameraTexture(int kinectCount)
         {
+            if (kinectCount < 1)
+                throw new ArgumentOutOfRangeException("kinectCount", "Must be at least one");
+
             return DescriptorUtils.GetRenderTargetTextureArray(new TextureSize(Consts.DepthWidth, Consts.DepthHeight), SharpDX.DXGI.Format.R32G32B32A32_Float, kinectCount);
         }
 
@@ -30,6 +33,9 @@ namespace KGP.Direct3D11.Descriptors
         /// <returns>Render target view description</returns>
         public static RenderTargetViewDescription CameraRenderTarget(int index)
         {
+            if (index < 0)
+                throw new ArgumentOutOfRangeException("index", "Must be at least zero");
+
             return new RenderTargetViewDescription()
             {
                 Dimension = RenderTargetViewDimension.Texture2DArray,
@@ -50,6 +56,9 @@ namespace KGP.Direct3D11.Descriptors
         /// <returns>Texture descriptor</returns>
         public static Texture2DDescription BodyIndexTexture(int kinectCount)
         {
+            if (kinectCount < 1)
+                throw new ArgumentOutOfRangeException("kinectCount", "Must be at least one");
+
             return DescriptorUtils.GetRenderTargetTextureArray(new TextureSize(Consts.DepthWidth, Consts.DepthHeight), SharpDX.DXGI.Format.R8_Typeless, kinectCount);
         }
 
