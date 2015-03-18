@@ -1,4 +1,5 @@
 ﻿using KGP.Direct3D11.Descriptors;
+using KGP.Frames;
 using SharpDX.Direct3D11;
 using System;
 using System.Collections.Generic;
@@ -50,10 +51,10 @@ namespace KGP.Direct3D11.Textures
         /// unless you really know what you do</remarks>
         /// </summary>
         /// <param name="context">Device context</param>
-        /// <param name="dataPointer">Data pointer</param>
-        public void Copy(DeviceContext context, IntPtr dataPointer)
+        /// <param name="frame">Frame data</param>
+        public void Copy(DeviceContext context, BodyIndexFrameData frame)
         {
-            this.texture.Upload(context, dataPointer, Consts.DepthPixelCount * sizeof(byte));
+            this.texture.Upload(context, frame.DataPointer, frame.SizeInBytes);
         }
 
         /// <summary>

@@ -23,7 +23,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepthTextureSample", "sampl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorTextureSample", "samples\ColorTextureSample\ColorTextureSample.csproj", "{BBEA665D-0CD4-4254-A90D-A176DEDDCD02}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodyIndexTextureSample", "BodyIndexTextureSample\BodyIndexTextureSample.csproj", "{2316D1EF-ACE0-4BB3-95CD-32FC391FCC44}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BodyIndexTextureSample", "samples\BodyIndexTextureSample\BodyIndexTextureSample.csproj", "{2316D1EF-ACE0-4BB3-95CD-32FC391FCC44}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DepthToWorldGPUSample", "samples\DepthToWorldGPUSample\DepthToWorldGPUSample.csproj", "{346B8FAA-1F69-4F7B-89B3-4BD1E5BAFD8E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -59,6 +61,10 @@ Global
 		{2316D1EF-ACE0-4BB3-95CD-32FC391FCC44}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2316D1EF-ACE0-4BB3-95CD-32FC391FCC44}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2316D1EF-ACE0-4BB3-95CD-32FC391FCC44}.Release|Any CPU.Build.0 = Release|Any CPU
+		{346B8FAA-1F69-4F7B-89B3-4BD1E5BAFD8E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{346B8FAA-1F69-4F7B-89B3-4BD1E5BAFD8E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{346B8FAA-1F69-4F7B-89B3-4BD1E5BAFD8E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{346B8FAA-1F69-4F7B-89B3-4BD1E5BAFD8E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -71,5 +77,6 @@ Global
 		{162BE49F-1B43-4079-A462-31FBF76CBE1D} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
 		{BBEA665D-0CD4-4254-A90D-A176DEDDCD02} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
 		{2316D1EF-ACE0-4BB3-95CD-32FC391FCC44} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
+		{346B8FAA-1F69-4F7B-89B3-4BD1E5BAFD8E} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
 	EndGlobalSection
 EndGlobal
