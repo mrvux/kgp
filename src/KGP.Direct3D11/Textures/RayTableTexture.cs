@@ -45,7 +45,7 @@ namespace KGP.Direct3D11.Textures
         }
 
         /// <summary>
-        /// Convenience factory to create table from Kinect coordinate mapper
+        /// Convenience factory to create table from Kinect point list
         /// </summary>
         /// <param name="device">Direct3D Device</param>
         /// <param name="initialData">Initial points array</param>

@@ -52,6 +52,7 @@
   <ItemGroup>
     <Compile Include="ColorSpaceKinectBody.cs" />
     <Compile Include="Consts.cs" />
+    <Compile Include="Frames\InfraredFrameData.cs" />
     <Compile Include="Frames\BodyIndexFrameData.cs" />
     <Compile Include="Frames\CameraRGBAFrameData.cs" />
     <Compile Include="Frames\CameraRGBFrameData.cs" />
