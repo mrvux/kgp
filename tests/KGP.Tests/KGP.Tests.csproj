@@ -69,6 +69,8 @@
     <Compile Include="Fakes\FakeInternalBodies.cs" />
     <Compile Include="Fakes\FakeJoints.cs" />
     <Compile Include="JointExtensionsTests.cs" />
+    <Compile Include="KinectHandStateEventArgsTests.cs" />
+    <Compile Include="Processors\HandTrackingProcessorTests.cs" />
     <Compile Include="Serialization\Body\JsonSerializerTests.cs" />
     <Compile Include="KinectBodyExtensionsTests.cs" />
     <Compile Include="KinectBodyInternalTests.cs" />

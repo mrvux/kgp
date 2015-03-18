@@ -172,5 +172,43 @@ namespace KGP.Tests.Fakes
             };
             return result;
         }
+
+        public static KinectBodyInternal BodyWithRightHandState(ulong id, TrackingConfidence confidence, HandState state)
+        {
+            var result = new KinectBodyInternal()
+            {
+                ClippedEdges = FrameEdges.None,
+                HandLeftConfidence = TrackingConfidence.High,
+                HandLeftState = HandState.NotTracked,
+                HandRightConfidence = confidence,
+                HandRightState = state,
+                IsRestricted = false,
+                IsTracked = true,
+                JointOrientations = new JointOrientation[Microsoft.Kinect.Body.JointCount],
+                Joints = FakeJoints.ValidRandomJoints(),
+                LeanTrackingState = TrackingState.NotTracked,
+                TrackingId = id
+            };
+            return result;
+        }
+
+        public static KinectBodyInternal BodyWithLeftHandState(ulong id, TrackingConfidence confidence, HandState state)
+        {
+            var result = new KinectBodyInternal()
+            {
+                ClippedEdges = FrameEdges.None,
+                HandLeftConfidence = confidence,
+                HandLeftState = state,
+                HandRightConfidence = TrackingConfidence.High,
+                HandRightState = HandState.NotTracked,
+                IsRestricted = false,
+                IsTracked = true,
+                JointOrientations = new JointOrientation[Microsoft.Kinect.Body.JointCount],
+                Joints = FakeJoints.ValidRandomJoints(),
+                LeanTrackingState = TrackingState.NotTracked,
+                TrackingId = id
+            };
+            return result;
+        }
     }
 }
