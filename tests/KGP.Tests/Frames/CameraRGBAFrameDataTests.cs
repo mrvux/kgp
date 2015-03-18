@@ -52,7 +52,7 @@ namespace KGP.Tests
         public void TestSize()
         {
             CameraRGBAFrameData data = new CameraRGBAFrameData();
-            int expected = 512 * 424 * 2;
+            int expected = 512 * 424 * 16;
             bool pass = data.SizeInBytes == expected;
             data.Dispose();
             Assert.AreEqual(pass, true);
