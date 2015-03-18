@@ -32,18 +32,17 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Microsoft.Kinect, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\kgp\externals\kinect2\Microsoft.Kinect.dll</HintPath>
+    <Reference Include="Microsoft.Kinect">
+      <HintPath>..\..\externals\kinect2\Microsoft.Kinect.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX">
-      <HintPath>..\kgp\externals\sharpdx\SharpDX.dll</HintPath>
+      <HintPath>..\..\externals\sharpdx\SharpDX.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.Direct3D11">
-      <HintPath>..\kgp\externals\sharpdx\SharpDX.Direct3D11.dll</HintPath>
+      <HintPath>..\..\externals\sharpdx\SharpDX.Direct3D11.dll</HintPath>
     </Reference>
     <Reference Include="SharpDX.DXGI">
-      <HintPath>..\kgp\externals\sharpdx\SharpDX.DXGI.dll</HintPath>
+      <HintPath>..\..\externals\sharpdx\SharpDX.DXGI.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

@@ -25,6 +25,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -69,6 +70,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Descriptors\BodyIndexTextureDescriptorsTests.cs" />
     <Compile Include="Descriptors\MultiKinectTextureDescriptorsTests.cs" />
     <Compile Include="TextureSizeTests.cs" />
     <Compile Include="BufferStrideTests.cs" />
@@ -76,8 +78,16 @@
     <Compile Include="Descriptors\DescriptorUtilsBuffersTests.cs" />
     <Compile Include="BufferElementCountTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Textures\DynamicColorRGBATextureTests.cs" />
+    <Compile Include="Textures\MultiKinectCameraTextureTests.cs" />
+    <Compile Include="Textures\DynamicDepthTextureTests.cs" />
+    <Compile Include="Textures\DynamicBodyIndexTextureTests.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\src\KGP.Core\KGP.csproj">
+      <Project>{126e2fa8-2f30-4df4-9cc0-6fe800a099dd}</Project>
+      <Name>KGP</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\src\KGP.Direct3D11\KGP.Direct3D11.csproj">
       <Project>{7c02ddd0-3601-4b38-8621-e90c80454397}</Project>
       <Name>KGP.Direct3D11</Name>
