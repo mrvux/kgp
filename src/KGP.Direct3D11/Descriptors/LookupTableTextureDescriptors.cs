@@ -21,7 +21,7 @@ namespace KGP.Direct3D11.Descriptors
         {
             get
             {
-                return DescriptorUtils.GetImmutableTexture(Consts.DepthWidth, Consts.DepthHeight, Format.R32G32_Float);
+                return DescriptorUtils.GetImmutableTexture(new TextureSize(Consts.DepthWidth, Consts.DepthHeight), Format.R32G32_Float);
             }
         }
     }

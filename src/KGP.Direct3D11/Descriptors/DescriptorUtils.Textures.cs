@@ -17,11 +17,10 @@ namespace KGP.Direct3D11.Descriptors
         /// <summary>
         /// Gets a dynamic texture description, data must be uploaded using a device context
         /// </summary>
-        /// <param name="w">Texture width</param>
-        /// <param name="h">Texture height</param>
+        /// <param name="size">Texture size</param>
         /// <param name="format">Texture format</param>
         /// <returns>Direct3D11 Texture description</returns>
-        public static Texture2DDescription GetDynamicTexture(int w, int h, Format format)
+        public static Texture2DDescription GetDynamicTexture(TextureSize size, Format format)
         {
             return new Texture2DDescription()
             {
@@ -29,23 +28,22 @@ namespace KGP.Direct3D11.Descriptors
                 BindFlags = BindFlags.ShaderResource,
                 CpuAccessFlags = CpuAccessFlags.Write,
                 Format = format,
-                Height = h,
+                Height = size.Height,
                 MipLevels = 1,
                 OptionFlags = ResourceOptionFlags.None,
                 SampleDescription = new SampleDescription(1,0),
                 Usage = ResourceUsage.Dynamic,
-                Width = w
+                Width = size.Width
             };
         }
 
         /// <summary>
         /// Gets an immutable texture description, data can be uploaded thread free
         /// </summary>
-        /// <param name="w">Texture width</param>
-        /// <param name="h">Texture height</param>
+        /// <param name="size">Texture size</param>
         /// <param name="format">Texture format</param>
         /// <returns>Direct3D11 Texture description</returns>
-        public static Texture2DDescription GetImmutableTexture(int w, int h, Format format)
+        public static Texture2DDescription GetImmutableTexture(TextureSize size, Format format)
         {
             return new Texture2DDescription()
             {
@@ -53,23 +51,22 @@ namespace KGP.Direct3D11.Descriptors
                 BindFlags = BindFlags.ShaderResource,
                 CpuAccessFlags = CpuAccessFlags.None,
                 Format = format,
-                Height = h,
+                Height = size.Height,
                 MipLevels = 1,
                 OptionFlags = ResourceOptionFlags.None,
                 SampleDescription = new SampleDescription(1, 0),
                 Usage = ResourceUsage.Immutable,
-                Width = w
+                Width = size.Width
             };
         }
 
         /// <summary>
         /// Gets a render target texture description
         /// </summary>
-        /// <param name="w">Texture width</param>
-        /// <param name="h">Texture height</param>
+        /// <param name="size">Texture size</param>
         /// <param name="format">Texture format</param>
         /// <returns>Direct3D11 Texture description</returns>
-        public static Texture2DDescription GetRenderTargetTexture(int w, int h, Format format)
+        public static Texture2DDescription GetRenderTargetTexture(TextureSize size, Format format)
         {
             return new Texture2DDescription()
             {
@@ -77,24 +74,23 @@ namespace KGP.Direct3D11.Descriptors
                 BindFlags = BindFlags.ShaderResource | BindFlags.RenderTarget,
                 CpuAccessFlags = CpuAccessFlags.None,
                 Format = format,
-                Height = h,
+                Height = size.Height,
                 MipLevels = 1,
                 OptionFlags = ResourceOptionFlags.None,
                 SampleDescription = new SampleDescription(1, 0),
                 Usage = ResourceUsage.Default,
-                Width = w
+                Width = size.Width
             };
         }
 
         /// <summary>
         /// Builds resource description for a render target texture array
         /// </summary>
-        /// <param name="w">Texture width</param>
-        /// <param name="h">Texture height</param>
+        /// <param name="size">Texture size</param>
         /// <param name="format">Texture format</param>
         /// <param name="arraySize">Texture array element count</param>
         /// <returns>Texture2D Description</returns>
-        public static Texture2DDescription GetRenderTargetTextureArray(int w, int h, Format format, int arraySize)
+        public static Texture2DDescription GetRenderTargetTextureArray(TextureSize size, Format format, int arraySize)
         {
             return new Texture2DDescription()
             {
@@ -102,12 +98,12 @@ namespace KGP.Direct3D11.Descriptors
                 BindFlags = BindFlags.ShaderResource | BindFlags.RenderTarget,
                 CpuAccessFlags = CpuAccessFlags.None,
                 Format = format,
-                Height = h,
+                Height = size.Height,
                 MipLevels = 1,
                 OptionFlags = ResourceOptionFlags.None,
                 SampleDescription = new SampleDescription(1, 0),
                 Usage = ResourceUsage.Default,
-                Width = w
+                Width = size.Width
             };
         }
 

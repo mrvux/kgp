@@ -21,7 +21,7 @@ namespace KGP.Direct3D11.Descriptors
         {
             get
             {
-                return DescriptorUtils.GetDynamicTexture(Consts.DepthWidth, Consts.DepthHeight, Format.R16_UNorm);
+                return DescriptorUtils.GetDynamicTexture(new TextureSize(Consts.DepthWidth, Consts.DepthHeight), Format.R16_UNorm);
             }
         }
 
@@ -32,7 +32,7 @@ namespace KGP.Direct3D11.Descriptors
         {
             get
             {
-                return DescriptorUtils.GetImmutableTexture(Consts.DepthWidth, Consts.DepthHeight, Format.R16_UNorm);
+                return DescriptorUtils.GetImmutableTexture(new TextureSize(Consts.DepthWidth, Consts.DepthHeight), Format.R16_UNorm);
             }
         }
     }

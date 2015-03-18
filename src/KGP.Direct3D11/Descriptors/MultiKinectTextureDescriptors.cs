@@ -20,7 +20,7 @@ namespace KGP.Direct3D11.Descriptors
         /// <returns>Texture descriptor</returns>
         public static Texture2DDescription CameraTexture(int kinectCount)
         {
-            return DescriptorUtils.GetRenderTargetTextureArray(Consts.DepthWidth, Consts.DepthHeight, SharpDX.DXGI.Format.R32G32B32A32_Float, kinectCount);
+            return DescriptorUtils.GetRenderTargetTextureArray(new TextureSize(Consts.DepthWidth, Consts.DepthHeight), SharpDX.DXGI.Format.R32G32B32A32_Float, kinectCount);
         }
 
         /// <summary>
@@ -50,7 +50,7 @@ namespace KGP.Direct3D11.Descriptors
         /// <returns>Texture descriptor</returns>
         public static Texture2DDescription BodyIndexTexture(int kinectCount)
         {
-            return DescriptorUtils.GetRenderTargetTextureArray(Consts.DepthWidth, Consts.DepthHeight, SharpDX.DXGI.Format.R8_Typeless, kinectCount);
+            return DescriptorUtils.GetRenderTargetTextureArray(new TextureSize(Consts.DepthWidth, Consts.DepthHeight), SharpDX.DXGI.Format.R8_Typeless, kinectCount);
         }
 
         

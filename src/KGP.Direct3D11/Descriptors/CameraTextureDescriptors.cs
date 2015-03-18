@@ -22,7 +22,7 @@ namespace KGP.Direct3D11.Descriptors
         {
             get
             {
-                return DescriptorUtils.GetDynamicTexture(Consts.DepthWidth, Consts.DepthHeight, Format.R32G32B32A32_Float);
+                return DescriptorUtils.GetDynamicTexture(new TextureSize(Consts.DepthWidth, Consts.DepthHeight), Format.R32G32B32A32_Float);
             }
         }
 
@@ -34,7 +34,7 @@ namespace KGP.Direct3D11.Descriptors
         {
             get
             {
-                return DescriptorUtils.GetImmutableTexture(Consts.DepthWidth, Consts.DepthHeight, Format.R32G32B32A32_Float);
+                return DescriptorUtils.GetImmutableTexture(new TextureSize(Consts.DepthWidth, Consts.DepthHeight), Format.R32G32B32A32_Float);
             }
         }
 
@@ -46,7 +46,7 @@ namespace KGP.Direct3D11.Descriptors
         {
             get
             {
-                return DescriptorUtils.GetRenderTargetTexture(Consts.DepthWidth, Consts.DepthHeight, Format.R32G32B32A32_Float);
+                return DescriptorUtils.GetRenderTargetTexture(new TextureSize(Consts.DepthWidth, Consts.DepthHeight), Format.R32G32B32A32_Float);
             }
         }
 
@@ -58,7 +58,7 @@ namespace KGP.Direct3D11.Descriptors
         {
             get
             {
-                return DescriptorUtils.GetDynamicTexture(Consts.DepthWidth, Consts.DepthHeight, Format.R32G32B32_Float);
+                return DescriptorUtils.GetDynamicTexture(new TextureSize(Consts.DepthWidth, Consts.DepthHeight), Format.R32G32B32_Float);
             }
         }
 
@@ -70,7 +70,7 @@ namespace KGP.Direct3D11.Descriptors
         {
             get
             {
-                return DescriptorUtils.GetImmutableTexture(Consts.DepthWidth, Consts.DepthHeight, Format.R32G32B32_Float);
+                return DescriptorUtils.GetImmutableTexture(new TextureSize(Consts.DepthWidth, Consts.DepthHeight), Format.R32G32B32_Float);
             }
         }
     }

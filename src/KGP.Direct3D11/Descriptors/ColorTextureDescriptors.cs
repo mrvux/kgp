@@ -21,7 +21,7 @@ namespace KGP.Direct3D11.Descriptors
         {
             get
             {
-                return DescriptorUtils.GetDynamicTexture(Consts.ColorWidth, Consts.ColorHeight, Format.R8G8B8A8_UNorm);
+                return DescriptorUtils.GetDynamicTexture(new TextureSize(Consts.ColorWidth, Consts.ColorHeight), Format.R8G8B8A8_UNorm);
             }
         }
 
@@ -32,7 +32,7 @@ namespace KGP.Direct3D11.Descriptors
         {
             get
             {
-                return DescriptorUtils.GetImmutableTexture(Consts.ColorWidth, Consts.ColorHeight, Format.R8G8B8A8_UNorm);
+                return DescriptorUtils.GetImmutableTexture(new TextureSize(Consts.ColorWidth, Consts.ColorHeight), Format.R8G8B8A8_UNorm);
             }
         }
 
@@ -43,7 +43,7 @@ namespace KGP.Direct3D11.Descriptors
         {
             get
             {
-                return DescriptorUtils.GetRenderTargetTexture(Consts.ColorWidth, Consts.ColorHeight, Format.R8G8B8A8_UNorm);
+                return DescriptorUtils.GetRenderTargetTexture(new TextureSize(Consts.ColorWidth, Consts.ColorHeight), Format.R8G8B8A8_UNorm);
             }
         }
     }
