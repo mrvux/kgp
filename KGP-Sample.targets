@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Reference Include="Microsoft.Kinect">
+      <HintPath>$(SolutionDir)\externals\kinect2\Microsoft.Kinect.dll</HintPath>
+    </Reference>
+	<Reference Include="SharpDX">
+      <HintPath>$(SolutionDir)\externals\sharpdx\SharpDX.dll</HintPath>
+    </Reference>
+	<Reference Include="SharpDX.DXGI">
+      <HintPath>$(SolutionDir)\externals\sharpdx\SharpDX.DXGI.dll</HintPath>
+    </Reference>
+	<Reference Include="SharpDX.D3DCompiler">
+      <HintPath>$(SolutionDir)\externals\sharpdx\SharpDX.D3DCompiler.dll</HintPath>
+    </Reference>
+	<Reference Include="SharpDX.Direct2D1">
+      <HintPath>$(SolutionDir)\externals\sharpdx\SharpDX.Direct2D1.dll</HintPath>
+    </Reference>
+	<Reference Include="SharpDX.Direct3D11">
+      <HintPath>$(SolutionDir)\externals\sharpdx\SharpDX.Direct3D11.dll</HintPath>
+    </Reference>
+	<Reference Include="FeralTic">
+      <HintPath>$(SolutionDir)\externals\feraltic\FeralTic.dll</HintPath>
+    </Reference>	
+	</ItemGroup>
+
+</Project>
