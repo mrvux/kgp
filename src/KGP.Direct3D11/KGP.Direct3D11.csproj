@@ -69,6 +69,7 @@
     <Compile Include="Buffers\AppendPointCloudBuffer.cs" />
     <Compile Include="Buffers\BodyJointOrientationBuffer.cs" />
     <Compile Include="Buffers\BodyCameraPositionBuffer.cs" />
+    <Compile Include="Buffers\DynamicRgbSpaceFaceStructuredBuffer.cs" />
     <Compile Include="Buffers\DynamicHdFaceStructuredBuffer.cs" />
     <Compile Include="Buffers\HdFaceIndexBuffer.cs" />
     <Compile Include="Buffers\JointTableIndexBuffer.cs" />
