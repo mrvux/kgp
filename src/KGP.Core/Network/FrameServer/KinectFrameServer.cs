@@ -80,20 +80,26 @@ namespace KGP.Network.FrameServer
                     int depthPacketsize = this.depthCompressor.CompressedSize;
 
                     byte[] bheader = BitConverter.GetBytes(depthPacketsize);
-                    this.networkStream.Write(bheader, 0, 4);
-                    this.networkStream.Write(new byte[] { 0 }, 0, 1);
 
-                    this.networkStream.Write(this.depthCompressor.CompressedFrameData, 0, depthPacketsize);
+                    if (this.depthCompressor.CompressedSize > 0)
+                    {
+                        
+                        this.networkStream.Write(bheader, 0, 4);
+                        this.networkStream.Write(new byte[] { 0 }, 0, 1);
 
-                    
+                        this.networkStream.Write(this.depthCompressor.CompressedFrameData, 0, depthPacketsize);
+                    }
 
-                    //Push body index frame
-                    int bodyIndexPacketsize = this.bodyIndexCompressor.CompressedSize;
+                    if (this.bodyIndexCompressor.CompressedSize > 0)
+                    {
+                        //Push body index frame
+                        int bodyIndexPacketsize = this.bodyIndexCompressor.CompressedSize;
 
-                    bheader = BitConverter.GetBytes(bodyIndexPacketsize);
-                    this.networkStream.Write(bheader, 0, 4);
-                    this.networkStream.Write(new byte[] { 1 }, 0, 1);
-                    this.networkStream.Write(this.bodyIndexCompressor.CompressedFrameData, 0, bodyIndexPacketsize);
+                        bheader = BitConverter.GetBytes(bodyIndexPacketsize);
+                        this.networkStream.Write(bheader, 0, 4);
+                        this.networkStream.Write(new byte[] { 1 }, 0, 1);
+                        this.networkStream.Write(this.bodyIndexCompressor.CompressedFrameData, 0, bodyIndexPacketsize);
+                    }
                 }
             }
         }

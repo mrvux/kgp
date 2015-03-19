@@ -1,4 +1,6 @@
-﻿using KGP.Serialization.Images;
+﻿using KGP.Frames;
+using KGP.Providers;
+using KGP.Serialization.Images;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +15,7 @@ namespace KGP.Network.FrameServer
     /// <summary>
     /// Simple quick and dirty TCP Kinect frame client
     /// </summary>
-    public class KinectFrameClient
+    public class KinectFrameClient : IDepthFrameProvider, IBodyIndexFrameProvider
     {
         private TcpClient client;
         private IPEndPoint serverEndPoint;
@@ -21,21 +23,58 @@ namespace KGP.Network.FrameServer
         private NetworkStream clientStream;
         private Thread receiverThread;
 
-        private readonly SnappyFrameDecompressor depthDecompressor;
-        private readonly SnappyFrameDecompressor bodyIndexDecompressor;
+        private DepthFrameData depthData = new DepthFrameData();
+        private BodyIndexFrameData bodyIndexData = new BodyIndexFrameData();
 
-        /// <summary>
-        /// (Ugly) Event when depth frame is received
-        /// </summary>
-        public event EventHandler<SnappyFrameDecompressor> DepthFrameReceived;
+        object objectLock = new Object();
 
-        /// <summary>
-        /// (Ugly) Event when body Index frame is received
-        /// </summary>
-        public event EventHandler<SnappyFrameDecompressor> BodyIndexFrameArrived;
+        event EventHandler<DepthFrameDataEventArgs> depthReceived;
+        event EventHandler<BodyIndexFrameDataEventArgs> bodyIndexReceived;
+
+
+        event EventHandler<DepthFrameDataEventArgs> IDepthFrameProvider.FrameReceived
+        {
+            add
+            {
+                lock (objectLock)
+                {
+                    depthReceived += value;
+                }
+            }
+            remove
+            {
+                lock (objectLock)
+                {
+                    depthReceived -= value;
+                }
+            }
+        }
+
+        event EventHandler<BodyIndexFrameDataEventArgs> IBodyIndexFrameProvider.FrameReceived
+        {
+            add
+            {
+                lock (objectLock)
+                {
+                    bodyIndexReceived += value;
+                }
+            }
+            remove
+            {
+                lock (objectLock)
+                {
+                    bodyIndexReceived -= value;
+                }
+            }
+        }
+
 
         private readonly byte[] temporaryData = new byte[KinectFrameInformation.DepthFrame.FrameDataSize];
         private byte[] header = new byte[5];
+        private bool readHeader = true;
+        private int bytesRead = 0;
+        private int remaining = 0;
+        private bool isDepth = false;
 
         private bool isRunning;
 
@@ -48,8 +87,6 @@ namespace KGP.Network.FrameServer
         {
             this.serverEndPoint = new IPEndPoint(ipAddress, port);
             this.client = new TcpClient();
-            this.depthDecompressor = new SnappyFrameDecompressor(KinectFrameInformation.DepthFrame);
-            this.bodyIndexDecompressor = new SnappyFrameDecompressor(KinectFrameInformation.BodyIndexFrame);
         }
 
         /// <summary>
@@ -70,32 +107,49 @@ namespace KGP.Network.FrameServer
             {
                 if (this.clientStream.DataAvailable)
                 {
-                    int p = this.clientStream.Read(this.header, 0, 5);
-
-                    int packetLength = BitConverter.ToInt32(this.header, 0);
-
-                    bool isDepth = this.header[4] == 0;
-
-                    int totalRead = this.clientStream.Read(this.temporaryData, 0, packetLength);
-
-                    fixed (byte* bptr = &this.temporaryData[0])
+                    if (this.readHeader)
                     {
-                        if (isDepth)
+                        int p = this.clientStream.Read(this.header, 0, 5);
+                        int packetLength = BitConverter.ToInt32(this.header, 0);
+                        this.isDepth = this.header[4] == 0;
+
+                        this.remaining = packetLength;
+                        this.readHeader = false;
+                        this.bytesRead = 0;
+                    }
+
+                    int totalRead = this.clientStream.Read(this.temporaryData, this.bytesRead, this.remaining);
+
+                    this.bytesRead += totalRead;
+                    this.remaining -= totalRead;
+
+                    //Case where we have all the data we need
+                    if (totalRead == this.remaining)
+                    {
+                        fixed (byte* bptr = &this.temporaryData[0])
                         {
-                            this.depthDecompressor.UnCompress(new IntPtr(bptr), packetLength);
-                            if (this.DepthFrameReceived != null)
+                            if (isDepth)
                             {
-                                this.DepthFrameReceived(this, this.depthDecompressor);
+                                SnappyFrameDecompressor.Uncompress(new IntPtr(bptr), bytesRead, this.depthData.DataPointer, this.depthData.SizeInBytes);
+
+                                if (this.depthReceived != null)
+                                {
+                                    this.depthReceived(this, new DepthFrameDataEventArgs(this.depthData));
+                                }
+                            }
+                            else
+                            {
+                                SnappyFrameDecompressor.Uncompress(new IntPtr(bptr), bytesRead, this.bodyIndexData.DataPointer, this.bodyIndexData.SizeInBytes);
+
+                                if (this.bodyIndexReceived != null)
+                                {
+                                    this.bodyIndexReceived(this, new BodyIndexFrameDataEventArgs(this.bodyIndexData));
+                                }
                             }
                         }
-                        else
-                        {
-                            this.bodyIndexDecompressor.UnCompress(new IntPtr(bptr), packetLength);
-                            if (this.BodyIndexFrameArrived != null)
-                            {
-                                this.BodyIndexFrameArrived(this, this.depthDecompressor);
-                            }
-                        }
+
+                        //Wait for next header
+                        this.readHeader = true;
                     }
                 }
                 Thread.Sleep(5);
@@ -109,6 +163,9 @@ namespace KGP.Network.FrameServer
         {
             this.isRunning = false;
         }
-     
+
+
+
+
     }
 }

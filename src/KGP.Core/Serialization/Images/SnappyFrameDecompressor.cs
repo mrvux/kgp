@@ -40,6 +40,12 @@ namespace KGP.Serialization.Images
             }
         }
 
+        public static void Uncompress(IntPtr compressedData, int compressedDataSize, IntPtr target, int targetLength)
+        {
+            int length = targetLength;
+            SnappyPI.SnappyCodec.Uncompress((byte*)compressedData, compressedDataSize, (byte*)target, ref length);
+        }
+
         /// <summary>
         /// Compressed frame data
         /// </summary>
