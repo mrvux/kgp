@@ -59,6 +59,7 @@
     <Compile Include="Buffers\BodyCameraPositionBuffer.cs" />
     <Compile Include="Buffers\BodyJointStatusBuffer.cs" />
     <Compile Include="Buffers\BodyColorPositionBuffer.cs" />
+    <Compile Include="DataTables\JointParentTable.cs" />
     <Compile Include="Descriptors\JointBufferDescriptor.cs" />
     <Compile Include="Descriptors\InfraredTextureDescriptors.cs" />
     <Compile Include="Descriptors\ColorTextureDescriptors.cs" />
@@ -86,9 +87,7 @@
       <Name>KGP</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Converters\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Compile Include="Descriptors\DescriptorUtils.StructuredBuffers.cs" />
   </ItemGroup>
