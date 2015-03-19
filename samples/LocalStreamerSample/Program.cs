@@ -6,6 +6,7 @@ using KGP.Network.FrameServer;
 using KGP.Providers;
 using KGP.Providers.Sensor;
 using Microsoft.Kinect;
+using SharpDX.Direct3D11;
 using SharpDX.Windows;
 using System;
 using System.Collections.Generic;
@@ -33,12 +34,17 @@ namespace LocalStreamerSample
             RenderContext context = new RenderContext(device);
             DX11SwapChain swapChain = DX11SwapChain.FromHandle(device, form.Handle);
 
+            PixelShader pixelShaderRaw = ShaderCompiler.CompileFromFile<PixelShader>(device, "DepthToWorld.fx", "PS_Raw");
+
             KinectSensor sensor = KinectSensor.GetDefault();
             sensor.Open();
 
             KinectFrameServer frameServer = new KinectFrameServer(32000, sensor);
 
             KinectFrameClient frameClient = new KinectFrameClient(IPAddress.Parse("127.0.0.1"), 32000);
+
+            RayTableTexture rayTable = RayTableTexture.FromCoordinateMapper(device, sensor.CoordinateMapper);
+            RenderCameraTexture renderCamera = new RenderCameraTexture(device);
 
             frameClient.Connect();
 
@@ -49,7 +55,7 @@ namespace LocalStreamerSample
             bool uploadDepth = false;
             bool uploadBody = false;
 
-            bool showBody = false;
+            int mode = 0; //0 = body index, 1 = depth, 2 = world
             
             DepthFrameData depthData = null;
             DynamicDepthTexture depth = new DynamicDepthTexture(device);
@@ -64,7 +70,7 @@ namespace LocalStreamerSample
             networkBody.FrameReceived += (sender, args) => { bodyIndexData = args.FrameData; uploadBody = true; };
 
 
-            form.KeyDown += (sender, args) => { if (args.KeyCode == Keys.Escape) { doQuit = true; } if (args.KeyCode == Keys.Space) { showBody = !showBody; } };
+            form.KeyDown += (sender, args) => { if (args.KeyCode == Keys.Escape) { doQuit = true; } if (args.KeyCode == Keys.Space) { mode++; if (mode > 2) { mode = 0; } } };
 
             RenderLoop.Run(form, () =>
             {
@@ -78,6 +84,20 @@ namespace LocalStreamerSample
                 {
                     depth.Copy(context, depthData);
                     uploadDepth = false;
+
+                    if (mode == 2)
+                    {
+                        //Convert depth to world
+                        context.Context.OutputMerger.SetRenderTargets(renderCamera.RenderView);
+                        device.Primitives.ApplyFullTriVS(context);
+                        context.Context.PixelShader.Set(pixelShaderRaw);
+                        context.Context.PixelShader.SetShaderResource(0, depth.RawView);
+
+                        context.Context.PixelShader.SetShaderResource(1, rayTable.ShaderView);
+
+                        device.Primitives.FullScreenTriangle.Draw(context);
+                        context.RenderTargetStack.Apply();
+                    }
                 }
 
                 if (uploadBody)
@@ -88,15 +108,17 @@ namespace LocalStreamerSample
 
                 context.RenderTargetStack.Push(swapChain);
 
-                if (showBody)
+                if (mode == 0)
                 {
                     device.Primitives.ApplyFullTri(context, bodyIndexTexture.NormalizedView);
-
+                }
+                else if (mode == 1)
+                {
+                    device.Primitives.ApplyFullTri(context, depth.NormalizedView);
                 }
                 else
                 {
-                    device.Primitives.ApplyFullTri(context, depth.NormalizedView);
-
+                    device.Primitives.ApplyFullTri(context, renderCamera.ShaderView);
                 }
                
                 device.Primitives.FullScreenTriangle.Draw(context);
@@ -112,6 +134,11 @@ namespace LocalStreamerSample
             bodyIndexTexture.Dispose();
             frameClient.Stop();
             frameServer.Dispose();
+
+            rayTable.Dispose();
+            renderCamera.Dispose();
+
+            pixelShaderRaw.Dispose();
 
             sensor.Close();
         }
