@@ -1,3 +1,4 @@
+//Texture version
 Texture2D worldTexture : register(t0);
 
 Texture2D ColorTexture : register(t1);
@@ -5,11 +6,15 @@ Texture2D RGBDepthMapTexture: register(t2);
 
 SamplerState linearSampler : register(s0);
 
+//Indirect version
+StructuredBuffer<float3> FilteredPointCloudBuffer : register(t0);
+StructuredBuffer<float4> ColorBuffer : register(t1);
+
 cbuffer cbCamera : register(b0)
 {
 	float4x4 View;
 	float4x4 Projection;
-}
+};
 
 float4 ProcessColor(float2 map)
 {
@@ -28,6 +33,14 @@ void VS(uint iv : SV_VertexID, uint ii: SV_InstanceID, out float4 screenPos : SV
 	float2 map = RGBDepthMapTexture.Load(int3(iv, ii,0)).xy;
 	color = ProcessColor(map);
 	
+}
+
+//Indirect version, we already picked elements we wanted in a buffer
+void VS_Indirect(uint iv : SV_VertexID,out float4 screenPos : SV_Position, out float4 color : COLOR)
+{
+	float3 world = FilteredPointCloudBuffer[iv];	
+	screenPos = mul(float4(world,1.0f), mul(View,Projection));
+	color = ColorBuffer[iv];
 }
 
 float4 PS(float4 screenPos : SV_Position, float4 color : COLOR) : SV_Target

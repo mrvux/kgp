@@ -133,6 +133,8 @@ namespace JointColorSample
                 nullGeom.Bind(context, null);
                 context.Context.DrawInstancedIndirect(indirectDrawBuffer.ArgumentBuffer, 0);
 
+                context.Context.VertexShader.SetShaderResource(0, null); //Make runtime happy
+
                 context.RenderTargetStack.Pop();
                 swapChain.Present(0, SharpDX.DXGI.PresentFlags.None);
             });

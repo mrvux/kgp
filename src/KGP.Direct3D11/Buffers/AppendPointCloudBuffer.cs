@@ -54,6 +54,7 @@ namespace KGP.Direct3D11.Buffers
         /// </summary>
         public void Dispose()
         {
+            this.unorderedView.Dispose();
             this.shaderView.Dispose();
             this.buffer.Dispose();
         }
