@@ -21,5 +21,16 @@ namespace KGP
         {
             return joint.TrackingState != TrackingState.NotTracked;
         }
+
+        /// <summary>
+        /// Retrieves the parent joint from a joint type
+        /// </summary>
+        /// <remarks>In the specific case of SpineBase (root), it returns itself</remarks>
+        /// <param name="jointType">Joint Type</param>
+        /// <returns>Parent joint type</returns>
+        public static JointType GetParentType(this JointType jointType)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
