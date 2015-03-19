@@ -84,6 +84,7 @@
     <Compile Include="Descriptors\DescriptorUtilsBuffersTests.cs" />
     <Compile Include="BufferElementCountTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Textures\DynamicLongExposureInfraredTextureTests.cs" />
     <Compile Include="Textures\DynamicInfraredTextureTests.cs" />
     <Compile Include="Textures\DynamicColorRGBATextureTests.cs" />
     <Compile Include="Textures\MultiKinectCameraTextureTests.cs" />

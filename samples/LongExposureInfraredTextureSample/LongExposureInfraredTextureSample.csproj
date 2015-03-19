@@ -5,11 +5,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{162BE49F-1B43-4079-A462-31FBF76CBE1D}</ProjectGuid>
+    <ProjectGuid>{DD096EC9-C5B2-432D-BDCF-A10DB7BAF13A}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DepthTextureSample</RootNamespace>
-    <AssemblyName>DepthTextureSample</AssemblyName>
+    <RootNamespace>LongExposureInfraredTextureSample</RootNamespace>
+    <AssemblyName>LongExposureInfraredTextureSample</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>

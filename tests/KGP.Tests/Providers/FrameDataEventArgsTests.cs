@@ -97,5 +97,22 @@ namespace KGP.Tests.Providers
         {
             InfraredFrameDataEventArgs args = new InfraredFrameDataEventArgs(null);
         }
+
+        [TestMethod]
+        public void LongInfraredTestConstructor()
+        {
+            using (LongExposureInfraredFrameData depthFrame = new LongExposureInfraredFrameData())
+            {
+                LongExposureInfraredFrameDataEventArgs args = new LongExposureInfraredFrameDataEventArgs(depthFrame);
+                Assert.AreEqual(depthFrame, args.FrameData);
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void LongInfraredTestNull()
+        {
+            LongExposureInfraredFrameDataEventArgs args = new LongExposureInfraredFrameDataEventArgs(null);
+        }
     }
 }

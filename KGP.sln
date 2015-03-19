@@ -31,6 +31,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CameraJointSample", "sample
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColorJointSample", "samples\ColorJointSample\ColorJointSample.csproj", "{0E3D0924-51D4-4979-B726-44CF2D3DB98C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfraredTextureSample", "samples\InfraredTextureSample\InfraredTextureSample.csproj", "{1F2C53CF-BA20-4653-8F77-F31CB7CB5844}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LongExposureInfraredTextureSample", "samples\LongExposureInfraredTextureSample\LongExposureInfraredTextureSample.csproj", "{DD096EC9-C5B2-432D-BDCF-A10DB7BAF13A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -77,6 +81,14 @@ Global
 		{0E3D0924-51D4-4979-B726-44CF2D3DB98C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0E3D0924-51D4-4979-B726-44CF2D3DB98C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0E3D0924-51D4-4979-B726-44CF2D3DB98C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1F2C53CF-BA20-4653-8F77-F31CB7CB5844}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1F2C53CF-BA20-4653-8F77-F31CB7CB5844}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1F2C53CF-BA20-4653-8F77-F31CB7CB5844}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1F2C53CF-BA20-4653-8F77-F31CB7CB5844}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DD096EC9-C5B2-432D-BDCF-A10DB7BAF13A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DD096EC9-C5B2-432D-BDCF-A10DB7BAF13A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DD096EC9-C5B2-432D-BDCF-A10DB7BAF13A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DD096EC9-C5B2-432D-BDCF-A10DB7BAF13A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,5 +104,7 @@ Global
 		{346B8FAA-1F69-4F7B-89B3-4BD1E5BAFD8E} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
 		{8E9CAF7C-C1FA-4248-BAA6-2D59F159AD6A} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
 		{0E3D0924-51D4-4979-B726-44CF2D3DB98C} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
+		{1F2C53CF-BA20-4653-8F77-F31CB7CB5844} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
+		{DD096EC9-C5B2-432D-BDCF-A10DB7BAF13A} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
 	EndGlobalSection
 EndGlobal

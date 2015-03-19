@@ -70,16 +70,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\src\KGP.Core\KGP.csproj">
-      <Project>{126e2fa8-2f30-4df4-9cc0-6fe800a099dd}</Project>
-      <Name>KGP</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\..\src\KGP.Direct3D11\KGP.Direct3D11.csproj">
-      <Project>{7c02ddd0-3601-4b38-8621-e90c80454397}</Project>
-      <Name>KGP.Direct3D11</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="..\..\shaders\converters\DepthToWorld.fx">
       <Link>DepthToWorld.fx</Link>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
