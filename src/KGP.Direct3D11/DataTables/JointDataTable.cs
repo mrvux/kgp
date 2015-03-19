@@ -10,7 +10,7 @@ namespace KGP.Direct3D11.DataTables
     /// <summary>
     /// Joint data tables, used to construct gpu buffers
     /// </summary>
-    public static class JointParentTable
+    public static class JointDataTable
     {
         /// <summary>
         /// Returns table for a single body as uint, do not include base/base tuple
@@ -79,6 +79,32 @@ namespace KGP.Direct3D11.DataTables
                 }
                 return result;
             }
+        }
+
+        /// <summary>
+        /// Returns a prefixed summed table so we can hold multiple bodies
+        /// </summary>
+        public static ushort[] RepeatTableUShort(int maxBodyCount)
+        {
+            if (maxBodyCount < 1)
+                throw new ArgumentOutOfRangeException("maxBodyCount", "We must have at least one body");
+
+            ushort[] baseTable = FullTableUShort;
+
+            ushort[] result = new ushort[baseTable.Length * maxBodyCount];
+
+            ushort prefix = 0;
+            ushort counter = 0;
+            for (ushort i = 0; i < maxBodyCount; i++)
+            {
+                for (ushort j = 0; j < baseTable.Length; j++)
+                {
+                    result[counter] = (ushort)(baseTable[j] + prefix);
+                    counter++;
+                }
+                prefix += (ushort)baseTable.Length;
+            }
+            return result;
         }
 
 

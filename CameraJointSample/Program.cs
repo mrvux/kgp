@@ -3,6 +3,7 @@ using FeralTic.DX11.Geometry;
 using FeralTic.DX11.Resources;
 using KGP;
 using KGP.Direct3D11.Buffers;
+using KGP.Direct3D11.DataTables;
 using KGP.Direct3D11.Textures;
 using KGP.Frames;
 using KGP.Providers;
@@ -53,9 +54,15 @@ namespace JointColorSample
             VertexShader vertexShader = ShaderCompiler.CompileFromFile(device, "CameraJointView.fx", "VS_Color", out signature);
             PixelShader pixelShader = ShaderCompiler.CompileFromFile<PixelShader>(device, "CameraJointView.fx", "PS_Color");
 
+            VertexShader vertexShaderLine = ShaderCompiler.CompileFromFile<VertexShader>(device, "CameraJointView.fx", "VS");
+            PixelShader pixelShaderLine = ShaderCompiler.CompileFromFile<PixelShader>(device, "CameraJointView.fx", "PS_White");
+
+            var jointParentTable = JointDataTable.RepeatTableUInt(6);
+            DX11IndexBuffer indexBuffer = DX11IndexBuffer.CreateImmutable(device, jointParentTable);
+
             DX11IndexedGeometry cube = device.Primitives.Box(new Box()
             {
-                Size = new Vector3(0.2f)
+                Size = new Vector3(0.05f)
             });
             DX11InstancedIndexedDrawer drawer = new DX11InstancedIndexedDrawer();
             cube.AssignDrawer(drawer);
@@ -88,8 +95,9 @@ namespace JointColorSample
 
             bool doQuit = false;
             bool doUpload = false;
- 
 
+
+            int bodyCount = 0;
             KinectBody[] bodyFrame = null;
             BodyCameraPositionBuffer positionBuffer = new BodyCameraPositionBuffer(device);
             BodyJointStatusBuffer statusBuffer = new BodyJointStatusBuffer(device);
@@ -114,6 +122,7 @@ namespace JointColorSample
                 if (doUpload)
                 {
                     var tracked = bodyFrame.TrackedOnly();
+                    bodyCount = tracked.Count();
 
                     positionBuffer.Copy(context, tracked);
                     statusBuffer.Copy(context, tracked);
@@ -124,14 +133,30 @@ namespace JointColorSample
                 context.Context.ClearRenderTargetView(swapChain.RenderView, SharpDX.Color.Black);
                 depthStencil.Clear(context);
 
-                cube.Bind(context, layout);
-
-                context.Context.PixelShader.Set(pixelShader);
-                context.Context.VertexShader.Set(vertexShader);
+                /*Position buffer and cbuffers are the same data and in same slot, 
+                 * so we bind them only once*/
                 context.Context.VertexShader.SetShaderResource(0, positionBuffer.ShaderView);
+                context.Context.VertexShader.SetConstantBuffer(0, cameraBuffer.Buffer);
+
+                //Draw lines
+                context.Context.PixelShader.Set(pixelShaderLine);
+                context.Context.VertexShader.Set(vertexShaderLine);
+                
+                //Attach index buffer, null topology since we fetch
+                context.Context.InputAssembler.PrimitiveTopology = SharpDX.Direct3D.PrimitiveTopology.LineList;
+                context.Context.InputAssembler.InputLayout = null;
+                indexBuffer.Bind(context);
+
+                context.Context.DrawIndexed(bodyCount * 48, 0, 0);
+                
+                //Draw cubes
+                cube.Bind(context, layout);
+                context.Context.VertexShader.Set(vertexShader);
+                context.Context.PixelShader.Set(pixelShader);
+                
                 context.Context.VertexShader.SetShaderResource(1, statusBuffer.ShaderView);
                 context.Context.VertexShader.SetShaderResource(2, colorTableBuffer.ShaderView);
-                context.Context.VertexShader.SetConstantBuffer(0, cameraBuffer.Buffer);
+                
 
                 cube.Draw(context);
 
@@ -157,6 +182,9 @@ namespace JointColorSample
             pixelShader.Dispose();
             vertexShader.Dispose();
 
+            pixelShaderLine.Dispose();
+            vertexShaderLine.Dispose();
+            indexBuffer.Dispose();
 
             sensor.Close();
         }
