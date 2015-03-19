@@ -76,6 +76,7 @@
     <Compile Include="Buffers\BodyJointStatusBufferTests.cs" />
     <Compile Include="Buffers\BodyColorPositionBufferTests.cs" />
     <Compile Include="Descriptors\BodyIndexTextureDescriptorsTests.cs" />
+    <Compile Include="Descriptors\DescriptorUtilsIndexBufferTests.cs" />
     <Compile Include="Descriptors\MultiKinectTextureDescriptorsTests.cs" />
     <Compile Include="TextureSizeTests.cs" />
     <Compile Include="BufferStrideTests.cs" />

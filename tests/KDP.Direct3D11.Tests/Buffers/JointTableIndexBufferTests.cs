@@ -4,6 +4,7 @@ using KGP.Direct3D11.Textures;
 using KGP.Frames;
 using KGP.Direct3D11.Buffers;
 using KGP;
+using SharpDX.Direct3D;
 
 namespace KDP.Direct3D11.Tests.Textures
 {
@@ -33,6 +34,7 @@ namespace KDP.Direct3D11.Tests.Textures
             using (JointTableIndexBuffer buffer = new JointTableIndexBuffer(device,6))
             {
                 buffer.Attach(device.ImmediateContext);
+                Assert.AreEqual(device.ImmediateContext.InputAssembler.PrimitiveTopology, PrimitiveTopology.LineList);
             }
         }
 
