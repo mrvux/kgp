@@ -20,7 +20,7 @@ using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace JointColorSample
+namespace ColoredPointCloudSample
 {
     [StructLayout(LayoutKind.Sequential)]
     public struct cbCamera
@@ -46,8 +46,8 @@ namespace JointColorSample
             RenderContext context = new RenderContext(device);
             DX11SwapChain swapChain = DX11SwapChain.FromHandle(device, form.Handle);
 
-            VertexShader vertexShader = ShaderCompiler.CompileFromFile<VertexShader>(device, "PointCloudView.fx", "VS");
-            PixelShader pixelShader = ShaderCompiler.CompileFromFile<PixelShader>(device, "PointCloudView.fx", "PS");
+            VertexShader vertexShader = ShaderCompiler.CompileFromFile<VertexShader>(device, "ColoredPointCloudView.fx", "VS");
+            PixelShader pixelShader = ShaderCompiler.CompileFromFile<PixelShader>(device, "ColoredPointCloudView.fx", "PS");
 
             DX11NullInstancedDrawer nulldrawer = new DX11NullInstancedDrawer();
             nulldrawer.VertexCount = Consts.DepthWidth;
@@ -60,7 +60,7 @@ namespace JointColorSample
             sensor.Open();
 
             cbCamera camera = new cbCamera();
-            camera.Projection = Matrix.PerspectiveFovLH(1.57f* 0.5f, 1.3f, 0.01f, 100.0f);
+            camera.Projection = Matrix.PerspectiveFovLH(1.57f * 0.5f, 1.3f, 0.01f, 100.0f);
             camera.View = Matrix.Translation(0.0f, 0.0f, 2.0f);
 
             camera.Projection.Transpose();
@@ -70,13 +70,22 @@ namespace JointColorSample
             cameraBuffer.Update(context, ref camera);
 
             bool doQuit = false;
-            bool doUpload = false;
+            bool uploadCamera = false;
+            bool uploadRgb = false;
 
-            CameraRGBFrameData rgbFrame = new CameraRGBFrameData();
+            DepthToColorFrameData depthToColorFrame = new DepthToColorFrameData();
+            CameraRGBFrameData cameraFrame = new CameraRGBFrameData();
             DynamicCameraRGBTexture cameraTexture = new DynamicCameraRGBTexture(device);
+            DynamicDepthToColorTexture depthToColorTexture = new DynamicDepthToColorTexture(device);
 
             KinectSensorDepthFrameProvider provider = new KinectSensorDepthFrameProvider(sensor);
-            provider.FrameReceived += (sender, args) => { rgbFrame.Update(sensor.CoordinateMapper,args.DepthData); doUpload = true; };
+            provider.FrameReceived += (sender, args) => { cameraFrame.Update(sensor.CoordinateMapper, args.DepthData); depthToColorFrame.Update(sensor.CoordinateMapper, args.DepthData); uploadCamera = true; };
+
+            //Get coordinate map + rgb
+            ColorRGBAFrameData colorFrame = new ColorRGBAFrameData();
+            DynamicColorRGBATexture colorTexture = new DynamicColorRGBATexture(device);
+            KinectSensorColorRGBAFrameProvider colorProvider = new KinectSensorColorRGBAFrameProvider(sensor);
+            colorProvider.FrameReceived += (sender, args) => { colorFrame = args.FrameData; uploadRgb = true; };
 
             form.KeyDown += (sender, args) => { if (args.KeyCode == Keys.Escape) { doQuit = true; } };
 
@@ -88,9 +97,17 @@ namespace JointColorSample
                     return;
                 }
 
-                if (doUpload)
+                if (uploadCamera)
                 {
-                    cameraTexture.Copy(context.Context, rgbFrame);
+                    cameraTexture.Copy(context.Context, cameraFrame);
+                    depthToColorTexture.Copy(context.Context, depthToColorFrame);
+                    uploadCamera = false;
+                }
+
+                if (uploadRgb)
+                {
+                    colorTexture.Copy(context.Context, colorFrame);
+                    uploadRgb = false;
                 }
 
                 context.RenderTargetStack.Push(swapChain);
@@ -100,6 +117,11 @@ namespace JointColorSample
                 context.Context.PixelShader.Set(pixelShader);
 
                 context.Context.VertexShader.SetShaderResource(0, cameraTexture.ShaderView);
+                context.Context.VertexShader.SetShaderResource(1, colorTexture.ShaderView);
+                context.Context.VertexShader.SetShaderResource(2, depthToColorTexture.ShaderView);
+
+                context.Context.VertexShader.SetSampler(0, device.SamplerStates.LinearClamp);
+
                 context.Context.VertexShader.SetConstantBuffer(0, cameraBuffer.Buffer);
 
                 nullGeom.Bind(context, null);
@@ -121,6 +143,12 @@ namespace JointColorSample
             pixelShader.Dispose();
             vertexShader.Dispose();
             sensor.Close();
+
+            colorTexture.Dispose();
+            colorProvider.Dispose();
+
+            depthToColorFrame.Dispose();
+            depthToColorTexture.Dispose();
         }
     }
 }
