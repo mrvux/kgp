@@ -43,6 +43,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePointCloudSample", "s
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ColoredPointCloudSample", "samples\ColoredPointCloudSample\ColoredPointCloudSample.csproj", "{3B14327F-CB02-4173-8A41-080222863FEF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FilteredPointCloudBufferSample", "samples\FilteredPointCloudBufferSample\FilteredPointCloudBufferSample.csproj", "{7016BCB1-B0B5-4A40-B08F-72018C964C27}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +115,10 @@ Global
 		{3B14327F-CB02-4173-8A41-080222863FEF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3B14327F-CB02-4173-8A41-080222863FEF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3B14327F-CB02-4173-8A41-080222863FEF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7016BCB1-B0B5-4A40-B08F-72018C964C27}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7016BCB1-B0B5-4A40-B08F-72018C964C27}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7016BCB1-B0B5-4A40-B08F-72018C964C27}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7016BCB1-B0B5-4A40-B08F-72018C964C27}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -134,5 +140,6 @@ Global
 		{26F6291A-B782-45D0-8F91-1BBD62762467} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
 		{99A2D85A-FB1D-47C4-8D65-C422EAB1ABFE} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
 		{3B14327F-CB02-4173-8A41-080222863FEF} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
+		{7016BCB1-B0B5-4A40-B08F-72018C964C27} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
 	EndGlobalSection
 EndGlobal

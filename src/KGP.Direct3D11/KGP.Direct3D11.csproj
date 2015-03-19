@@ -55,6 +55,9 @@
   <ItemGroup>
     <Compile Include="BufferElementCount.cs" />
     <Compile Include="BufferStride.cs" />
+    <Compile Include="Buffers\ColorPointCloudBuffer.cs" />
+    <Compile Include="Buffers\CounterPointCloudBuffer.cs" />
+    <Compile Include="Buffers\AppendPointCloudBuffer.cs" />
     <Compile Include="Buffers\BodyJointOrientationBuffer.cs" />
     <Compile Include="Buffers\BodyCameraPositionBuffer.cs" />
     <Compile Include="Buffers\JointTableIndexBuffer.cs" />

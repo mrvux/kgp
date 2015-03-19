@@ -1,5 +1,7 @@
 Texture2D worldTexture : register(t0);
 
+StructuredBuffer<float3> FilteredPointCloudBuffer : register(t0);
+
 cbuffer cbCamera : register(b0)
 {
 	float4x4 View;
@@ -10,6 +12,13 @@ cbuffer cbCamera : register(b0)
 void VS(uint iv : SV_VertexID, uint ii: SV_InstanceID, out float4 screenPos : SV_Position)
 {
 	float3 world = worldTexture.Load(int3(iv, ii,0)).xyz;	
+	screenPos = mul(float4(world,1.0f), mul(View,Projection));
+}
+
+//Indirect version, we already picked elements we wanted in a buffer
+void VS_Indirect(uint iv : SV_VertexID,out float4 screenPos : SV_Position)
+{
+	float3 world = FilteredPointCloudBuffer[iv];	
 	screenPos = mul(float4(world,1.0f), mul(View,Projection));
 }
 
