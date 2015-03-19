@@ -83,6 +83,7 @@
     <Compile Include="Network\FrameServer\KinectFrameServer.cs" />
     <Compile Include="Processors\HandStateTrackingProcessor.cs" />
     <Compile Include="Processors\BodyTrackingProcessor.cs" />
+    <Compile Include="Processors\SingleHdFaceProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ILongExposureInfraredFrameProvider.cs" />
     <Compile Include="Providers\IInfraredFrameProvider.cs" />
