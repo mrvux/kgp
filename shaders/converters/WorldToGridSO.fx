@@ -5,7 +5,6 @@ Texture2D BodyIndexTexture : register(t1);
 
 #define colCount 512;
 #define rowCount 424;
-
 #define invGridSize float2(1.0f/512.0f,1.0f/424.0f);
 
 cbuffer cbParams : register(b0)

@@ -1,3 +1,5 @@
+//Reconstructs Camera space position from depth and ray lookup table
+
 Texture2D NormalizedDepthTexture : register(t0);
 Texture2D<uint> RawDepthTexture: register(t0);
 
