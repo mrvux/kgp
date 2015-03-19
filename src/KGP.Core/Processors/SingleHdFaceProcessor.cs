@@ -15,7 +15,7 @@ namespace KGP.Processors
     {
         private HighDefinitionFaceFrameSource frameSource;
         private HighDefinitionFaceFrameReader framereader;
-        private FaceModel faceModel;
+        private FaceModel faceModel = new FaceModel();
         private FaceAlignment faceAlignment = new FaceAlignment();
         private FaceModelBuilder faceModelBuilder;
 
@@ -33,6 +33,7 @@ namespace KGP.Processors
         {
             this.frameSource = new HighDefinitionFaceFrameSource(sensor);
             this.framereader = this.frameSource.OpenReader();
+            this.framereader.FrameArrived += this.FrameArrived;
 
             this.faceModelBuilder = this.frameSource.OpenModelBuilder(FaceModelBuilderAttributes.None);
             this.faceModelBuilder.CollectionCompleted += this.CollectionCompleted;
@@ -55,7 +56,7 @@ namespace KGP.Processors
                 {
                     if (frame.IsTrackingIdValid == false) { return; }
                     frame.GetAndRefreshFaceAlignmentResult(this.faceAlignment);
-                    frame.Dispose();
+                    //frame.Dispose();
                     if (this.FaceModelRefreshed != null)
                     {
                         this.FaceModelRefreshed(this, new Tuple<FaceModel, FaceAlignment>(this.faceModel, this.faceAlignment));
@@ -95,6 +96,7 @@ namespace KGP.Processors
         /// </summary>
         public void Dispose()
         {
+            this.framereader.FrameArrived -= this.FrameArrived;
             this.framereader.Dispose();
         }
     }

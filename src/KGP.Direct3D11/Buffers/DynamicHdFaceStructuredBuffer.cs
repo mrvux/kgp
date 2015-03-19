@@ -45,6 +45,18 @@ namespace KGP.Direct3D11.Buffers
             this.shaderView = new ShaderResourceView(device, this.buffer);
         }
 
+        public void Copy(DeviceContext context, CameraSpacePoint[] points)
+        {
+            if (points.Length == 0)
+                return;
+
+            fixed (CameraSpacePoint* cptr = &points[0])
+            {
+                this.buffer.Upload(context, new IntPtr(cptr), points.Length * 12);
+            }
+
+            
+        }
 
         /// <summary>
         /// Dispose GPU resources
