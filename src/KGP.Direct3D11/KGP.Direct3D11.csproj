@@ -72,6 +72,7 @@
     <Compile Include="Buffers\JointTableIndexBuffer.cs" />
     <Compile Include="Buffers\BodyJointStatusBuffer.cs" />
     <Compile Include="Buffers\BodyColorPositionBuffer.cs" />
+    <Compile Include="DataTables\FaceDataTable.cs" />
     <Compile Include="DataTables\JointDataTable.cs" />
     <Compile Include="Descriptors\CoordinateMapTextureDescriptors.cs" />
     <Compile Include="Descriptors\DescriptorUtils.IndexBuffers.cs" />
