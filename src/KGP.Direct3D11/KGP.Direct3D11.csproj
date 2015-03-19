@@ -61,6 +61,7 @@
     <Compile Include="Buffers\BodyJointStatusBuffer.cs" />
     <Compile Include="Buffers\BodyColorPositionBuffer.cs" />
     <Compile Include="DataTables\JointDataTable.cs" />
+    <Compile Include="Descriptors\CoordinateMapTextureDescriptors.cs" />
     <Compile Include="Descriptors\DescriptorUtils.IndexBuffers.cs" />
     <Compile Include="Descriptors\JointBufferDescriptor.cs" />
     <Compile Include="Descriptors\InfraredTextureDescriptors.cs" />
@@ -75,6 +76,8 @@
     <Compile Include="DeviceExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextureSize.cs" />
+    <Compile Include="Textures\DynamicDepthtoColorTexture.cs" />
+    <Compile Include="Textures\DynamicColorToDepthTexture.cs" />
     <Compile Include="Textures\DynamicColorRGBATexture.cs" />
     <Compile Include="Textures\DynamicLongExposureInfraredTexture.cs" />
     <Compile Include="Textures\DynamicInfraredTexture.cs" />
