@@ -69,6 +69,7 @@
     <Compile Include="Buffers\AppendPointCloudBuffer.cs" />
     <Compile Include="Buffers\BodyJointOrientationBuffer.cs" />
     <Compile Include="Buffers\BodyCameraPositionBuffer.cs" />
+    <Compile Include="Buffers\HdFaceIndexBuffer.cs" />
     <Compile Include="Buffers\JointTableIndexBuffer.cs" />
     <Compile Include="Buffers\BodyJointStatusBuffer.cs" />
     <Compile Include="Buffers\BodyColorPositionBuffer.cs" />
@@ -76,6 +77,7 @@
     <Compile Include="DataTables\JointDataTable.cs" />
     <Compile Include="Descriptors\CoordinateMapTextureDescriptors.cs" />
     <Compile Include="Descriptors\DescriptorUtils.IndexBuffers.cs" />
+    <Compile Include="Descriptors\HdFaceBufferDescriptors.cs" />
     <Compile Include="Descriptors\JointBufferDescriptor.cs" />
     <Compile Include="Descriptors\InfraredTextureDescriptors.cs" />
     <Compile Include="Descriptors\ColorTextureDescriptors.cs" />

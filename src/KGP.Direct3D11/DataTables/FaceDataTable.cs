@@ -69,7 +69,7 @@ namespace KGP.Direct3D11.DataTables
                     result[counter] = baseTable[j] + prefix;
                     counter++;
                 }
-                prefix += (uint)baseTable.Length;
+                prefix += FaceModel.VertexCount;
             }
             return result;
         }
@@ -95,7 +95,7 @@ namespace KGP.Direct3D11.DataTables
                     result[counter] = baseTable[j] + prefix;
                     counter++;
                 }
-                prefix += (uint)baseTable.Length;
+                prefix += FaceModel.VertexCount;
             }
             return result;
         }
