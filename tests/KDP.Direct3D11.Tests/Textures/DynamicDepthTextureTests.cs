@@ -26,6 +26,15 @@ namespace KDP.Direct3D11.Tests.Textures
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TestNullDevice()
+        {
+            using (DynamicDepthTexture texture = new DynamicDepthTexture(null))
+            {
+            }
+        }
+
+        [TestMethod]
         public void TestCopy()
         {
             using (DepthFrameData frame = new DepthFrameData())

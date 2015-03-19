@@ -27,6 +27,15 @@ namespace KDP.Direct3D11.Tests.Textures
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TestNullDevice()
+        {
+            using (DynamicBodyIndexTexture texture = new DynamicBodyIndexTexture(null))
+            {
+            }
+        }
+
+        [TestMethod]
         public void TestCopy()
         {
             using (BodyIndexFrameData frame = new BodyIndexFrameData())

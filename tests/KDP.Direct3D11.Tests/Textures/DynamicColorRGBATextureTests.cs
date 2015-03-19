@@ -25,6 +25,15 @@ namespace KDP.Direct3D11.Tests.Textures
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TestNullDevice()
+        {
+            using (DynamicColorRGBATexture texture = new DynamicColorRGBATexture(null))
+            {
+            }
+        }
+
+        [TestMethod]
         public void TestCopy()
         {
             using (ColorRGBAFrameData frame = new ColorRGBAFrameData())

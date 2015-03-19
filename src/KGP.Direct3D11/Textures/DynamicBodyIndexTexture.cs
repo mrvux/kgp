@@ -40,6 +40,9 @@ namespace KGP.Direct3D11.Textures
         /// <param name="device">Direct3D11 Device</param>
         public DynamicBodyIndexTexture(Device device)
         {
+            if (device == null)
+                throw new ArgumentNullException("device");
+
             this.texture = new Texture2D(device, BodyIndexTextureDescriptors.DynamicResource);
             this.rawView = new ShaderResourceView(device, this.texture, BodyIndexTextureDescriptors.RawView);
             this.normalizedView = new ShaderResourceView(device, this.texture, BodyIndexTextureDescriptors.NormalizedView);

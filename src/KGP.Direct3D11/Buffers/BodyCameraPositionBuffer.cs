@@ -32,6 +32,9 @@ namespace KGP.Direct3D11.Buffers
         /// <param name="device">Direct3D11 Device</param>
         public BodyCameraPositionBuffer(Device device)
         {
+            if (device == null)
+                throw new ArgumentNullException("device");
+
             this.buffer = new SharpDX.Direct3D11.Buffer(device, JointBufferDescriptor.CameraSpacePositionBuffer);
             this.shaderView = new ShaderResourceView(device, this.buffer);
         }

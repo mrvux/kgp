@@ -11,9 +11,9 @@ using System.Threading.Tasks;
 namespace KGP.Direct3D11.Buffers
 {
     /// <summary>
-    /// Represent a Structured Buffer holding body position in Color space
+    /// Represent a Structured Buffer holding body tracking status
     /// </summary>
-    public unsafe class BodyColorPositionBuffer : IDisposable
+    public unsafe class BodyJointStatusBuffer : IDisposable
     {
         private SharpDX.Direct3D11.Buffer buffer;
         private ShaderResourceView shaderView;
@@ -30,30 +30,30 @@ namespace KGP.Direct3D11.Buffers
         /// Constructor
         /// </summary>
         /// <param name="device">Direct3D11 Device</param>
-        public BodyColorPositionBuffer(Device device)
+        public BodyJointStatusBuffer(Device device)
         {
             if (device == null)
                 throw new ArgumentNullException("device");
 
-            this.buffer = new SharpDX.Direct3D11.Buffer(device, JointBufferDescriptor.ColorSpacePositionBuffer);
+            this.buffer = new SharpDX.Direct3D11.Buffer(device, JointBufferDescriptor.DynamicBuffer(new BufferStride(4)));
             this.shaderView = new ShaderResourceView(device, this.buffer);
         }
 
         /// <summary>
         /// Copies color space joints to gpu
         /// </summary>
-        /// <param name="context"></param>
-        /// <param name="joints"></param>
-        public void Copy(DeviceContext context, IEnumerable<ColorSpaceKinectJoints> joints)
+        /// <param name="context">Device context</param>
+        /// <param name="body">Body list</param>
+        public void Copy(DeviceContext context, IEnumerable<KinectBody> body)
         {
-            var jointArray = joints.SelectMany(cpj => cpj.JointPositions.Values.ToArray()).ToArray();
+            var jointStatusArray = body.SelectMany(cpj => cpj.Joints.Values.Select(j => (uint)j.TrackingState).ToArray()).ToArray();
 
-            if (jointArray.Length == 0)
+            if (jointStatusArray.Length == 0)
                 return;
 
-            fixed (ColorSpacePoint* cptr = & jointArray[0])
+            fixed (uint* cptr = &jointStatusArray[0])
             {
-                this.buffer.Upload(context, new IntPtr(cptr), Marshal.SizeOf(typeof(ColorSpacePoint)) * jointArray.Length);
+                this.buffer.Upload(context, new IntPtr(cptr), sizeof(uint) * jointStatusArray.Length);
             }
         }
 

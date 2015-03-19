@@ -8,12 +8,12 @@ using KGP;
 namespace KDP.Direct3D11.Tests.Textures
 {
     [TestClass]
-    public class BodyColorPositionBufferTests : IDisposable
+    public class BodyJointStatusBufferTests : IDisposable
     {
         private SharpDX.Direct3D11.Device device;
 
 
-        public BodyColorPositionBufferTests()
+        public BodyJointStatusBufferTests()
         {
             device = new SharpDX.Direct3D11.Device(SharpDX.Direct3D.DriverType.Reference);
         }
@@ -21,7 +21,7 @@ namespace KDP.Direct3D11.Tests.Textures
         [TestMethod]
         public void TestCreate()
         {
-            using (BodyColorPositionBuffer buffer = new BodyColorPositionBuffer(device))
+            using (BodyJointStatusBuffer buffer = new BodyJointStatusBuffer(device))
             {
                 Assert.AreNotEqual(buffer.ShaderView.NativePointer, IntPtr.Zero);
             }
@@ -30,9 +30,9 @@ namespace KDP.Direct3D11.Tests.Textures
         [TestMethod]
         public void TestUploadEmpty()
         {
-            using (BodyColorPositionBuffer buffer = new BodyColorPositionBuffer(device))
+            using (BodyJointStatusBuffer buffer = new BodyJointStatusBuffer(device))
             {
-                ColorSpaceKinectJoints[] empty = new ColorSpaceKinectJoints[0];
+                KinectBody[] empty = new KinectBody[0];
                 buffer.Copy(device.ImmediateContext, empty);
             }
         }
@@ -41,7 +41,7 @@ namespace KDP.Direct3D11.Tests.Textures
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestNullDevice()
         {
-            using (BodyColorPositionBuffer texture = new BodyColorPositionBuffer(null))
+            using (BodyJointStatusBuffer texture = new BodyJointStatusBuffer(null))
             {
             }
         }

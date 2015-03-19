@@ -40,6 +40,9 @@ namespace KGP.Direct3D11.Textures
         /// <param name="device">Direct3D Device</param>
         public DynamicDepthTexture(Device device)
         {
+            if (device == null)
+                throw new ArgumentNullException("device");
+
             this.texture = new Texture2D(device, DepthTextureDescriptors.DynamicResource);
             this.rawView = new ShaderResourceView(device,this.texture, DepthTextureDescriptors.RawView);
             this.normalizedView = new ShaderResourceView(device,this.texture, DepthTextureDescriptors.NormalizedView);

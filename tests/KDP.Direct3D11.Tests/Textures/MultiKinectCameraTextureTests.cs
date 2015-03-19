@@ -25,9 +25,19 @@ namespace KDP.Direct3D11.Tests.Textures
         }
 
         [TestMethod]
+        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestInvalid()
         {
             using (MultiKinectCameraTexture texture = new MultiKinectCameraTexture(device, 0))
+            {
+            }
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentNullException))]
+        public void TestNullDevice()
+        {
+            using (MultiKinectCameraTexture texture = new MultiKinectCameraTexture(null, 1))
             {
             }
         }

@@ -31,6 +31,9 @@ namespace KGP.Direct3D11.Textures
         /// <param name="device">Direct3D Device</param>
         public DynamicColorRGBATexture(Device device)
         {
+            if (device == null)
+                throw new ArgumentNullException("device");
+
             this.texture = new Texture2D(device, ColorTextureDescriptors.DynamicRGBAResource);
             this.rawView = new ShaderResourceView(device,this.texture);
         }
