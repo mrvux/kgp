@@ -48,6 +48,16 @@ namespace KGP.Frames
         }
 
         /// <summary>
+        /// Updates frame data from coordinate mapper
+        /// </summary>
+        /// <param name="coordinateMapper">Coordinate mapper</param>
+        /// <param name="depthFrame">depth frame</param>
+        public void Update(CoordinateMapper coordinateMapper, DepthFrameData depthFrame)
+        {
+            coordinateMapper.MapDepthFrameToCameraSpaceUsingIntPtr(depthFrame.DataPointer, (uint)depthFrame.SizeInBytes, this.dataPointer, (uint)this.sizeInBytes);
+        }
+
+        /// <summary>
         /// Dispose memory for frame data
         /// </summary>
         public void Dispose()

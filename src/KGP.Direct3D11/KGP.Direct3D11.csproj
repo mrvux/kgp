@@ -76,6 +76,7 @@
     <Compile Include="DeviceExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextureSize.cs" />
+    <Compile Include="Textures\DynamicCameraRGBTexture.cs" />
     <Compile Include="Textures\DynamicDepthtoColorTexture.cs" />
     <Compile Include="Textures\DynamicColorToDepthTexture.cs" />
     <Compile Include="Textures\DynamicColorRGBATexture.cs" />
@@ -84,7 +85,7 @@
     <Compile Include="Textures\RayTableTexture.cs" />
     <Compile Include="Textures\MultiKinectCameraTexture.cs" />
     <Compile Include="Textures\RenderCameraTexture.cs" />
-    <Compile Include="Textures\DynamicCameraTexture.cs" />
+    <Compile Include="Textures\DynamicCameraRGBATexture.cs" />
     <Compile Include="Textures\DynamicBodyIndexTexture.cs" />
     <Compile Include="Textures\DynamicDepthTexture.cs" />
   </ItemGroup>

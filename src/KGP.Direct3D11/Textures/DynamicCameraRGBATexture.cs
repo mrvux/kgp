@@ -14,7 +14,7 @@ namespace KGP.Direct3D11.Textures
     /// <summary>
     /// Dynamic camera space texture
     /// </summary>
-    public class DynamicCameraTexture : IDisposable
+    public class DynamicCameraRGBATexture : IDisposable
     {
         private Texture2D texture;
         private ShaderResourceView rawView;
@@ -31,7 +31,7 @@ namespace KGP.Direct3D11.Textures
         /// Creates a dynamic camera texture
         /// </summary>
         /// <param name="device">Direct3D11 device</param>
-        public DynamicCameraTexture(Device device)
+        public DynamicCameraRGBATexture(Device device)
         {
             this.texture = new Texture2D(device, CameraTextureDescriptors.DynamicRGBA);
             this.rawView = new ShaderResourceView(device, this.texture);

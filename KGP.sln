@@ -39,6 +39,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackGroundSubtractionSample
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LocalStreamerSample", "samples\LocalStreamerSample\LocalStreamerSample.csproj", "{26F6291A-B782-45D0-8F91-1BBD62762467}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimplePointCloudSample", "samples\SimplePointCloudSample\SimplePointCloudSample.csproj", "{99A2D85A-FB1D-47C4-8D65-C422EAB1ABFE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -101,6 +103,10 @@ Global
 		{26F6291A-B782-45D0-8F91-1BBD62762467}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{26F6291A-B782-45D0-8F91-1BBD62762467}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{26F6291A-B782-45D0-8F91-1BBD62762467}.Release|Any CPU.Build.0 = Release|Any CPU
+		{99A2D85A-FB1D-47C4-8D65-C422EAB1ABFE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{99A2D85A-FB1D-47C4-8D65-C422EAB1ABFE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{99A2D85A-FB1D-47C4-8D65-C422EAB1ABFE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{99A2D85A-FB1D-47C4-8D65-C422EAB1ABFE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -120,5 +126,6 @@ Global
 		{DD096EC9-C5B2-432D-BDCF-A10DB7BAF13A} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
 		{E02CE602-001F-4963-9F31-F1335F2F8487} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
 		{26F6291A-B782-45D0-8F91-1BBD62762467} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
+		{99A2D85A-FB1D-47C4-8D65-C422EAB1ABFE} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
 	EndGlobalSection
 EndGlobal
