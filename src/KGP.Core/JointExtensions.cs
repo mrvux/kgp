@@ -30,7 +30,7 @@ namespace KGP
         /// <returns>Parent joint type</returns>
         public static JointType GetParentType(this JointType jointType)
         {
-            throw new NotImplementedException();
+            return JointParentTable.Table[jointType];
         }
     }
 }

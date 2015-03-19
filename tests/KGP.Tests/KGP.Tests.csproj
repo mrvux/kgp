@@ -69,6 +69,7 @@
     <Compile Include="Fakes\FakeBodies.cs" />
     <Compile Include="Fakes\FakeInternalBodies.cs" />
     <Compile Include="Fakes\FakeJoints.cs" />
+    <Compile Include="JointParentTableTests.cs" />
     <Compile Include="JointExtensionsTests.cs" />
     <Compile Include="KinectHandStateEventArgsTests.cs" />
     <Compile Include="Processors\HandTrackingProcessorTests.cs" />

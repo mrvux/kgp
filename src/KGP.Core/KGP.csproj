@@ -60,6 +60,7 @@
     <Compile Include="Frames\DepthFrameData.cs" />
     <Compile Include="HandType.cs" />
     <Compile Include="JointExtensions.cs" />
+    <Compile Include="JointParentTable.cs" />
     <Compile Include="KinectBody.cs" />
     <Compile Include="KinectBodyEventArgs.cs" />
     <Compile Include="KinectBodyExtensions.cs" />
