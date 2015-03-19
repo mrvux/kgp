@@ -70,6 +70,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="Buffers\BodyIndexPointCloudBufferTests.cs" />
     <Compile Include="Buffers\ColorPointCloudBufferTests.cs" />
     <Compile Include="Buffers\CounterPointCloudBufferTests.cs" />
     <Compile Include="Buffers\BodyCameraPositionBufferTests.cs" />
