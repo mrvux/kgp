@@ -55,6 +55,7 @@
   <ItemGroup>
     <Compile Include="BufferElementCount.cs" />
     <Compile Include="BufferStride.cs" />
+    <Compile Include="Buffers\BodyJointOrientationBuffer.cs" />
     <Compile Include="Buffers\BodyCameraPositionBuffer.cs" />
     <Compile Include="Buffers\BodyJointStatusBuffer.cs" />
     <Compile Include="Buffers\BodyColorPositionBuffer.cs" />

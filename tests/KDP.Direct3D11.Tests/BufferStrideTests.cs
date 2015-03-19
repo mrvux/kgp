@@ -54,5 +54,21 @@ namespace KDP.Direct3D11.Tests
             BufferStride count = new BufferStride(32);
             Assert.AreEqual(count, 32);
         }
+
+        [TestMethod]
+        public void FromTest()
+        {
+            BufferStride s1 = new BufferStride(sizeof(float));
+            BufferStride s2 = BufferStride.From<float>();
+            Assert.AreEqual(s1, s2);
+        }
+
+        [TestMethod]
+        [ExpectedException(typeof(ArgumentException))]
+        public void InvalidFromTest()
+        {
+            BufferStride count = BufferStride.From<short>();
+        }
+
     }
 }

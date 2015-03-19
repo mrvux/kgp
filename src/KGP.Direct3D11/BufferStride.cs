@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -21,6 +22,16 @@ namespace KGP.Direct3D11
         {
             Validate(value);
             this.value = value;
+        }
+
+        /// <summary>
+        /// Static utility to get stride from a value type
+        /// </summary>
+        /// <typeparam name="T">Value type</typeparam>
+        /// <returns>Buffer stride instance</returns>
+        public static BufferStride From<T>() where T : struct
+        {
+            return new BufferStride(Marshal.SizeOf(typeof(T)));
         }
 
         /// <summary>
