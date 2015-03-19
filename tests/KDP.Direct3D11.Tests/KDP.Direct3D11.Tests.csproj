@@ -72,6 +72,7 @@
   <ItemGroup>
     <Compile Include="Buffers\BodyCameraPositionBufferTests.cs" />
     <Compile Include="Buffers\BodyJointOrientationBufferTests.cs" />
+    <Compile Include="Buffers\JointTableIndexBufferTests.cs" />
     <Compile Include="Buffers\BodyJointStatusBufferTests.cs" />
     <Compile Include="Buffers\BodyColorPositionBufferTests.cs" />
     <Compile Include="Descriptors\BodyIndexTextureDescriptorsTests.cs" />

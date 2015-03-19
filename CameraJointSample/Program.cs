@@ -57,8 +57,7 @@ namespace JointColorSample
             VertexShader vertexShaderLine = ShaderCompiler.CompileFromFile<VertexShader>(device, "CameraJointView.fx", "VS");
             PixelShader pixelShaderLine = ShaderCompiler.CompileFromFile<PixelShader>(device, "CameraJointView.fx", "PS_White");
 
-            var jointParentTable = JointDataTable.RepeatTableUInt(6);
-            DX11IndexBuffer indexBuffer = DX11IndexBuffer.CreateImmutable(device, jointParentTable);
+            JointTableIndexBuffer indexBuffer = new JointTableIndexBuffer(device, 6);
 
             DX11IndexedGeometry cube = device.Primitives.Box(new Box()
             {
@@ -143,12 +142,9 @@ namespace JointColorSample
                 context.Context.VertexShader.Set(vertexShaderLine);
                 
                 //Attach index buffer, null topology since we fetch
-                context.Context.InputAssembler.PrimitiveTopology = SharpDX.Direct3D.PrimitiveTopology.LineList;
-                context.Context.InputAssembler.InputLayout = null;
-                indexBuffer.Bind(context);
+                indexBuffer.AttachWithLayout(context);
+                indexBuffer.Draw(context,bodyCount);
 
-                context.Context.DrawIndexed(bodyCount * 48, 0, 0);
-                
                 //Draw cubes
                 cube.Bind(context, layout);
                 context.Context.VertexShader.Set(vertexShader);
