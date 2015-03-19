@@ -60,6 +60,8 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Fakes\FakeImageData.cs" />
+    <Compile Include="Frames\DepthToColorFrameDataTests.cs" />
+    <Compile Include="Frames\ColorToDepthFrameDataTests.cs" />
     <Compile Include="Frames\LongExposureInfraredFrameDataTests.cs" />
     <Compile Include="Frames\InfraredFrameDataTests.cs" />
     <Compile Include="Frames\BodyIndexFrameDataTests.cs" />
