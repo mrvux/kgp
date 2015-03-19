@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.Kinect;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
@@ -44,6 +45,19 @@ namespace KGP.Frames
         {
             this.sizeInBytes = Consts.ColorWidth * Consts.ColorHeight * 8;
             this.dataPointer = Marshal.AllocHGlobal(this.sizeInBytes);
+        }
+
+        /// <summary>
+        /// Update map from a depth frame
+        /// </summary>
+        /// <param name="coordinateMapper"></param>
+        /// <param name="depthFrame"></param>
+        public void Update(CoordinateMapper coordinateMapper, DepthFrameData depthFrame)
+        {
+            if (this.dataPointer == IntPtr.Zero)
+                throw new ObjectDisposedException("ColorToDepthFrameData");
+
+            coordinateMapper.MapColorFrameToDepthSpaceUsingIntPtr(depthFrame.DataPointer,(uint)depthFrame.SizeInBytes,this.dataPointer,(uint)this.sizeInBytes);
         }
 
         /// <summary>
