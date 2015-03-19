@@ -2,6 +2,11 @@ StructuredBuffer<float2> JointBuffer : register(t0);
 StructuredBuffer<uint> JointStatusIdBuffer : register(t1);
 StructuredBuffer<float4> StatusColorBuffer : register(t2);
 
+cbuffer cbJointSize : register(b0)
+{
+	float2 size;
+}
+
 float4 CalcPosition(float4 p, uint ii)
 {
 	float2 jointPosition = JointBuffer[ii];
@@ -10,7 +15,7 @@ float4 CalcPosition(float4 p, uint ii)
 	jointPosition = jointPosition * 2.0f - 1.0f;
 	
 	//Todo: add this in cbuffer
-	p.xy *= 0.1f;
+	p.xy *= size;
 	p.xy += jointPosition;
 	return p;
 }

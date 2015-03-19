@@ -8,6 +8,7 @@ using KGP.Frames;
 using KGP.Providers;
 using KGP.Providers.Sensor;
 using Microsoft.Kinect;
+using SharpDX;
 using SharpDX.D3DCompiler;
 using SharpDX.Direct3D11;
 using SharpDX.Windows;
@@ -38,8 +39,8 @@ namespace JointColorSample
 
             //VertexShader vertexShader = ShaderCompiler.CompileFromFile<VertexShader>(device, "ColorJointView.fx", "VS");
             SharpDX.D3DCompiler.ShaderSignature signature;
-            VertexShader vertexShader = ShaderCompiler.CompileFromFile(device, "ColorJointView.fx", "VS", out signature);
-            PixelShader pixelShader = ShaderCompiler.CompileFromFile<PixelShader>(device, "ColorJointView.fx", "PS");
+            VertexShader vertexShader = ShaderCompiler.CompileFromFile(device, "ColorJointView.fx", "VS_Color", out signature);
+            PixelShader pixelShader = ShaderCompiler.CompileFromFile<PixelShader>(device, "ColorJointView.fx", "PS_Color");
 
             DX11IndexedGeometry circle = device.Primitives.Segment(new Segment()
             {
@@ -55,7 +56,19 @@ namespace JointColorSample
             KinectSensor sensor = KinectSensor.GetDefault();
             sensor.Open();
 
+            Color4[] statusColor = new Color4[]
+            {
+                Color.Red,
+                Color.Yellow,
+                Color.Green
+            };
 
+            //Note cbuffer should have a minimum size of 16 bytes, so we create verctor4 instead of vector2
+            SharpDX.Vector4 jointSize = new SharpDX.Vector4(0.04f,0.07f,0.0f,1.0f);
+            ConstantBuffer<SharpDX.Vector4> cbSize = new ConstantBuffer<SharpDX.Vector4>(device);
+            cbSize.Update(context, ref jointSize);
+
+            DX11StructuredBuffer colorTableBuffer = DX11StructuredBuffer.CreateImmutable<Color4>(device, statusColor);
 
             bool doQuit = false;
             bool doUpload = false;
@@ -64,6 +77,7 @@ namespace JointColorSample
 
             KinectBody[] bodyFrame = null;
             BodyColorPositionBuffer positionBuffer = new BodyColorPositionBuffer(device);
+            BodyJointStatusBuffer statusBuffer = new BodyJointStatusBuffer(device);
 
             KinectSensorBodyFrameProvider provider = new KinectSensorBodyFrameProvider(sensor);
             provider.FrameReceived += (sender, args) => { bodyFrame = args.FrameData; doUpload = true; };
@@ -86,8 +100,11 @@ namespace JointColorSample
 
                 if (doUpload)
                 {
-                    var colorSpace = bodyFrame.TrackedOnly().Select(kb => new ColorSpaceKinectJoints(kb, sensor.CoordinateMapper));
+                    var tracked = bodyFrame.TrackedOnly();
+                    var colorSpace = tracked.Select(kb => new ColorSpaceKinectJoints(kb, sensor.CoordinateMapper));
+                    
                     positionBuffer.Copy(context, colorSpace);
+                    statusBuffer.Copy(context, tracked);
                     drawer.InstanceCount = colorSpace.Count() * Microsoft.Kinect.Body.JointCount;
                 }
 
@@ -107,6 +124,9 @@ namespace JointColorSample
                 context.Context.PixelShader.Set(pixelShader);
                 context.Context.VertexShader.Set(vertexShader);
                 context.Context.VertexShader.SetShaderResource(0, positionBuffer.ShaderView);
+                context.Context.VertexShader.SetShaderResource(1, statusBuffer.ShaderView);
+                context.Context.VertexShader.SetShaderResource(2, colorTableBuffer.ShaderView);
+                context.Context.VertexShader.SetConstantBuffer(0, cbSize.Buffer);
 
                 circle.Draw(context);
 
@@ -122,12 +142,20 @@ namespace JointColorSample
             colorTexture.Dispose();
 
             positionBuffer.Dispose();
+            statusBuffer.Dispose();
+            colorTableBuffer.Dispose();
+
+            cbSize.Dispose();
+
             provider.Dispose();
             circle.Dispose();
             layout.Dispose();
 
+
+
             pixelShader.Dispose();
             vertexShader.Dispose();
+
 
             sensor.Close();
         }
