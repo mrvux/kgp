@@ -12,6 +12,10 @@ namespace KGP
     /// </summary>
     public static class FaceUtils
     {
+        /// <summary>
+        /// Returns all face frame features
+        /// </summary>
+        /// <returns></returns>
         public static FaceFrameFeatures AllFeatures()
         {
             return FaceFrameFeatures.BoundingBoxInColorSpace

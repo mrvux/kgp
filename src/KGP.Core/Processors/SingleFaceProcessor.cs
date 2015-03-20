@@ -27,7 +27,7 @@ namespace KGP.Processors
         /// <param name="sensor">Kinect sensor</param>
         public SingleFaceProcessor(KinectSensor sensor)
         {
-            this.frameSource = new FaceFrameSource(sensor, 0, FaceUtils.AllFeatures();
+            this.frameSource = new FaceFrameSource(sensor, 0, FaceUtils.AllFeatures());
             this.framereader = this.frameSource.OpenReader();
             this.framereader.FrameArrived += this.FrameArrived;
         }
