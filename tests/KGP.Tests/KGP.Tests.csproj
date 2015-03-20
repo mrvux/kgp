@@ -40,6 +40,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\externals\kinect2\Microsoft.Kinect.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Kinect.Face, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\externals\kinect2\Microsoft.Kinect.Face.dll</HintPath>
+    </Reference>
     <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\externals\json\Newtonsoft.Json.dll</HintPath>
@@ -72,6 +76,8 @@
     <Compile Include="Fakes\FakeBodies.cs" />
     <Compile Include="Fakes\FakeInternalBodies.cs" />
     <Compile Include="Fakes\FakeJoints.cs" />
+    <Compile Include="FaceFrameResultEventArgsTests.cs" />
+    <Compile Include="HdFaceFrameResultEventArgsTests.cs" />
     <Compile Include="JointParentTableTests.cs" />
     <Compile Include="JointExtensionsTests.cs" />
     <Compile Include="KinectHandStateEventArgsTests.cs" />
