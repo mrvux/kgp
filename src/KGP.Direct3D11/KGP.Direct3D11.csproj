@@ -101,6 +101,7 @@
     <Compile Include="Textures\Dynamic\DynamicInfraredTexture.cs" />
     <Compile Include="Textures\IKinectBodyIndexTexture.cs" />
     <Compile Include="Textures\IKinectDepthTexture.cs" />
+    <Compile Include="Textures\Immutable\ImmutableDepthTexture.cs" />
     <Compile Include="Textures\Immutable\RayTableTexture.cs" />
     <Compile Include="Textures\Renderables\MultiKinectCameraTexture.cs" />
     <Compile Include="Textures\Renderables\RenderCameraTexture.cs" />
