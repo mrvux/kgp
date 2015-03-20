@@ -93,20 +93,20 @@
     <Compile Include="DeviceExtensions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextureSize.cs" />
-    <Compile Include="Textures\DynamicCameraRGBTexture.cs" />
-    <Compile Include="Textures\DynamicDepthtoColorTexture.cs" />
-    <Compile Include="Textures\DynamicColorToDepthTexture.cs" />
-    <Compile Include="Textures\DynamicColorRGBATexture.cs" />
-    <Compile Include="Textures\DynamicLongExposureInfraredTexture.cs" />
-    <Compile Include="Textures\DynamicInfraredTexture.cs" />
+    <Compile Include="Textures\Dynamic\DynamicCameraRGBTexture.cs" />
+    <Compile Include="Textures\Dynamic\DynamicDepthtoColorTexture.cs" />
+    <Compile Include="Textures\Dynamic\DynamicColorToDepthTexture.cs" />
+    <Compile Include="Textures\Dynamic\DynamicColorRGBATexture.cs" />
+    <Compile Include="Textures\Dynamic\DynamicLongExposureInfraredTexture.cs" />
+    <Compile Include="Textures\Dynamic\DynamicInfraredTexture.cs" />
     <Compile Include="Textures\IKinectBodyIndexTexture.cs" />
     <Compile Include="Textures\IKinectDepthTexture.cs" />
-    <Compile Include="Textures\RayTableTexture.cs" />
-    <Compile Include="Textures\MultiKinectCameraTexture.cs" />
-    <Compile Include="Textures\RenderCameraTexture.cs" />
-    <Compile Include="Textures\DynamicCameraRGBATexture.cs" />
-    <Compile Include="Textures\DynamicBodyIndexTexture.cs" />
-    <Compile Include="Textures\DynamicDepthTexture.cs" />
+    <Compile Include="Textures\Immutable\RayTableTexture.cs" />
+    <Compile Include="Textures\Renderables\MultiKinectCameraTexture.cs" />
+    <Compile Include="Textures\Renderables\RenderCameraTexture.cs" />
+    <Compile Include="Textures\Dynamic\DynamicCameraRGBATexture.cs" />
+    <Compile Include="Textures\Dynamic\DynamicBodyIndexTexture.cs" />
+    <Compile Include="Textures\Dynamic\DynamicDepthTexture.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\KGP.Core\KGP.csproj">
