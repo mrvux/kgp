@@ -13,7 +13,7 @@ namespace KGP.Direct3D11.Textures
     /// <summary>
     /// Render target version for camera texture
     /// </summary>
-    public class RenderCameraTexture : IDisposable
+    public class RenderCameraTexture : IKinectCameraRGBATexture, IDisposable
     {
         private Texture2D texture;
         private ShaderResourceView rawView;

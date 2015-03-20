@@ -14,7 +14,7 @@ namespace KGP.Direct3D11.Textures
     /// <summary>
     /// Dynamic camera space texture
     /// </summary>
-    public class DynamicCameraRGBATexture : IDisposable
+    public class DynamicCameraRGBATexture : IKinectCameraRGBATexture, IDisposable
     {
         private Texture2D texture;
         private ShaderResourceView rawView;
