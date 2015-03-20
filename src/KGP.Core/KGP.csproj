@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="ColorSpaceKinectBody.cs" />
     <Compile Include="Consts.cs" />
+    <Compile Include="FaceFrameResultEventArgs.cs" />
     <Compile Include="FaceUtils.cs" />
     <Compile Include="Frames\DepthToColorFrameData.cs" />
     <Compile Include="Frames\ColorToDepthFrameData.cs" />

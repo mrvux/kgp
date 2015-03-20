@@ -61,7 +61,7 @@ namespace ColorTextureSample
 
             FaceFrameResult frameResult = null;
             SingleFaceProcessor faceProcessor = new SingleFaceProcessor(sensor);
-            faceProcessor.FaceResultAcquired += (sender, args) => { frameResult = args; };
+            faceProcessor.FaceResultAcquired += (sender, args) => { frameResult = args.FrameResult; };
 
             Func<PointF, Vector2> map = new Func<PointF, Vector2>((p) =>
             {

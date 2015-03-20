@@ -19,7 +19,7 @@ namespace KGP.Processors
         /// <summary>
         /// Raised when we received a valid face frame
         /// </summary>
-        public event EventHandler<FaceFrameResult> FaceResultAcquired;
+        public event EventHandler<FaceFrameResultEventArgs> FaceResultAcquired;
 
         /// <summary>
         /// Constructor
@@ -41,7 +41,7 @@ namespace KGP.Processors
                     if (frame.IsTrackingIdValid == false) { return; }
                     if (this.FaceResultAcquired != null)
                     {
-                        this.FaceResultAcquired(this, frame.FaceFrameResult);
+                        this.FaceResultAcquired(this, new FaceFrameResultEventArgs(frame.FaceFrameResult));
                     }
                 }
             }
