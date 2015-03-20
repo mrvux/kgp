@@ -88,6 +88,7 @@
     <Compile Include="Descriptors\DescriptorUtilsBuffersTests.cs" />
     <Compile Include="BufferElementCountTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Textures\ImmutableDepthTextureTests.cs" />
     <Compile Include="Textures\DynamicDepthToColorTextureTests.cs" />
     <Compile Include="Textures\DynamicColorToDepthTextureTests.cs" />
     <Compile Include="Textures\DynamicLongExposureInfraredTextureTests.cs" />

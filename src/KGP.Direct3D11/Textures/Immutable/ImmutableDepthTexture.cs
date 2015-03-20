@@ -43,6 +43,8 @@ namespace KGP.Direct3D11.Textures
         {
             if (device == null)
                 throw new ArgumentNullException("device");
+            if (data == null)
+                throw new ArgumentNullException("data");
 
             DataRectangle dr = new DataRectangle(data.DataPointer, Consts.DepthWidth * sizeof(ushort));
 
