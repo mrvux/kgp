@@ -83,7 +83,7 @@ namespace JointColorSample
             FaceAlignment currentFaceAlignment = new FaceAlignment();
 
             SingleHdFaceProcessor hdFaceProcessor = new SingleHdFaceProcessor(sensor);
-            hdFaceProcessor.FaceModelRefreshed += (sender, args) => { currentFaceModel = args.Item1; currentFaceAlignment = args.Item2; doUpload = true; };
+            hdFaceProcessor.HdFrameReceived += (sender, args) => { currentFaceModel = args.FaceModel; currentFaceAlignment = args.FaceAlignment; doUpload = true; };
 
             bool uploadColor = false;
             ColorRGBAFrameData currentData = null;

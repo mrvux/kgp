@@ -17,13 +17,11 @@ namespace KGP.Processors
         private HighDefinitionFaceFrameReader framereader;
         private FaceModel faceModel = new FaceModel();
         private FaceAlignment faceAlignment = new FaceAlignment();
-        private FaceModelBuilder faceModelBuilder;
-
 
         /// <summary>
         /// Raised when we got a new face model refreshed
         /// </summary>
-        public event EventHandler<Tuple<FaceModel, FaceAlignment>> FaceModelRefreshed;
+        public event EventHandler<HdFaceFrameResultEventArgs> HdFrameReceived;
 
         /// <summary>
         /// Constructor
@@ -45,9 +43,9 @@ namespace KGP.Processors
                     if (frame.IsTrackingIdValid == false) { return; }
                     frame.GetAndRefreshFaceAlignmentResult(this.faceAlignment);
                     frame.Dispose();
-                    if (this.FaceModelRefreshed != null)
+                    if (this.HdFrameReceived != null)
                     {
-                        this.FaceModelRefreshed(this, new Tuple<FaceModel, FaceAlignment>(this.faceModel, this.faceAlignment));
+                        this.HdFrameReceived(this, new HdFaceFrameResultEventArgs(this.faceModel, this.faceAlignment));
                     }
                 }
             }
