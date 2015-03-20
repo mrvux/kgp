@@ -99,6 +99,8 @@
     <Compile Include="Textures\DynamicColorRGBATexture.cs" />
     <Compile Include="Textures\DynamicLongExposureInfraredTexture.cs" />
     <Compile Include="Textures\DynamicInfraredTexture.cs" />
+    <Compile Include="Textures\IKinectBodyIndexTexture.cs" />
+    <Compile Include="Textures\IKinectDepthTexture.cs" />
     <Compile Include="Textures\RayTableTexture.cs" />
     <Compile Include="Textures\MultiKinectCameraTexture.cs" />
     <Compile Include="Textures\RenderCameraTexture.cs" />

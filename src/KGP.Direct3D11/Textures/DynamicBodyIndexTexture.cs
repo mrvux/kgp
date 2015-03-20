@@ -12,7 +12,7 @@ namespace KGP.Direct3D11.Textures
     /// <summary>
     /// Data holder for dynamic body index texture
     /// </summary>
-    public class DynamicBodyIndexTexture : IDisposable
+    public class DynamicBodyIndexTexture : IKinectBodyIndexTexture, IDisposable
     {
         private Texture2D texture;
         private ShaderResourceView rawView;

@@ -12,7 +12,7 @@ namespace KGP.Direct3D11.Textures
     /// <summary>
     /// Dynamic depth texture
     /// </summary>
-    public class DynamicDepthTexture : IDisposable
+    public class DynamicDepthTexture : IKinectDepthTexture, IDisposable
     {
         private Texture2D texture;
         private ShaderResourceView rawView;
