@@ -58,7 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ColorSpaceKinectBody.cs" />
+    <Compile Include="ColorSpaceKinectJoints.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="FaceFrameResultEventArgs.cs" />
     <Compile Include="FaceUtils.cs" />
