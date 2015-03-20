@@ -1,5 +1,6 @@
 ﻿using KGP.Direct3D11.Descriptors;
 using KGP.Frames;
+using SharpDX;
 using SharpDX.Direct3D11;
 using System;
 using System.Collections.Generic;
@@ -12,7 +13,7 @@ namespace KGP.Direct3D11.Textures
     /// <summary>
     /// Dynamic infrared texture
     /// </summary>
-    public class DynamicInfraredTexture : IKinectInfraredTexture, IDisposable
+    public class ImmutableInfraredTexture : IKinectInfraredTexture, IDisposable
     {
         private Texture2D texture;
         private ShaderResourceView shaderView;
@@ -29,12 +30,17 @@ namespace KGP.Direct3D11.Textures
         /// Creates a dynamic depth texture, allocates GPU resources
         /// </summary>
         /// <param name="device">Direct3D Device</param>
-        public DynamicInfraredTexture(Device device)
+        /// <param name="frameData">Initial frame data</param>
+        public ImmutableInfraredTexture(Device device, InfraredFrameData frameData)
         {
             if (device == null)
                 throw new ArgumentNullException("device");
+            if (frameData == null)
+                throw new ArgumentNullException("frameData");
 
-            this.texture = new Texture2D(device, InfraredTextureDescriptors.DynamicResource);
+            DataRectangle rect = new DataRectangle(frameData.DataPointer, Consts.DepthWidth * sizeof(ushort));
+
+            this.texture = new Texture2D(device, InfraredTextureDescriptors.DynamicResource,rect);
             this.shaderView = new ShaderResourceView(device, this.texture);
         }
 

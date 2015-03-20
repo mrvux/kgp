@@ -103,6 +103,7 @@
     <Compile Include="Textures\IKinectCameraRGBATexture.cs" />
     <Compile Include="Textures\IKinectDepthTexture.cs" />
     <Compile Include="Textures\IKinectInfraredTexture.cs" />
+    <Compile Include="Textures\Immutable\ImmutableInfraredTexture.cs" />
     <Compile Include="Textures\Immutable\ImmutableDepthTexture.cs" />
     <Compile Include="Textures\Immutable\RayTableTexture.cs" />
     <Compile Include="Textures\Renderables\MultiKinectCameraTexture.cs" />
