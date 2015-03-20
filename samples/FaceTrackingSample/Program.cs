@@ -70,6 +70,13 @@ namespace ColorTextureSample
                 return new Vector2(x,y);
             });
 
+            Func<float,float, Vector2> mapxy = new Func<float,float, Vector2>((px,py) =>
+            {
+                float x = px / 1920.0f * (float)swapChain.Width;
+                float y = py / 1080.0f * (float)swapChain.Height;
+                return new Vector2(x,y);
+            });
+
             bodyProvider.FrameReceived += (sender, args) =>
             {
                 bodyFrame = args.FrameData;
@@ -107,6 +114,16 @@ namespace ColorTextureSample
                 if (frameResult != null)
                 {
                     context2d.BeginDraw();
+                    var colorBound = frameResult.FaceBoundingBoxInColorSpace;
+                    RectangleF rect = new RectangleF();
+                    Vector2 topLeft = mapxy(colorBound.Left, colorBound.Top);
+                    Vector2 bottomRight = mapxy(colorBound.Right, colorBound.Bottom);
+                    rect.Top = topLeft.Y;
+                    rect.Bottom = bottomRight.Y;
+                    rect.Left = topLeft.X;
+                    rect.Right = bottomRight.X;
+
+                    context2d.DrawRectangle(rect, whiteBrush, 3.0f);
 
                     foreach (PointF point in frameResult.FacePointsInColorSpace.Values)
                     {
