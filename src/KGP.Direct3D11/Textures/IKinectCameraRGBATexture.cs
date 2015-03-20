@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace KGP.Direct3D11.Textures
 {
+    /// <summary>
+    /// Commond interface for camera grba texture view
+    /// </summary>
     public interface IKinectCameraRGBATexture
     {
+        /// <summary>
+        /// Shader resource view
+        /// </summary>
         ShaderResourceView ShaderView { get; }
     }
 }
