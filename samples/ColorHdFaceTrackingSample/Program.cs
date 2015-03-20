@@ -105,7 +105,7 @@ namespace JointColorSample
                 }
             };
 
-            context.Context.Rasterizer.State = device.RasterizerStates.NoCullSolid;
+            context.Context.Rasterizer.State = device.RasterizerStates.WireFrame;
 
             RenderLoop.Run(form, () =>
             {

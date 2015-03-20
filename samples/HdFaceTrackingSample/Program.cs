@@ -149,7 +149,7 @@ namespace JointColorSample
             pixelShader.Dispose();
             vertexShader.Dispose();
 
-
+            hdFaceProcessor.Dispose();
             sensor.Close();
         }
     }
