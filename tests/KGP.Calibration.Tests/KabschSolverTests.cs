@@ -8,6 +8,16 @@ namespace KGP.Calibration.Tests
     [TestClass]
     public class KabschSolverTests
     {
+        public bool NearEqual(Matrix m1, Matrix m2, float epsilon = 0.0001f)
+        {
+            for (int i = 0; i < 16; i++)
+            {
+                if (Math.Abs(m1[i] - m2[i]) > epsilon)
+                    return false;
+            }
+            return true;
+        }
+
         [TestMethod]
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestNull()
@@ -50,7 +60,7 @@ namespace KGP.Calibration.Tests
 
             Matrix actual = Matrix.Invert(solver.Solve(dataSet));
 
-            Assert.AreEqual(actual, expected);
+            Assert.IsTrue(NearEqual(actual, expected));
         }
 
         [TestMethod]
@@ -76,7 +86,7 @@ namespace KGP.Calibration.Tests
             dataSet.Add(new CameraToCameraPoint(o6, d6));
 
             Matrix actual = Matrix.Invert(solver.Solve(dataSet));
-            Assert.AreEqual(actual, expected);
+            Assert.IsTrue(NearEqual(actual, expected));
         }
 
         [TestMethod]
@@ -103,7 +113,7 @@ namespace KGP.Calibration.Tests
 
             Matrix actual = Matrix.Invert(solver.Solve(dataSet));
 
-            Assert.AreEqual(actual, expected);
+            Assert.IsTrue(NearEqual(actual, expected));
         }
     }
 }

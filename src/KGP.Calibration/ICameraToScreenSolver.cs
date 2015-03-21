@@ -16,6 +16,6 @@ namespace KGP.Calibration
         /// </summary>
         /// <param name="points">Point set</param>
         /// <returns>Camera to projector calibration result</returns>
-        CameraToProjectorData Solve(IReadOnlyList<CameraToScreenPoint> points);
+        ProjectorCalibrationResult Solve(ProjectorCalibrationData data, IReadOnlyList<CameraToScreenPoint> points);
     }
 }

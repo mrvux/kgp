@@ -21,6 +21,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Debug\KGP.Calibration.XML</DocumentationFile>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -51,9 +52,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CameraToCameraPoint.cs" />
+    <Compile Include="ProjectorCalibrationResult.cs" />
     <Compile Include="CameraToScreenPoint.cs" />
+    <Compile Include="CVProjectionCalibration.cs" />
     <Compile Include="ICameraToCameraSolver.cs" />
-    <Compile Include="CameraToProjectorData.cs" />
+    <Compile Include="ProjectorCalibrationData.cs" />
     <Compile Include="ICameraToScreenSolver.cs" />
     <Compile Include="KabschSolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
