@@ -31,6 +31,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GeneralMatrix">
+      <HintPath>..\..\externals\matrix\GeneralMatrix.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Kinect, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\externals\kinect2\Microsoft.Kinect.dll</HintPath>
@@ -52,6 +55,7 @@
     <Compile Include="ICameraToCameraSolver.cs" />
     <Compile Include="CameraToProjectorData.cs" />
     <Compile Include="ICameraToScreenSolver.cs" />
+    <Compile Include="KabschSolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

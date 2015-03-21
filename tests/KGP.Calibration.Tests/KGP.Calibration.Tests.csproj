@@ -35,6 +35,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="GeneralMatrix, Version=1.0.5263.34156, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\externals\matrix\GeneralMatrix.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.Kinect, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\externals\kinect2\Microsoft.Kinect.dll</HintPath>
@@ -58,6 +62,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="CameraToCameraPointTest.cs" />
+    <Compile Include="KabschSolverTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

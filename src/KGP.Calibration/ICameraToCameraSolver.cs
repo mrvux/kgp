@@ -18,6 +18,6 @@ namespace KGP.Calibration
         /// </summary>
         /// <param name="points">Point set to test</param>
         /// <returns>Affine transformation between each point set</returns>
-        Matrix Solve(IEnumerable<CameraToCameraPoint> points);
+        Matrix Solve(IReadOnlyList<CameraToCameraPoint> points);
     }
 }
