@@ -31,6 +31,11 @@ namespace KGP.Network.FrameServer
         event EventHandler<DepthFrameDataEventArgs> depthReceived;
         event EventHandler<BodyIndexFrameDataEventArgs> bodyIndexReceived;
 
+        /// <summary>
+        /// Raised if an error has been raised while receiving a frame
+        /// </summary>
+        public event EventHandler OnError;
+
 
         event EventHandler<DepthFrameDataEventArgs> IDepthFrameProvider.FrameReceived
         {
@@ -69,7 +74,7 @@ namespace KGP.Network.FrameServer
         }
 
 
-        private readonly byte[] temporaryData = new byte[KinectFrameInformation.DepthFrame.FrameDataSize];
+        private readonly byte[] temporaryData = new byte[24000000];
         private byte[] header = new byte[5];
         private bool readHeader = true;
         private int bytesRead = 0;
@@ -94,11 +99,16 @@ namespace KGP.Network.FrameServer
         /// </summary>
         public void Connect()
         {
-            this.client.Connect(this.serverEndPoint);
-            this.clientStream = client.GetStream();
-            this.isRunning = true;
-            this.receiverThread = new Thread(new ThreadStart(this.ReceiveThread));
-            this.receiverThread.Start();
+            var result = this.client.BeginConnect(this.serverEndPoint.Address, this.serverEndPoint.Port, null, null);
+            var success = result.AsyncWaitHandle.WaitOne(TimeSpan.FromSeconds(1));
+
+            if (success)
+            {
+                this.clientStream = client.GetStream();
+                this.isRunning = true;
+                this.receiverThread = new Thread(new ThreadStart(this.ReceiveThread));
+                this.receiverThread.Start();
+            }
         }
 
         private unsafe void ReceiveThread()
@@ -118,39 +128,50 @@ namespace KGP.Network.FrameServer
                         this.bytesRead = 0;
                     }
 
-                    int totalRead = this.clientStream.Read(this.temporaryData, this.bytesRead, this.remaining);
-
-                    this.bytesRead += totalRead;
-                    this.remaining -= totalRead;
-
-                    //Case where we have all the data we need
-                    if (totalRead == this.remaining)
+                    try
                     {
-                        fixed (byte* bptr = &this.temporaryData[0])
+                        int totalRead = this.clientStream.Read(this.temporaryData, this.bytesRead, this.remaining);
+
+                        this.bytesRead += totalRead;
+                        this.remaining -= totalRead;
+
+                        //Case where we have all the data we need
+                        if (totalRead == this.remaining)
                         {
-                            if (isDepth)
+                            fixed (byte* bptr = &this.temporaryData[0])
                             {
-                                SnappyFrameDecompressor.Uncompress(new IntPtr(bptr), bytesRead, this.depthData.DataPointer, this.depthData.SizeInBytes);
-
-                                if (this.depthReceived != null)
+                                if (isDepth)
                                 {
-                                    this.depthReceived(this, new DepthFrameDataEventArgs(this.depthData));
+                                    SnappyFrameDecompressor.Uncompress(new IntPtr(bptr), bytesRead, this.depthData.DataPointer, this.depthData.SizeInBytes);
+
+                                    if (this.depthReceived != null)
+                                    {
+                                        this.depthReceived(this, new DepthFrameDataEventArgs(this.depthData));
+                                    }
+                                }
+                                else
+                                {
+                                    SnappyFrameDecompressor.Uncompress(new IntPtr(bptr), bytesRead, this.bodyIndexData.DataPointer, this.bodyIndexData.SizeInBytes);
+
+                                    if (this.bodyIndexReceived != null)
+                                    {
+                                        this.bodyIndexReceived(this, new BodyIndexFrameDataEventArgs(this.bodyIndexData));
+                                    }
                                 }
                             }
-                            else
-                            {
-                                SnappyFrameDecompressor.Uncompress(new IntPtr(bptr), bytesRead, this.bodyIndexData.DataPointer, this.bodyIndexData.SizeInBytes);
 
-                                if (this.bodyIndexReceived != null)
-                                {
-                                    this.bodyIndexReceived(this, new BodyIndexFrameDataEventArgs(this.bodyIndexData));
-                                }
-                            }
+                            //Wait for next header
+                            this.readHeader = true;
                         }
-
-                        //Wait for next header
-                        this.readHeader = true;
                     }
+                    catch
+                    {
+                        if (this.OnError != null)
+                        {
+                            this.OnError(this, new EventArgs());
+                        }
+                    }
+
                 }
                 Thread.Sleep(5);
             }

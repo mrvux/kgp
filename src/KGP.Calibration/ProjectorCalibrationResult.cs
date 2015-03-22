@@ -7,6 +7,9 @@ using System.Threading.Tasks;
 
 namespace KGP.Calibration
 {
+    /// <summary>
+    /// Projector calibration result
+    /// </summary>
     public class ProjectorCalibrationResult
     {
         private readonly Matrix view;

@@ -45,6 +45,11 @@ namespace KGP.Direct3D11.Buffers
             this.shaderView = new ShaderResourceView(device, this.buffer);
         }
 
+        /// <summary>
+        /// Copies camera space points from face to the gpu
+        /// </summary>
+        /// <param name="context"></param>
+        /// <param name="points"></param>
         public void Copy(DeviceContext context, CameraSpacePoint[] points)
         {
             if (points.Length == 0)

@@ -40,6 +40,13 @@ namespace KGP.Serialization.Images
             }
         }
 
+        /// <summary>
+        /// Small statuc utility to decompress
+        /// </summary>
+        /// <param name="compressedData"></param>
+        /// <param name="compressedDataSize"></param>
+        /// <param name="target"></param>
+        /// <param name="targetLength"></param>
         public static void Uncompress(IntPtr compressedData, int compressedDataSize, IntPtr target, int targetLength)
         {
             int length = targetLength;

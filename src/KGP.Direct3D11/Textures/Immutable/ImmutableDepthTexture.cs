@@ -39,6 +39,7 @@ namespace KGP.Direct3D11.Textures
         /// Creates an immutable depth texture, allocates GPU resources
         /// </summary>
         /// <param name="device">Direct3D Device</param>
+        /// <param name="data">Depth frame data</param>
         public ImmutableDepthTexture(Device device, DepthFrameData data)
         {
             if (device == null)

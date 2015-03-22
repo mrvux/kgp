@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace KGP.Calibration
 {
+    /// <summary>
+    /// Openc CV calibrate camera wrapper
+    /// </summary>
     public unsafe class CVProjectionCalibration : ICameraToScreenSolver
     {
         [DllImport("OCV_CalibrationUtils")]
@@ -16,7 +19,12 @@ namespace KGP.Calibration
         [DllImport("OCV_CalibrationUtils")]
         private static extern int FreeMemory(IntPtr ptr);
 
-
+        /// <summary>
+        /// Solve camera to screen calibration
+        /// </summary>
+        /// <param name="data">Calibration data</param>
+        /// <param name="points">Point to screen dataset</param>
+        /// <returns>Calibration result, view and projection matrix</returns>
         public ProjectorCalibrationResult Solve(ProjectorCalibrationData data, IReadOnlyList<CameraToScreenPoint> points)
         {
             if (data == null)
