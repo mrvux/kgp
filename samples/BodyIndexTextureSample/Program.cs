@@ -59,6 +59,7 @@ namespace DepthTextureSample
                 if (doUpload)
                 {
                     texture.Copy(context, currentData);
+                    doUpload = false;
                 }
 
                 context.RenderTargetStack.Push(swapChain);

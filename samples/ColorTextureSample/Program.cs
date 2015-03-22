@@ -56,6 +56,7 @@ namespace ColorTextureSample
                 if (doUpload)
                 {
                     colorTexture.Copy(context, currentData);
+                    doUpload = false;
                 }
 
                 context.RenderTargetStack.Push(swapChain);
