@@ -37,10 +37,18 @@ namespace DepthToWorldGPUSample
             PixelShader pixelShaderRaw = ShaderCompiler.CompileFromFile<PixelShader>(device, "DepthToWorld.fx", "PS_Raw");
             PixelShader pixelShaderNorm = ShaderCompiler.CompileFromFile<PixelShader>(device, "DepthToWorld.fx", "PS_Normalized");
 
+            RayTableTexture rayTable = null;
             KinectSensor sensor = KinectSensor.GetDefault();
+            sensor.CoordinateMapper.CoordinateMappingChanged += (s, e) =>
+                {
+                    if (rayTable == null)
+                    {
+                        rayTable = RayTableTexture.FromCoordinateMapper(device, sensor.CoordinateMapper);
+                    }
+                };
             sensor.Open();
 
-            RayTableTexture rayTable = RayTableTexture.FromCoordinateMapper(device, sensor.CoordinateMapper);
+             
             RenderCameraTexture renderCamera = new RenderCameraTexture(device);
 
             bool doQuit = false;
@@ -64,7 +72,7 @@ namespace DepthToWorldGPUSample
                     return;
                 }
 
-                if (doUpload)
+                if (doUpload && rayTable != null)
                 {
                     depth.Copy(context, currentData);
 
@@ -104,7 +112,7 @@ namespace DepthToWorldGPUSample
 
             depth.Dispose();
             renderCamera.Dispose();
-            rayTable.Dispose();
+            if (rayTable != null) { rayTable.Dispose(); }
             provider.Dispose();
 
             pixelShaderNorm.Dispose();
