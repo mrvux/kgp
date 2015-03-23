@@ -48,9 +48,20 @@ namespace KGP.Direct3D11.Buffers
         /// <summary>
         /// Copies face color points to the gpu
         /// </summary>
-        /// <param name="context"></param>
-        /// <param name="points"></param>
+        /// <param name="context">Device context</param>
+        /// <param name="points">Points array</param>
         public void Copy(DeviceContext context, ColorSpacePoint[] points)
+        {
+            Copy(context, points, points.Length);
+        }
+
+        /// <summary>
+        /// Copies face color points to the gpu
+        /// </summary>
+        /// <param name="context">Device context</param>
+        /// <param name="points">Points array</param>
+        /// <param name="elementCount">Number of elements to copy</param>
+        public void Copy(DeviceContext context, ColorSpacePoint[] points, int elementCount)
         {
             if (points.Length == 0)
                 return;
