@@ -24,6 +24,14 @@ namespace KGP.Processors
         public event EventHandler<HdFaceFrameResultEventArgs> HdFrameReceived;
 
         /// <summary>
+        /// Current body tracking Id
+        /// </summary>
+        public ulong TrackingId
+        {
+            get { return this.frameSource.TrackingId; }
+        }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="sensor">Kinect sensor</param>
