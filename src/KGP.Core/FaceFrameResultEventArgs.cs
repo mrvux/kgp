@@ -12,7 +12,16 @@ namespace KGP
     /// </summary>
     public class FaceFrameResultEventArgs
     {
+        private readonly ulong trackingId;
         private readonly FaceFrameResult frameResult;
+
+        /// <summary>
+        /// Tracking Id
+        /// </summary>
+        public ulong TrackingId
+        {
+            get { return this.trackingId; }
+        }
 
         /// <summary>
         /// Frame result
@@ -25,12 +34,14 @@ namespace KGP
         /// <summary>
         /// Constructor
         /// </summary>
+        /// <param name="trackingId">Tracking ID</param>
         /// <param name="frameResult">Frame result</param>
-        public FaceFrameResultEventArgs(FaceFrameResult frameResult)
+        public FaceFrameResultEventArgs(ulong trackingId, FaceFrameResult frameResult)
         {
             if (frameResult == null)
                 throw new ArgumentNullException("frameResult");
 
+            this.trackingId = trackingId;
             this.frameResult = frameResult;
         }
     }

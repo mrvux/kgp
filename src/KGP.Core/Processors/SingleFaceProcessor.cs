@@ -41,7 +41,7 @@ namespace KGP.Processors
                     if (frame.IsTrackingIdValid == false) { return; }
                     if (this.FaceResultAcquired != null)
                     {
-                        this.FaceResultAcquired(this, new FaceFrameResultEventArgs(frame.FaceFrameResult));
+                        this.FaceResultAcquired(this, new FaceFrameResultEventArgs(this.frameSource.TrackingId, frame.FaceFrameResult));
                     }
                 }
             }

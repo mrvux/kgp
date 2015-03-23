@@ -11,8 +11,7 @@ namespace KGP.Tests
         [ExpectedException(typeof(ArgumentNullException))]
         public void TestNull()
         {
-            FaceFrameResultEventArgs args = new FaceFrameResultEventArgs(null);
+            FaceFrameResultEventArgs args = new FaceFrameResultEventArgs(0, null);
         }
-
     }
 }

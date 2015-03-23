@@ -86,6 +86,7 @@
     <Compile Include="Network\FrameServer\KinectFrameServer.cs" />
     <Compile Include="Processors\HandStateTrackingProcessor.cs" />
     <Compile Include="Processors\BodyTrackingProcessor.cs" />
+    <Compile Include="Processors\MultipleFaceProcessor.cs" />
     <Compile Include="Processors\MultipleHdFaceProcessor.cs" />
     <Compile Include="Processors\SingleFaceProcessor.cs" />
     <Compile Include="Processors\SingleHdFaceProcessor.cs" />

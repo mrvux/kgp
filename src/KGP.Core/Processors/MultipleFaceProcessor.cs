@@ -10,14 +10,14 @@ namespace KGP.Processors
     /// <summary>
     /// Tracks several kinect faces
     /// </summary>
-    public class MultipleHdFaceProcessor : IDisposable
+    public class MultipleFaceProcessor : IDisposable
     {
         private readonly BodyTrackingProcessor bodyProcessor;
-        private SingleHdFaceProcessor[] faceProcessors;
-        private Dictionary<ulong, SingleHdFaceProcessor> activeProcessors;
-        private List<SingleHdFaceProcessor> idleProcessors;
+        private SingleFaceProcessor[] faceProcessors;
+        private Dictionary<ulong, SingleFaceProcessor> activeProcessors;
+        private List<SingleFaceProcessor> idleProcessors;
 
-        private Dictionary<ulong, HdFaceFrameResultEventArgs> currentResults;
+        private Dictionary<ulong, FaceFrameResultEventArgs> currentResults;
 
         /// <summary>
         /// Number of active face trackers
@@ -30,7 +30,7 @@ namespace KGP.Processors
         /// <summary>
         /// Current active face tracking results
         /// </summary>
-        public List<HdFaceFrameResultEventArgs> CurrentResults
+        public List<FaceFrameResultEventArgs> CurrentResults
         {
             get { return this.currentResults.Values.ToList(); }
         }
@@ -47,7 +47,7 @@ namespace KGP.Processors
         /// <param name="sensor">Kinect sensor</param>
         /// <param name="bodyProcessor">Kinect body processor</param>
         /// <param name="maxFaceCount">Maximum face count</param>
-        public MultipleHdFaceProcessor(KinectSensor sensor, BodyTrackingProcessor bodyProcessor, int maxFaceCount)
+        public MultipleFaceProcessor(KinectSensor sensor, BodyTrackingProcessor bodyProcessor, int maxFaceCount)
         {
             if (sensor == null)
                 throw new ArgumentNullException("sensor");
@@ -60,13 +60,13 @@ namespace KGP.Processors
             this.bodyProcessor.BodyTrackingStarted += BodyTrackingStarted;
             this.bodyProcessor.BodyTrackingLost += BodyTrackingLost;
 
-            this.faceProcessors = new SingleHdFaceProcessor[maxFaceCount];
-            this.activeProcessors = new Dictionary<ulong, SingleHdFaceProcessor>();
-            this.idleProcessors = new List<SingleHdFaceProcessor>(maxFaceCount);
-            this.currentResults = new Dictionary<ulong, HdFaceFrameResultEventArgs>();
+            this.faceProcessors = new SingleFaceProcessor[maxFaceCount];
+            this.activeProcessors = new Dictionary<ulong, SingleFaceProcessor>();
+            this.idleProcessors = new List<SingleFaceProcessor>(maxFaceCount);
+            this.currentResults = new Dictionary<ulong, FaceFrameResultEventArgs>();
             for (int i = 0; i < maxFaceCount; i++)
             {
-                this.faceProcessors[i] = new SingleHdFaceProcessor(sensor);
+                this.faceProcessors[i] = new SingleFaceProcessor(sensor);
                 this.idleProcessors.Add(this.faceProcessors[i]);
             }
         }
@@ -84,7 +84,7 @@ namespace KGP.Processors
             if (this.idleProcessors.Count > 0)
             {
                 var processor = this.idleProcessors[this.idleProcessors.Count - 1];
-                processor.HdFrameReceived += HdFrameReceived;
+                processor.FaceResultAcquired += FaceResultAcquired;
                 processor.AssignBody(e.Body);
 
 
@@ -98,7 +98,7 @@ namespace KGP.Processors
             if (this.activeProcessors.ContainsKey(e.Body.TrackingId))
             {
                 var processor = this.activeProcessors[e.Body.TrackingId];
-                processor.HdFrameReceived -= HdFrameReceived;
+                processor.FaceResultAcquired -= FaceResultAcquired;
                 processor.Suspend();
 
                 this.activeProcessors.Remove(e.Body.TrackingId);
@@ -113,7 +113,7 @@ namespace KGP.Processors
             }
         }
 
-        private void HdFrameReceived(object sender, HdFaceFrameResultEventArgs e)
+        private void FaceResultAcquired(object sender, FaceFrameResultEventArgs e)
         {
             this.currentResults[e.TrackingId] = e;
             this.RaiseTrackingResultsChanged();
