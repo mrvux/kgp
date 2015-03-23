@@ -64,13 +64,23 @@ namespace KGP.Direct3D11.Buffers
         }
 
         /// <summary>
-        /// Sends a draw call to the pipeline
+        /// Draws our index buffer
         /// </summary>
         /// <param name="context">Device context</param>
         /// <param name="faceCount">Tracked face count</param>
         public void Draw(DeviceContext context, int faceCount)
         {
             context.DrawIndexed(faceCount * (int)FaceModel.TriangleCount * 3, 0, 0);
+        }
+
+        /// <summary>
+        /// Draws our index buffer as an instanced version
+        /// </summary>
+        /// <param name="context">Device context</param>
+        /// <param name="faceCount">Tracked face count</param>
+        public void DrawInstanced(DeviceContext context, int faceCount)
+        {
+            context.DrawIndexedInstanced((int)FaceModel.TriangleCount * 3, faceCount, 0, 0, 0);
         }
 
         /// <summary>

@@ -63,6 +63,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ProjectedHdFaceSample", "sa
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MultipleHdFaceTrackingSample", "samples\MultipleHdFaceTrackingSample\MultipleHdFaceTrackingSample.csproj", "{93897197-76A9-4F71-888C-0FDE9CC5068D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HdFaceSwapExample", "samples\HdFaceSwapExample\HdFaceSwapExample.csproj", "{7DD508C7-1BBB-43EF-BCFB-13A7BFE3CCA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -173,6 +175,10 @@ Global
 		{93897197-76A9-4F71-888C-0FDE9CC5068D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{93897197-76A9-4F71-888C-0FDE9CC5068D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{93897197-76A9-4F71-888C-0FDE9CC5068D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DD508C7-1BBB-43EF-BCFB-13A7BFE3CCA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DD508C7-1BBB-43EF-BCFB-13A7BFE3CCA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DD508C7-1BBB-43EF-BCFB-13A7BFE3CCA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DD508C7-1BBB-43EF-BCFB-13A7BFE3CCA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -204,5 +210,6 @@ Global
 		{47D2581F-61C4-4071-84F7-C7A22F2D877B} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
 		{E01B2C00-B548-40B8-B7D5-BD369B01C42F} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
 		{93897197-76A9-4F71-888C-0FDE9CC5068D} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
+		{7DD508C7-1BBB-43EF-BCFB-13A7BFE3CCA9} = {5223F7A2-BE9F-4942-9713-F7DAAE37DC7B}
 	EndGlobalSection
 EndGlobal
