@@ -12,7 +12,7 @@ namespace KGP.Tests
         {
             FaceModel model = new FaceModel();
             FaceAlignment align = new FaceAlignment();
-            HdFaceFrameResultEventArgs args = new HdFaceFrameResultEventArgs(model, align);
+            HdFaceFrameResultEventArgs args = new HdFaceFrameResultEventArgs(1,model, align);
 
             Assert.AreEqual(model, args.FaceModel);
             Assert.AreEqual(align, args.FaceAlignment);
@@ -23,7 +23,7 @@ namespace KGP.Tests
         public void TestNullModel()
         {
             FaceAlignment align = new FaceAlignment();
-            HdFaceFrameResultEventArgs args = new HdFaceFrameResultEventArgs(null, align);
+            HdFaceFrameResultEventArgs args = new HdFaceFrameResultEventArgs(0,null, align);
         }
 
         [TestMethod]
@@ -31,7 +31,7 @@ namespace KGP.Tests
         public void TestNullAlignment()
         {
             FaceModel model = new FaceModel();
-            HdFaceFrameResultEventArgs args = new HdFaceFrameResultEventArgs(model, null);
+            HdFaceFrameResultEventArgs args = new HdFaceFrameResultEventArgs(0,model, null);
         }
     }
 }

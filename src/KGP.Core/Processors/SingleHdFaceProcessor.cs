@@ -53,7 +53,7 @@ namespace KGP.Processors
                     frame.Dispose();
                     if (this.HdFrameReceived != null)
                     {
-                        this.HdFrameReceived(this, new HdFaceFrameResultEventArgs(this.faceModel, this.faceAlignment));
+                        this.HdFrameReceived(this, new HdFaceFrameResultEventArgs(this.TrackingId, this.faceModel, this.faceAlignment));
                     }
                 }
             }

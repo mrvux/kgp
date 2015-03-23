@@ -12,8 +12,17 @@ namespace KGP
     /// </summary>
     public class HdFaceFrameResultEventArgs
     {
+        private readonly ulong trackingId;
         private readonly FaceModel faceModel;
         private readonly FaceAlignment faceAlignment;
+
+        /// <summary>
+        /// Tracking Id
+        /// </summary>
+        public ulong TrackingId
+        {
+            get { return this.trackingId; }
+        }
 
         /// <summary>
         /// Face model
@@ -34,15 +43,17 @@ namespace KGP
         /// <summary>
         /// Constructor
         /// </summary>
+        /// <param name="trackingId">Tracking Id</param>
         /// <param name="faceModel">Face Model</param>
         /// <param name="faceAlignment">Face Alignment</param>
-        public HdFaceFrameResultEventArgs(FaceModel faceModel, FaceAlignment faceAlignment)
+        public HdFaceFrameResultEventArgs(ulong trackingId, FaceModel faceModel, FaceAlignment faceAlignment)
         {
             if (faceModel == null)
                 throw new ArgumentNullException("faceModel");
             if (faceAlignment == null)
                 throw new ArgumentNullException("faceAlignment");
 
+            this.trackingId = trackingId;
             this.faceAlignment = faceAlignment;
             this.faceModel = faceModel;
         }
