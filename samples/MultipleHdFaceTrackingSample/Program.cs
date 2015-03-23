@@ -132,7 +132,6 @@ namespace MultipleHdFaceTrackingSample
                     //Attach index buffer, null topology since we fetch
                     faceIndexBuffer.AttachWithLayout(context);
                     faceIndexBuffer.Draw(context, multiFace.CurrentResults.Count);
-
                 }
 
                 context.RenderTargetStack.Pop();
