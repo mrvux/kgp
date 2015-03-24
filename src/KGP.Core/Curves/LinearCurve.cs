@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace KGP.Curves
+namespace KGP
 {
     /// <summary>
     /// Simple linear curve, returns the same value as input

@@ -65,6 +65,7 @@
     <Compile Include="ColorSpaceKinectJoints.cs" />
     <Compile Include="Consts.cs" />
     <Compile Include="Curves\DelegateCurve.cs" />
+    <Compile Include="Curves\GammaCurve.cs" />
     <Compile Include="Curves\ICurve.cs" />
     <Compile Include="Curves\LinearCurve.cs" />
     <Compile Include="Curves\SquareCurve.cs" />
