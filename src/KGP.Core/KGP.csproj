@@ -56,6 +56,7 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.Speech, Version=11.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ColorSpaceKinectJoints.cs" />
@@ -73,6 +74,7 @@
     <Compile Include="Frames\DepthFrameData.cs" />
     <Compile Include="HandType.cs" />
     <Compile Include="HdFaceFrameResultEventArgs.cs" />
+    <Compile Include="ISpeechGrammarElement.cs" />
     <Compile Include="JointExtensions.cs" />
     <Compile Include="JointParentTable.cs" />
     <Compile Include="KinectBody.cs" />
@@ -86,10 +88,14 @@
     <Compile Include="Network\FrameServer\KinectFrameServer.cs" />
     <Compile Include="Processors\HandStateTrackingProcessor.cs" />
     <Compile Include="Processors\BodyTrackingProcessor.cs" />
+    <Compile Include="Processors\Speech\KinectAudioStreamProcessor.cs" />
     <Compile Include="Processors\MultipleFaceProcessor.cs" />
     <Compile Include="Processors\MultipleHdFaceProcessor.cs" />
     <Compile Include="Processors\SingleFaceProcessor.cs" />
     <Compile Include="Processors\SingleHdFaceProcessor.cs" />
+    <Compile Include="Processors\Speech\SpeechCommandProcessor.cs" />
+    <Compile Include="Processors\Speech\SpeechGrammarEvent.cs" />
+    <Compile Include="Processors\Speech\SpeechGrammarDelegate.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ILongExposureInfraredFrameProvider.cs" />
     <Compile Include="Providers\IInfraredFrameProvider.cs" />
