@@ -39,7 +39,7 @@ namespace KGP.Direct3D11.Textures
         }
 
         /// <summary>
-        /// Copy data fromcpu to gpu
+        /// Copy data from cpu to gpu
         /// <remarks>In that case we should use immediate context, do not use a deffered context 
         /// unless you really know what you do</remarks>
         /// </summary>
