@@ -1,19 +1,40 @@
 //Converts back uint buffer to float version
 
-StructuredBuffer<uint3> BoundsBuffer : register(t0);
-RWStructuredBuffer<float3> RWFloatBuffer :register(u0);
-
-[numthreads(1,1,1)]
-void CS_ToFloat(uint3 tid : SV_DispatchThreadID)
+struct BoundingBox
 {
-	uint3 b = BoundsBuffer[tid.x];
-	
+	float3 boundsMin;
+	float3 boundsMax;
+};
+
+StructuredBuffer<uint3> BoundsMinBuffer : register(t0);
+StructuredBuffer<uint3> BoundsMaxBuffer : register(t1);
+
+RWStructuredBuffer<BoundingBox> RWBoundsBuffer : register(u0);
+
+//From bullet physics library
+float3 UintToSignedFloat(uint3 b)
+{
 	b.x ^= (((b.x >> 31) - 1) | 0x80000000);
 	b.y ^= (((b.y >> 31) - 1) | 0x80000000);
 	b.z ^= (((b.z >> 31) - 1) | 0x80000000);
-	
-	RWFloatBuffer[tid.x] = float3(asfloat(b.x),asfloat(b.y),asfloat(b.z));
+	return float3(asfloat(b.x),asfloat(b.y),asfloat(b.z));
 }
 
+BoundingBox GetBoundingBox(uint id)
+{
+	uint3 bmin = BoundsMinBuffer[id];
+	uint3 bmax = BoundsMaxBuffer[id];
+
+	BoundingBox box;
+	box.boundsMin = UintToSignedFloat(bmin);
+	box.boundsMax = UintToSignedFloat(bmax);
+	return box;
+}
+
+[numthreads(1,1,1)]
+void CS(uint3 tid : SV_DispatchThreadID)
+{
+	RWBoundsBuffer[tid.x] = GetBoundingBox(tid.x);
+}
 
 

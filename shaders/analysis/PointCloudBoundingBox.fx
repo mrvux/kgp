@@ -1,7 +1,9 @@
 ByteAddressBuffer ElementCountBuffer : register(t0);
 
 StructuredBuffer<float3> PositionBuffer : register(t1);
-RWStructuredBuffer<uint3> RWBoundsBuffer : register (u0);
+
+RWStructuredBuffer<uint3> RWBoundsMinBuffer : register (u0);
+RWStructuredBuffer<uint3> RWBoundsMaxBuffer : register (u1);
 
 //From bullet physics, turn a signed float as sortable uint
 uint3 toSignUint(float3 d)
@@ -23,13 +25,13 @@ void CS_ProcessSimple( uint3 DTid : SV_DispatchThreadID )
 	float3 p = PositionBuffer[tid];
 	uint3 xyz = toSignUint(p);	
 	
-	InterlockedMin(RWBoundsBuffer[0].x, xyz.x);
-	InterlockedMin(RWBoundsBuffer[0].y, xyz.y);
-	InterlockedMin(RWBoundsBuffer[0].z, xyz.z);
+	InterlockedMin(RWBoundsMinBuffer[0].x, xyz.x);
+	InterlockedMin(RWBoundsMinBuffer[0].y, xyz.y);
+	InterlockedMin(RWBoundsMinBuffer[0].z, xyz.z);
 		
-	InterlockedMax(RWBoundsBuffer[1].x, xyz.x);
-	InterlockedMax(RWBoundsBuffer[1].y, xyz.y);
-	InterlockedMax(RWBoundsBuffer[1].z, xyz.z);
+	InterlockedMax(RWBoundsMaxBuffer[0].x, xyz.x);
+	InterlockedMax(RWBoundsMaxBuffer[0].y, xyz.y);
+	InterlockedMax(RWBoundsMaxBuffer[0].z, xyz.z);
 }
 
 groupshared uint minBox[3];
@@ -69,12 +71,12 @@ void CS_ProcessGroupShared( uint3 DTid : SV_DispatchThreadID, uint3 gtid : SV_Gr
 		
 	if (gtid.x == 0)
 	{
-		InterlockedMin(RWBoundsBuffer[0].x, minBox[0]);
-		InterlockedMin(RWBoundsBuffer[0].y, minBox[1]);
-		InterlockedMin(RWBoundsBuffer[0].z, minBox[2]);
+		InterlockedMin(RWBoundsMinBuffer[0].x, minBox[0]);
+		InterlockedMin(RWBoundsMinBuffer[0].y, minBox[1]);
+		InterlockedMin(RWBoundsMinBuffer[0].z, minBox[2]);
 		
-		InterlockedMax(RWBoundsBuffer[1].x, maxBox[0]);
-		InterlockedMax(RWBoundsBuffer[1].y, maxBox[1]);
-		InterlockedMax(RWBoundsBuffer[1].z, maxBox[2]);
+		InterlockedMax(RWBoundsMaxBuffer[0].x, maxBox[0]);
+		InterlockedMax(RWBoundsMaxBuffer[0].y, maxBox[1]);
+		InterlockedMax(RWBoundsMaxBuffer[0].z, maxBox[2]);
 	}
 }

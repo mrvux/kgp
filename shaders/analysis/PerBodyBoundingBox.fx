@@ -6,7 +6,7 @@ StructuredBuffer<float3> PositionBuffer : register(t1);
 StructuredBuffer<uint> BodyIndexBuffer : register(t2);
 
 RWStructuredBuffer<uint3> RWBoundsMinBuffer : register (u0);
-RWStructuredBuffer<uint3> RWBoundsMaxBuffer : register (u0);
+RWStructuredBuffer<uint3> RWBoundsMaxBuffer : register (u1);
 
 //From bullet physics, turn a signed float as sortable uint
 uint3 toSignUint(float3 d)
