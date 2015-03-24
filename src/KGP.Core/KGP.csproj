@@ -66,6 +66,8 @@
     <Compile Include="Consts.cs" />
     <Compile Include="Curves\DelegateCurve.cs" />
     <Compile Include="Curves\ICurve.cs" />
+    <Compile Include="Curves\LinearCurve.cs" />
+    <Compile Include="Curves\SquareCurve.cs" />
     <Compile Include="FaceFrameResultEventArgs.cs" />
     <Compile Include="FaceUtils.cs" />
     <Compile Include="Frames\DepthToColorFrameData.cs" />

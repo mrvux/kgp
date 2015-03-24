@@ -15,7 +15,7 @@ namespace KGP
         /// Apply curve data
         /// </summary>
         /// <param name="value">Initial value</param>
-        /// <remarks>Curve value is generally normalized from 0 to 1</remarks>
+        /// <remarks>Curve value is generally normalized from -1 to 1</remarks>
         /// <returns>Curved value</returns>
         float Apply(float value);
     }
