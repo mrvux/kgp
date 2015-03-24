@@ -14,6 +14,9 @@ namespace KGP.Processors
         private string semantic;
         private IEnumerable<string> words;
 
+        /// <summary>
+        /// Raised when grammar is recognised
+        /// </summary>
         public event EventHandler OnGrammarRecognized;
 
         /// <summary>

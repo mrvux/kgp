@@ -1,4 +1,5 @@
 ﻿using Microsoft.Kinect;
+using SharpDX;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -69,6 +70,17 @@ namespace KGP
         {
             float nearCenter = bodyList.Aggregate(float.MaxValue, (x, kb) => Math.Min(Math.Abs(kb.Joints[joint].Position.X), x));
             return bodyList.Where(kb => Math.Abs(kb.Joints[joint].Position.X) == nearCenter);
+        }
+
+        public static KinectJointTable GetJointTable(this KinectBody body)
+        {
+            Dictionary<JointType, Vector3> joints = new Dictionary<JointType, Vector3>();
+            foreach (var kvp in body.Joints)
+            {
+                CameraSpacePoint csp = kvp.Value.Position;
+                joints.Add(kvp.Key, new Vector3(csp.X, csp.Y, csp.Z));
+            }
+            return new KinectJointTable(body.TrackingId, joints);
         }
     }
 }
