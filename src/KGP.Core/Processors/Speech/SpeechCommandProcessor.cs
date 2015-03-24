@@ -21,6 +21,12 @@ namespace KGP.Processors
 
         private readonly IEnumerable<ISpeechGrammarElement> grammarElements;
 
+        public double ConfidenceThreshold
+        {
+            get;
+            set;
+        }
+
         /// <summary>
         /// Utility to construct a processor from params array
         /// </summary>
@@ -44,6 +50,7 @@ namespace KGP.Processors
             if (grammarElements == null)
                 throw new ArgumentNullException("grammarElements");
 
+            this.ConfidenceThreshold = 0.9f;
             this.sensor = sensor;
             this.grammarElements = grammarElements;
 
@@ -85,7 +92,6 @@ namespace KGP.Processors
 
         private void SpeechRecognized(object sender, SpeechRecognizedEventArgs e)
         {
-            const double ConfidenceThreshold = 0.3;
             if (e.Result.Confidence >= ConfidenceThreshold)
             {
                 var gElement = this.grammarElements.Where(ig => ig.Semantic == e.Result.Semantics.Value.ToString()).FirstOrDefault();
