@@ -69,8 +69,12 @@
     <Compile Include="Curves\ICurve.cs" />
     <Compile Include="Curves\LinearCurve.cs" />
     <Compile Include="Curves\SquareCurve.cs" />
+    <Compile Include="Curves\ThresholdLinearCurve.cs" />
     <Compile Include="FaceFrameResultEventArgs.cs" />
     <Compile Include="FaceUtils.cs" />
+    <Compile Include="Filters\LowpassFilter.cs" />
+    <Compile Include="Filters\OneEuroFilter.cs" />
+    <Compile Include="Filters\OneEuroFilterProperties.cs" />
     <Compile Include="Frames\DepthToColorFrameData.cs" />
     <Compile Include="Frames\ColorToDepthFrameData.cs" />
     <Compile Include="Frames\LongExposureInfraredFrameData.cs" />
