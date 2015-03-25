@@ -51,15 +51,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CameraToCameraPoint.cs" />
-    <Compile Include="ProjectorCalibrationResult.cs" />
-    <Compile Include="CameraToScreenPoint.cs" />
-    <Compile Include="CVProjectionCalibration.cs" />
-    <Compile Include="ICameraToCameraSolver.cs" />
-    <Compile Include="ProjectorCalibrationData.cs" />
-    <Compile Include="ICameraToScreenSolver.cs" />
-    <Compile Include="KabschSolver.cs" />
+    <Compile Include="CameraSpace\CameraToCameraPoint.cs" />
+    <Compile Include="CameraSpace\CalibrationBuilderUtils.cs" />
+    <Compile Include="Projection\ProjectorCalibrationResult.cs" />
+    <Compile Include="Projection\CameraToScreenPoint.cs" />
+    <Compile Include="Projection\CVProjectionCalibration.cs" />
+    <Compile Include="CameraSpace\ICameraToCameraSolver.cs" />
+    <Compile Include="Projection\ProjectorCalibrationData.cs" />
+    <Compile Include="Projection\ICameraToScreenSolver.cs" />
+    <Compile Include="CameraSpace\KabschSolver.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\KGP.Core\KGP.csproj">
+      <Project>{126e2fa8-2f30-4df4-9cc0-6fe800a099dd}</Project>
+      <Name>KGP</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
