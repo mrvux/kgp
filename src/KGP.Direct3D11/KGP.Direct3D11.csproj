@@ -92,6 +92,7 @@
     <Compile Include="Descriptors\PointCloudDescriptors.cs" />
     <Compile Include="DeviceExtensions.cs" />
     <Compile Include="Processors\DynamicBodyIndexTextureProcessor.cs" />
+    <Compile Include="Processors\DynamicColorRGBATextureProcessor.cs" />
     <Compile Include="Processors\DynamicDepthTextureProcessor.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TextureSize.cs" />

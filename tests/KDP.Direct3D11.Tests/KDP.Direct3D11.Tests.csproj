@@ -82,6 +82,7 @@
     <Compile Include="Descriptors\BodyIndexTextureDescriptorsTests.cs" />
     <Compile Include="Descriptors\DescriptorUtilsIndexBufferTests.cs" />
     <Compile Include="Descriptors\MultiKinectTextureDescriptorsTests.cs" />
+    <Compile Include="Processors\DynamicColorRGBATextureProcessorTests.cs" />
     <Compile Include="Processors\DynamicDepthTextureProcessorTests.cs" />
     <Compile Include="Processors\DynamicBodyIndexTextureProcessorTests.cs" />
     <Compile Include="TextureSizeTests.cs" />
