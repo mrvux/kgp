@@ -1,6 +1,7 @@
 ﻿using FeralTic.DX11;
 using FeralTic.DX11.Resources;
 using KGP;
+using KGP.Direct3D11.Processors;
 using KGP.Direct3D11.Textures;
 using KGP.Frames;
 using KGP.Processors;
@@ -49,11 +50,9 @@ namespace ColorTextureSample
             sensor.Open();
 
             bool doQuit = false;
-            bool doUpload = false;
-            ColorRGBAFrameData currentData = null;
-            DynamicColorRGBATexture colorTexture = new DynamicColorRGBATexture(device);
+
             KinectSensorColorRGBAFrameProvider provider = new KinectSensorColorRGBAFrameProvider(sensor);
-            provider.FrameReceived += (sender, args) => { currentData = args.FrameData; doUpload = true; };
+            DynamicColorRGBATextureProcessor colorProcessor = new DynamicColorRGBATextureProcessor(provider, device);
 
             KinectPilotProcessor pilot = KinectPilotProcessor.Default;
 
@@ -77,15 +76,11 @@ namespace ColorTextureSample
                     return;
                 }
 
-                if (doUpload)
-                {
-                    colorTexture.Copy(context, currentData);
-                    doUpload = false;
-                }
+                colorProcessor.Update(context);
 
                 context.RenderTargetStack.Push(swapChain);
 
-                device.Primitives.ApplyFullTri(context, colorTexture.ShaderView);
+                device.Primitives.ApplyFullTri(context, colorProcessor.Texture.ShaderView);
                 device.Primitives.FullScreenTriangle.Draw(context);
                 context.RenderTargetStack.Pop();
 
@@ -110,7 +105,7 @@ namespace ColorTextureSample
             context.Dispose();
             device.Dispose();
 
-            colorTexture.Dispose();
+            colorProcessor.Dispose();
             provider.Dispose();
 
             sensor.Close();
