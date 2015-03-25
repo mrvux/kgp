@@ -51,6 +51,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CameraSpace\BodyCalibrationData.cs" />
     <Compile Include="CameraSpace\CameraToCameraPoint.cs" />
     <Compile Include="CameraSpace\CalibrationBuilderUtils.cs" />
     <Compile Include="Projection\ProjectorCalibrationResult.cs" />
