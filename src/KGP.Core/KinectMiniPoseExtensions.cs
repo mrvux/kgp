@@ -55,5 +55,15 @@ namespace KGP
         {
             return kb.LeftHandRaised() && kb.RightHandRaised();
         }
+
+        /// <summary>
+        /// Checks if both hands are below hips
+        /// </summary>
+        /// <param name="kb">kinect body</param>
+        /// <returns>True if both hands are below hips, false otherwise</returns>
+        public static bool BothHandsBelowHip(this KinectBody kb)
+        {
+            return kb.CompareHeight(JointType.HipRight, JointType.HandRight) && kb.CompareHeight(JointType.HipLeft, JointType.HandLeft);
+        }
     }
 }
