@@ -29,12 +29,25 @@ namespace KGP.Direct3D11.Processors
         }
 
         /// <summary>
+        /// Tells if our frame needs to be uploaded to gpu
+        /// </summary>
+        public bool NeedUpdate
+        {
+            get { return this.upload; }
+        }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="depthFrameProvider">Depth frame provider</param>
         /// <param name="device">Direct3D11 device</param>
         public DynamicDepthTextureProcessor(IDepthFrameProvider depthFrameProvider, Device device)
         {
+            if (depthFrameProvider == null)
+                throw new ArgumentNullException("depthFrameProvider");
+            if (device == null)
+                throw new ArgumentNullException("device");
+
             this.depthFrameProvider = depthFrameProvider;
             this.depthFrameProvider.FrameReceived += FrameReceived;
             this.depthTexture = new DynamicDepthTexture(device);

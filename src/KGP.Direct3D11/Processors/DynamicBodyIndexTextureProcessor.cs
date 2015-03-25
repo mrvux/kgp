@@ -29,12 +29,25 @@ namespace KGP.Direct3D11.Processors
         }
 
         /// <summary>
+        /// Tells if texture needs an update
+        /// </summary>
+        public bool NeedUpdate
+        {
+            get { return this.upload; }
+        }
+
+        /// <summary>
         /// Constructor
         /// </summary>
         /// <param name="bodyIndexFrameProvider">Body index frame provider</param>
         /// <param name="device">Direct3D11 device</param>
         public DynamicBodyIndexTextureProcessor(IBodyIndexFrameProvider bodyIndexFrameProvider, Device device)
         {
+            if (device == null)
+                throw new ArgumentNullException("device");
+            if (bodyIndexFrameProvider == null)
+                throw new ArgumentNullException("bodyIndexFrameProvider");
+
             this.bodyIndexFrameProvider = bodyIndexFrameProvider;
             this.bodyIndexFrameProvider.FrameReceived += FrameReceived;
             this.bodyIndexTexture = new DynamicBodyIndexTexture(device);
