@@ -49,6 +49,10 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\externals\json\Newtonsoft.Json.dll</HintPath>
     </Reference>
+    <Reference Include="SharpDX, Version=2.6.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\externals\sharpdx\SharpDX.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
   </ItemGroup>
   <Choose>
@@ -65,6 +69,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="Curves\DelegateCurveTests.cs" />
+    <Compile Include="FaceUtilsTests.cs" />
     <Compile Include="Fakes\FakeImageData.cs" />
     <Compile Include="Frames\DepthToColorFrameDataTests.cs" />
     <Compile Include="Frames\ColorToDepthFrameDataTests.cs" />
@@ -92,6 +97,7 @@
     <Compile Include="KinectBodyTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Serialization\Images\CompressorTests.cs" />
+    <Compile Include="KinectJointTableTests.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\src\KGP.Core\KGP.csproj">

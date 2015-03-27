@@ -63,7 +63,6 @@ namespace KGP.Tests.Curves
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void TestGammaLowerThan1()
         {
             GammaCurve d = new GammaCurve(0.5f);

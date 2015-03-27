@@ -39,6 +39,9 @@ namespace KGP
         /// <param name="joints">Joint table</param>
         public KinectJointTable(ulong trackingId, IReadOnlyDictionary<JointType, Vector3> joints)
         {
+            if (joints == null)
+                throw new ArgumentNullException("joints");
+
             this.trackingId = trackingId;
             this.joints = joints;
         }
